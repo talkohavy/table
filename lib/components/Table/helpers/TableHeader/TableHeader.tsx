@@ -1,13 +1,10 @@
 import { useCallback } from 'react';
 import { flexRender } from '@tanstack/react-table';
-import ArrowIcon from '../../../utils/svgs/ArrowIcon';
-import DefaultFilter from './DefaultFilter';
-
-const SORTING_ICONS: any = {
-  asc: () => <ArrowIcon size={16} />,
-  desc: () => <ArrowIcon size={16} className='rotate-180' />,
-  none: '',
-};
+import { CLASSES } from '../../constants';
+import DefaultFilter from '../DefaultFilter';
+import ColumnResizer from './ColumnResizer';
+import SortButton from './SortButton';
+import styles from './TableHeader.module.scss';
 
 type TableHeaderProps = {
   tableInstance: any;
@@ -17,7 +14,6 @@ type TableHeaderProps = {
 export default function TableHeader(props: TableHeaderProps) {
   const { getHeaderGroups, tableInstance } = props;
 
-  // all useCallbacks:
   const onHeaderClick = useCallback(
     (e: any, header: any) => e.target.tagName !== 'INPUT' && header.column.getToggleSortingHandler()(e),
     [],
@@ -26,53 +22,56 @@ export default function TableHeader(props: TableHeaderProps) {
   return (
     <thead>
       {getHeaderGroups().map((headerGroup: any) => (
-        <tr key={headerGroup.id} className='react-table-header-row'>
-          {headerGroup.headers.map((header: any) => (
-            <th
-              key={header.id}
-              colSpan={header.colSpan}
-              style={{ width: header.getSize() }}
-              className='react-table-header-cell'
-            >
-              {header.isPlaceholder ? null : (
-                <div>
-                  <div className='flex w-full items-center justify-between'>
-                    {/* ------------------ */}
-                    {/* Display the Header */}
-                    {/* ------------------ */}
-                    <div className='react-table-header-cell-value'>
-                      {/* <div className='flex w-full select-none items-center justify-between'> */}
-                      {flexRender(header.column.columnDef.header, header.getContext())}
+        <tr key={headerGroup.id} className={CLASSES.tableHeaderRow}>
+          {headerGroup.headers.map((header: any) => {
+            const isSortButtonVisible = header.column.getCanSort() && header.column.columnDef.enableSorting;
+            const isResizable = header.column.getCanResize();
+
+            return (
+              <th
+                key={header.id}
+                colSpan={header.colSpan}
+                style={{ width: header.getSize() }}
+                className={CLASSES.tableHeaderCell}
+              >
+                {header.isPlaceholder ? null : (
+                  <div>
+                    <div className={styles.tableHeaderContentWrapper}>
+                      {/* ------------------ */}
+                      {/* Display the Header */}
+                      {/* ------------------ */}
+                      <div className={CLASSES.tableHeaderCellValue}>
+                        {/* <div className='flex w-full select-none items-center justify-between'> */}
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+                      </div>
+
+                      {isSortButtonVisible && (
+                        <SortButton
+                          sortType={header.column.getIsSorted()}
+                          onClick={(e: any) => onHeaderClick(e, header)}
+                        />
+                      )}
                     </div>
 
                     {/* ------------------ */}
-                    {/* Display the Sorter */}
+                    {/* Display the Filter */}
                     {/* ------------------ */}
-                    {header.column.getCanSort() && header.column.columnDef.enableSorting ? (
-                      <div className='cursor-pointer' onClick={(e) => onHeaderClick(e, header)}>
-                        {SORTING_ICONS[header.column.getIsSorted()]?.() ?? SORTING_ICONS.none}
-                      </div>
-                    ) : null}
+                    {header.column.getCanFilter() && header.column.columnDef.enableColumnFilter && (
+                      <DefaultFilter table={tableInstance} column={header.column} />
+                    )}
                   </div>
+                )}
 
-                  {/* ------------------ */}
-                  {/* Display the Filter */}
-                  {/* ------------------ */}
-                  {header.column.getCanFilter() && header.column.columnDef.enableColumnFilter ? (
-                    <DefaultFilter table={tableInstance} column={header.column} />
-                  ) : null}
-                </div>
-              )}
-
-              {header.column.getCanResize() && (
-                <div
-                  onMouseDown={header.getResizeHandler()}
-                  onTouchStart={header.getResizeHandler()}
-                  className={`resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`}
-                />
-              )}
-            </th>
-          ))}
+                {isResizable && (
+                  <ColumnResizer
+                    onMouseDown={header.getResizeHandler()}
+                    onTouchStart={header.getResizeHandler()}
+                    isResizing={header.column.getIsResizing()}
+                  />
+                )}
+              </th>
+            );
+          })}
         </tr>
       ))}
     </thead>

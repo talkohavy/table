@@ -1,16 +1,3 @@
-// import styles from './Table.module.scss';
-
-// type TableProps = {
-//   name: string;
-// };
-
-// export default function Table(props: TableProps) {
-//   const { name } = props;
-//   console.log('name', name);
-
-//   return <div className={styles.table}>Table</div>;
-// }
-
 import { ReactNode, forwardRef, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { useVirtual } from 'react-virtual';
@@ -22,13 +9,15 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { BASIC_TABLE_CLASSNAME, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './constants';
+import { CLASSES, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './constants';
 import ColumnHeader from './helpers/ColumnHeader';
+import SpinnerOverlay from './helpers/SpinnerOverlay';
 import TableBody from './helpers/TableBody';
 import TableHeader from './helpers/TableHeader';
+import styles from './Table.module.scss';
 import { DefaultColumn, ExtendedColumnDef } from './types';
 
-type TableProps<T> = {
+type TableProps<T = any> = {
   data: Array<T>;
   columnDefs?: Array<ExtendedColumnDef<T>>;
   defaultColumn?: DefaultColumn;
@@ -155,20 +144,17 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
   const virtualPaddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0;
   const virtualPaddingBottom = virtualRows.length > 0 ? totalSize - (virtualRows?.at(-1)?.end || 0) : 0;
 
-  if (isLoading)
-    return (
-      <div className='flex h-full w-full items-center justify-center rounded-lg border text-center'>Loading...</div>
-    );
+  if (isLoading) return <SpinnerOverlay />;
 
   return (
-    <div className={clsx('flex flex-col overflow-auto', className)}>
+    <div className={clsx(CLASSES.tableWrapper, styles.table, className)}>
       <div
         onScroll={onBottomReached ? (e) => fetchMoreOnBottomReached(e.target) : undefined}
-        className='react-table-ref-container h-full w-full overflow-auto'
+        className={clsx(CLASSES.tableParentRef, styles.tableParentRef)}
         // className='h-full w-full overflow-auto border border-gray-300'
         ref={tableParentRef}
       >
-        <table className={BASIC_TABLE_CLASSNAME}>
+        <table className={CLASSES.table}>
           <TableHeader tableInstance={tableInstance} getHeaderGroups={getHeaderGroups} />
 
           <TableBody

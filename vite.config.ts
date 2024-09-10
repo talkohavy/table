@@ -7,7 +7,13 @@ import react from '@vitejs/plugin-react-swc';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  root: `${process.cwd()}/src`, // <--- defaults to process.cwd(). where the index.html is located.
   plugins: [react(), libInjectCss()],
+  server: {
+    open: true,
+    port: 3000,
+    strictPort: true,
+  },
   build: {
     emptyOutDir: false, // <--- defaults to `true`
     copyPublicDir: false,

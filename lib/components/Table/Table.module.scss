@@ -1,3 +1,11 @@
 .table {
-  height: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.tableParentRef {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
 }
