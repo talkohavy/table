@@ -40,7 +40,7 @@ type TableProps<T = any> = {
 function TableToForward<T>(props: TableProps<T>, ref: any) {
   const {
     data: dataRaw,
-    columnDefs = [],
+    columnDefs,
     defaultColumn,
     rowSelectionMode = 'none',
     searchText,
@@ -67,19 +67,27 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
 
   // all useMemos:
   const data = useMemo(() => dataRaw, [dataRaw]);
-  const columns: any = useMemo(
-    () =>
-      columnDefs.map((curItem) => {
-        if (curItem.addCheckbox)
-          return {
-            ...curItem,
-            header: (props: any) => <ColumnHeader {...props} {...curItem} header={curItem.header} />,
-          };
+  const columns: any = useMemo(() => {
+    if (!columnDefs) {
+      if (!data.length) return [];
 
-        return curItem;
-      }),
-    [columnDefs],
-  );
+      const [firstRow] = data;
+      const autoColumnDefs = [];
+      for (const key in firstRow) autoColumnDefs.push({ accessorKey: key });
+
+      return autoColumnDefs;
+    }
+
+    return columnDefs.map((curItem) => {
+      if (curItem.addCheckbox)
+        return {
+          ...curItem,
+          header: (props: any) => <ColumnHeader {...props} {...curItem} header={curItem.header} />,
+        };
+
+      return curItem;
+    });
+  }, [columnDefs]);
 
   const fetchMoreOnBottomReached = useCallback(
     (containerRefElement: any) => {
