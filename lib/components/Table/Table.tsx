@@ -73,7 +73,7 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
       for (const key in firstRow) {
         autoColumnDefs.push({
           accessorKey: key,
-          header: (props: any) => <ColumnHeader {...props} header={key} />,
+          header: (props: any) => <ColumnHeader {...props} header={key} showCheckbox={false} />,
         });
       }
 
