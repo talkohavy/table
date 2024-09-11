@@ -1,5 +1,5 @@
 import { Table } from '../lib/main.js';
-import './App.css';
+import styles from './App.module.scss';
 
 export default function App() {
   return (
@@ -19,13 +19,29 @@ export default function App() {
           { firstName: 'tania', lastName: 'kohavy', age: 22 },
           { firstName: 'daniel', lastName: 'kohavy', age: 26 },
           { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
+          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
         ]}
         columnDefs={[
           { accessorKey: 'id', addCheckbox: true },
           { accessorKey: 'firstName' },
           { accessorKey: 'lastName' },
         ]}
-        // className='border border-white h-44 w-xs'
+        className={styles.myTable}
       />
     </div>
   );

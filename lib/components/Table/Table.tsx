@@ -9,11 +9,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { CLASSES, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './constants';
-import ColumnHeader from './helpers/ColumnHeader';
-import SpinnerOverlay from './helpers/SpinnerOverlay';
-import TableBody from './helpers/TableBody';
-import TableHeader from './helpers/TableHeader';
+import { CLASSES, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './logic/constants';
+import ColumnHeader from './logic/helpers/ColumnHeader';
+import SpinnerOverlay from './logic/helpers/SpinnerOverlay';
+import TableBody from './logic/helpers/TableBody';
+import TableHeader from './logic/helpers/TableHeader';
 import styles from './Table.module.scss';
 import { DefaultColumn, ExtendedColumnDef } from './types';
 

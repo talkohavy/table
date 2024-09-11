@@ -1,4 +1,4 @@
-import ArrowIcon from '../../../../../svgs/ArrowIcon';
+import ArrowIcon from '../../../../../../svgs/ArrowIcon';
 import styles from './SortButton.module.scss';
 
 const SORTING_ICONS: any = {

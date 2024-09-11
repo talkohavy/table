@@ -15,7 +15,7 @@ export default function TableBody(props: TableBodyProps) {
   const { virtualRows, virtualPaddingTop, virtualPaddingBottom, rows, onCellClick } = props;
 
   return (
-    <tbody>
+    <tbody className={styles.tableBody}>
       {virtualPaddingTop > 0 && (
         <tr>
           <td style={{ height: `${virtualPaddingTop}px` }} />
