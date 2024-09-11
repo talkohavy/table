@@ -1,6 +1,12 @@
 .tableBody {
-  height: 100%;
+  display: block;
+  height: calc(100% - 45px);
   overflow: auto;
+}
+
+.tableDataRow {
+  display: inline-table;
+  width: 100%;
 }
 
 .defaultTableDataRowStyle {

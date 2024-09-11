@@ -21,9 +21,12 @@ export default function TableHeader(props: TableHeaderProps) {
   );
 
   return (
-    <thead className={CLASSES.tableHeader}>
+    <thead className={clsx(CLASSES.tableHeader, styles.tableHeader)}>
       {getHeaderGroups().map((headerGroup: any) => (
-        <tr key={headerGroup.id} className={CLASSES.tableHeaderRow}>
+        <tr
+          key={headerGroup.id}
+          className={clsx(CLASSES.tableHeaderRow, styles.tableHeaderRow, styles.defaultTableHeaderRowStyle)}
+        >
           {headerGroup.headers.map((header: any) => {
             const isSortButtonVisible = header.column.getCanSort() && header.column.columnDef.enableSorting;
             const isResizable = header.column.getCanResize();
@@ -41,7 +44,7 @@ export default function TableHeader(props: TableHeaderProps) {
                       {/* ------------------ */}
                       {/* Display the Header */}
                       {/* ------------------ */}
-                      <div className={CLASSES.tableHeaderCellValue}>
+                      <div className={(CLASSES.tableHeaderCellValue, styles.tableHeaderCellValue)}>
                         {/* <div className='flex w-full select-none items-center justify-between'> */}
                         {flexRender(header.column.columnDef.header, header.getContext())}
                       </div>

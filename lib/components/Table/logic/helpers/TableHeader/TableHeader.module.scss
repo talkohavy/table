@@ -1,6 +1,27 @@
-.defaultTableHeaderCellStyle {
+.tableHeader {
+  display: block;
+  height: 45px;
+  width: 100%;
+}
+
+.tableHeaderRow {
+  display: inline-table;
+  width: 100%;
+}
+
+.defaultTableHeaderRowStyle {
   background-color: rgb(53, 80, 255);
+  border-radius: 10px 10px 0 0;
+  color: white;
+}
+
+.defaultTableHeaderCellStyle {
   padding: 10px;
+  border-left: 1px solid white;
+}
+
+.defaultTableHeaderCellStyle:first-child {
+  border-left: none;
 }
 
 .defaultTableHeaderCellStyle:first-child {
@@ -16,4 +37,8 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+}
+
+.tableHeaderCellValue::first-letter {
+  text-transform: uppercase;
 }

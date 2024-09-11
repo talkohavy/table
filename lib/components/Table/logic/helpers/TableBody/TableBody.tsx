@@ -5,19 +5,18 @@ import styles from './TableBody.module.scss';
 
 type TableBodyProps = {
   virtualRows: Array<any>;
-  virtualPaddingTop: any;
-  virtualPaddingBottom: any;
+  virtualPaddingTop: number;
   rows: any;
   onCellClick?: (props: { cell: any; row: any }) => any;
 };
 
 export default function TableBody(props: TableBodyProps) {
-  const { virtualRows, virtualPaddingTop, virtualPaddingBottom, rows, onCellClick } = props;
+  const { virtualRows, virtualPaddingTop, rows, onCellClick } = props;
 
   return (
     <tbody className={styles.tableBody}>
       {virtualPaddingTop > 0 && (
-        <tr>
+        <tr className={clsx(CLASSES.tableDataRow, styles.tableDataRow, styles.defaultTableDataRowStyle)}>
           <td style={{ height: `${virtualPaddingTop}px` }} />
         </tr>
       )}
@@ -40,8 +39,9 @@ export default function TableBody(props: TableBodyProps) {
             onClick={handleRowClickOrKeyDown}
             onKeyDown={handleRowClickOrKeyDown}
             className={clsx(
-              styles.defaultTableDataRowStyle,
               CLASSES.tableDataRow,
+              styles.tableDataRow,
+              styles.defaultTableDataRowStyle,
               row.getIsSelected() && CLASSES.tableDataRowSelected,
             )}
           >
@@ -73,12 +73,6 @@ export default function TableBody(props: TableBodyProps) {
           </tr>
         );
       })}
-
-      {virtualPaddingBottom > 0 && (
-        <tr>
-          <td style={{ height: `${virtualPaddingBottom}px` }} />
-        </tr>
-      )}
     </tbody>
   );
 }

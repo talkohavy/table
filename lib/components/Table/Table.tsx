@@ -70,7 +70,12 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
 
       const [firstRow] = data;
       const autoColumnDefs = [];
-      for (const key in firstRow) autoColumnDefs.push({ accessorKey: key });
+      for (const key in firstRow) {
+        autoColumnDefs.push({
+          accessorKey: key,
+          header: (props: any) => <ColumnHeader {...props} header={key} />,
+        });
+      }
 
       return autoColumnDefs;
     }
@@ -145,9 +150,8 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
   // Calculate virtual gaps:
   // NOTE: MUST happen before isLoading returns null! That's why it's not inside TableBody.
   const rowVirtualizer = useVirtual({ parentRef: tableParentRef, size: rows.length, overscan: 10 });
-  const { virtualItems: virtualRows, totalSize } = rowVirtualizer;
+  const { virtualItems: virtualRows } = rowVirtualizer;
   const virtualPaddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0;
-  const virtualPaddingBottom = virtualRows.length > 0 ? totalSize - (virtualRows?.at(-1)?.end || 0) : 0;
 
   if (isLoading) return <SpinnerOverlay />;
 
@@ -165,7 +169,6 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
             rows={rows}
             virtualRows={virtualRows}
             virtualPaddingTop={virtualPaddingTop}
-            virtualPaddingBottom={virtualPaddingBottom}
             onCellClick={onCellClick}
           />
         </table>

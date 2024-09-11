@@ -1,4 +1,5 @@
 import IndeterminateCheckbox from '../IndeterminateCheckbox';
+import styles from './ColumnHeader.module.scss';
 
 type ColumnHeaderProps = {
   table: any;
@@ -15,7 +16,7 @@ export default function ColumnHeader(props: ColumnHeaderProps) {
         indeterminate={table.getIsSomeRowsSelected()}
         onChange={table.getToggleAllRowsSelectedHandler()}
       />
-      <div className='w-full first-letter:uppercase'>{header}</div>
+      <div className={styles.columnHeaderTitle}>{header}</div>
     </>
   );
 }
