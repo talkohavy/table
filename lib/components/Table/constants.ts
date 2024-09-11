@@ -3,9 +3,13 @@ const CLASSES = {
   tableWrapper: 'tk-custom-table-wrapper',
   tableParentRef: 'tk-table-ref-container',
   table: 'tk-custom-table',
+  tableHeader: 'tk-table-header',
   tableHeaderRow: 'tk-table-header-row',
   tableHeaderCell: 'tk-table-header-cell',
   tableHeaderCellValue: 'tk-table-header-cell-value',
+  tableDataRow: 'tk-table-data-row',
+  tableDataRowSelected: 'tk-table-data-row-selected',
+  tableDataCell: 'tk-table-data-cell',
   resizer: 'resizer',
   isResizing: 'isResizing',
 };

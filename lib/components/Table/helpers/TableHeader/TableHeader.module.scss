@@ -1,3 +1,16 @@
+.defaultTableHeaderCellStyle {
+  background-color: rgb(53, 80, 255);
+  padding: 10px;
+}
+
+.defaultTableHeaderCellStyle:first-child {
+  border-radius: 6px 0 0 0;
+}
+
+.defaultTableHeaderCellStyle:last-child {
+  border-radius: 0 6px 0 0;
+}
+
 .tableHeaderContentWrapper {
   display: flex;
   width: 100%;

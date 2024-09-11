@@ -1,11 +1,22 @@
-.table {
+.tableWrapper {
   display: flex;
   flex-direction: column;
   overflow: auto;
+}
+
+.defaultTableWrapperStyle {
+  background-color: transparent;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid rgb(88, 88, 88);
 }
 
 .tableParentRef {
   height: 100%;
   width: 100%;
   overflow: auto;
+}
+
+.table {
+  width: 100%;
 }

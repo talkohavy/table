@@ -58,14 +58,11 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
     className,
   } = props;
 
-  // all useRefs:
   const tableParentRef = useRef(null);
 
-  // all useStates:
   const [rowSelection, setRowSelection] = useState({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
-  // all useMemos:
   const data = useMemo(() => dataRaw, [dataRaw]);
   const columns: any = useMemo(() => {
     if (!columnDefs) {
@@ -155,14 +152,13 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
   if (isLoading) return <SpinnerOverlay />;
 
   return (
-    <div className={clsx(CLASSES.tableWrapper, styles.table, className)}>
+    <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
       <div
         onScroll={onBottomReached ? (e) => fetchMoreOnBottomReached(e.target) : undefined}
         className={clsx(CLASSES.tableParentRef, styles.tableParentRef)}
-        // className='h-full w-full overflow-auto border border-gray-300'
         ref={tableParentRef}
       >
-        <table className={CLASSES.table}>
+        <table className={clsx(CLASSES.table, styles.table)}>
           <TableHeader tableInstance={tableInstance} getHeaderGroups={getHeaderGroups} />
 
           <TableBody

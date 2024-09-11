@@ -1,0 +1,20 @@
+.defaultTableDataRowStyle {
+  color: black;
+  background-color: white;
+}
+
+.defaultTableDataRowStyle:nth-child(even) {
+  background-color: rgb(216, 226, 250);
+}
+
+.defaultTableDataCellStyle {
+  padding: 10px;
+}
+
+:global(.tk-table-data-row):last-child .defaultTableDataCellStyle:last-child {
+  border-radius: 0 0 6px 0;
+}
+
+:global(.tk-table-data-row):last-child .defaultTableDataCellStyle:first-child {
+  border-radius: 0 0 0 6px;
+}

@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import clsx from 'clsx';
 import { flexRender } from '@tanstack/react-table';
 import { CLASSES } from '../../constants';
 import DefaultFilter from '../DefaultFilter';
@@ -20,7 +21,7 @@ export default function TableHeader(props: TableHeaderProps) {
   );
 
   return (
-    <thead>
+    <thead className={CLASSES.tableHeader}>
       {getHeaderGroups().map((headerGroup: any) => (
         <tr key={headerGroup.id} className={CLASSES.tableHeaderRow}>
           {headerGroup.headers.map((header: any) => {
@@ -32,7 +33,7 @@ export default function TableHeader(props: TableHeaderProps) {
                 key={header.id}
                 colSpan={header.colSpan}
                 style={{ width: header.getSize() }}
-                className={CLASSES.tableHeaderCell}
+                className={clsx(CLASSES.tableHeaderCell, styles.defaultTableHeaderCellStyle)}
               >
                 {header.isPlaceholder ? null : (
                   <div>

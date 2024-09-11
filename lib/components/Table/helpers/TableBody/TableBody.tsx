@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { flexRender } from '@tanstack/react-table';
+import { CLASSES } from '../../constants';
+import styles from './TableBody.module.scss';
 
 type TableBodyProps = {
   virtualRows: Array<any>;
@@ -19,6 +21,7 @@ export default function TableBody(props: TableBodyProps) {
           <td style={{ height: `${virtualPaddingTop}px` }} />
         </tr>
       )}
+
       {virtualRows.map((virtualRow) => {
         const row = rows[virtualRow.index];
         const handleRowClickOrKeyDown = row.getCanSelect()
@@ -37,14 +40,15 @@ export default function TableBody(props: TableBodyProps) {
             onClick={handleRowClickOrKeyDown}
             onKeyDown={handleRowClickOrKeyDown}
             className={clsx(
-              // 'border truncate p-2 h-20',
-              'react-table-data-row',
-              // row.getIsSelected() ? '!hover:bg-blue-300 !bg-blue-400' : '',
-              row.getIsSelected() && 'react-table-data-row-selected',
-              // index % 2 === 0 && 'bg-[#f5f7fa]',
+              styles.defaultTableDataRowStyle,
+              CLASSES.tableDataRow,
+              row.getIsSelected() && CLASSES.tableDataRowSelected,
             )}
           >
             {row.getVisibleCells().map((cell: any) => {
+              const { id: cellId, column, getContext } = cell;
+              const { columnDef, getSize } = column;
+
               const handleCellClickOrKeyDown = (e: any) => {
                 if (e.type === 'click' || (['Enter', 'NumpadEnter'].includes(e.code) && !e.shiftKey)) {
                   e.preventDefault();
@@ -55,21 +59,21 @@ export default function TableBody(props: TableBodyProps) {
 
               return (
                 <td
-                  key={cell.id}
+                  key={cellId}
                   onClick={handleCellClickOrKeyDown}
                   onKeyDown={handleCellClickOrKeyDown}
-                  className='react-table-data-cell'
-                  style={{ width: cell.column.getSize() || '100%' }}
-                  // @ts-ignore
-                  align={cell.column.columnDef.meta?.align}
+                  align={columnDef.meta?.align}
+                  className={clsx(styles.defaultTableDataCellStyle, CLASSES.tableDataCell)}
+                  style={{ width: getSize() || '100%' }}
                 >
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  {flexRender(columnDef.cell, getContext())}
                 </td>
               );
             })}
           </tr>
         );
       })}
+
       {virtualPaddingBottom > 0 && (
         <tr>
           <td style={{ height: `${virtualPaddingBottom}px` }} />
