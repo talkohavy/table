@@ -1,5 +1,7 @@
+import clsx from 'clsx';
 import { Table } from '../lib/main.js';
 import styles from './App.module.scss';
+import { mockData } from './mockData.js';
 
 export default function App() {
   return (
@@ -14,34 +16,18 @@ export default function App() {
       <h1>My Table</h1>
 
       <Table
-        data={[
-          { firstName: 'tal', lastName: 'kohavy', age: 28 },
-          { firstName: 'tania', lastName: 'kohavy', age: 22 },
-          { firstName: 'daniel', lastName: 'kohavy', age: 26 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-          { firstName: 'netanel', lastName: 'bonomo haimovich1', age: 31 },
-        ]}
+        data={mockData}
         columnDefs={[
           { accessorKey: 'id', addCheckbox: true },
-          { accessorKey: 'firstName' },
-          { accessorKey: 'lastName' },
+          { accessorKey: 'first_name', size: 100 },
+          { accessorKey: 'last_name', size: 100 },
+          { accessorKey: 'email', size: 100 },
+          { accessorKey: 'gender', size: 100 },
+          { accessorKey: 'ip_address', size: 100 },
         ]}
-        className={styles.myTable}
+        // searchText='tiny'
+        onCellClick={(props: any) => console.log('props is:', props)}
+        className={clsx('private-table', styles.myTable)}
       />
     </div>
   );

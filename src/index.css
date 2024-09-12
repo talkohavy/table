@@ -54,3 +54,29 @@ body {
   width: 100%;
   height: 100%;
 }
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.private-table .tk-table-data-row:hover {
+  background: rgb(168, 168, 168);
+}

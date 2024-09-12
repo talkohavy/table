@@ -1,4 +1,4 @@
-import TableButton from './TableButton';
+import TableButton from '../TableButton';
 
 type PaginationProps = {
   onPrevClick: () => any;
