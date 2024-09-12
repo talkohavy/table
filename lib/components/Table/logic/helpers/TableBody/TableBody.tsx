@@ -6,15 +6,16 @@ import styles from './TableBody.module.scss';
 type TableBodyProps = {
   virtualRows: Array<any>;
   virtualPaddingTop: number;
+  virtualPaddingBottom: number;
   rows: any;
   onCellClick?: (props: { cell: any; row: any }) => any;
 };
 
 export default function TableBody(props: TableBodyProps) {
-  const { virtualRows, virtualPaddingTop, rows, onCellClick } = props;
+  const { virtualRows, virtualPaddingTop, virtualPaddingBottom, rows, onCellClick } = props;
 
   return (
-    <tbody className={styles.tableBody}>
+    <tbody>
       {virtualPaddingTop > 0 && (
         <tr className={clsx(CLASSES.tableDataRow, styles.tableDataRow, styles.defaultTableDataRowStyle)}>
           <td style={{ height: `${virtualPaddingTop}px` }} />
@@ -73,6 +74,12 @@ export default function TableBody(props: TableBodyProps) {
           </tr>
         );
       })}
+
+      {virtualPaddingBottom > 0 && (
+        <tr className={clsx(CLASSES.tableDataRow, styles.tableDataRow, styles.defaultTableDataRowStyle)}>
+          <td style={{ height: `${virtualPaddingBottom}px` }} />
+        </tr>
+      )}
     </tbody>
   );
 }

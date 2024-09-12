@@ -1,23 +1,24 @@
+// thead
 .tableHeader {
-  display: block;
-  height: 45px;
   width: 100%;
 }
 
+// tr
 .tableHeaderRow {
-  display: inline-table;
   width: 100%;
 }
 
-.defaultTableHeaderRowStyle {
-  background-color: rgb(53, 80, 255);
-  border-radius: 10px 10px 0 0;
-  color: white;
+// th
+.tableHeaderCell {
+  position: sticky;
+  top: 0;
 }
 
 .defaultTableHeaderCellStyle {
   padding: 10px;
   border-left: 1px solid white;
+  background-color: rgb(53, 80, 255);
+  color: white;
 }
 
 .defaultTableHeaderCellStyle:first-child {

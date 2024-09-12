@@ -14,11 +14,17 @@
 .tableParentRef {
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 }
 
 .table {
-  display: block;
   width: 100%;
   height: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table tr {
+  scroll-snap-align: start;
 }

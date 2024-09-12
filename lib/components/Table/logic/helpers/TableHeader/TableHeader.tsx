@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import clsx from 'clsx';
-import { flexRender } from '@tanstack/react-table';
+import { HeaderGroup, flexRender } from '@tanstack/react-table';
 import { CLASSES } from '../../constants';
 import DefaultFilter from '../DefaultFilter';
 import ColumnResizer from './ColumnResizer';
@@ -9,7 +9,7 @@ import styles from './TableHeader.module.scss';
 
 type TableHeaderProps = {
   tableInstance: any;
-  getHeaderGroups: any;
+  getHeaderGroups: () => Array<HeaderGroup<any>>;
 };
 
 export default function TableHeader(props: TableHeaderProps) {
@@ -23,10 +23,7 @@ export default function TableHeader(props: TableHeaderProps) {
   return (
     <thead className={clsx(CLASSES.tableHeader, styles.tableHeader)}>
       {getHeaderGroups().map((headerGroup: any) => (
-        <tr
-          key={headerGroup.id}
-          className={clsx(CLASSES.tableHeaderRow, styles.tableHeaderRow, styles.defaultTableHeaderRowStyle)}
-        >
+        <tr key={headerGroup.id} className={clsx(CLASSES.tableHeaderRow, styles.tableHeaderRow)}>
           {headerGroup.headers.map((header: any) => {
             const isSortButtonVisible = header.column.getCanSort() && header.column.columnDef.enableSorting;
             const isResizable = header.column.getCanResize();
@@ -36,7 +33,7 @@ export default function TableHeader(props: TableHeaderProps) {
                 key={header.id}
                 colSpan={header.colSpan}
                 style={{ width: header.getSize() }}
-                className={clsx(CLASSES.tableHeaderCell, styles.defaultTableHeaderCellStyle)}
+                className={clsx(CLASSES.tableHeaderCell, styles.tableHeaderCell, styles.defaultTableHeaderCellStyle)}
               >
                 {header.isPlaceholder ? null : (
                   <div>
