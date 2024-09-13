@@ -1,3 +1,9 @@
+.columnHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 .columnHeaderTitle::first-letter {
   text-transform: uppercase;
 }

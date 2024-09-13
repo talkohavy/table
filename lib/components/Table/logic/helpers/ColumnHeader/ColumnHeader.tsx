@@ -11,7 +11,7 @@ export default function ColumnHeader(props: ColumnHeaderProps) {
   const { table, header, showCheckbox = true } = props;
 
   return (
-    <>
+    <div className={styles.columnHeader}>
       {showCheckbox && (
         <IndeterminateCheckbox
           checked={table.getIsAllRowsSelected()}
@@ -21,6 +21,6 @@ export default function ColumnHeader(props: ColumnHeaderProps) {
       )}
 
       <div className={styles.columnHeaderTitle}>{header}</div>
-    </>
+    </div>
   );
 }
