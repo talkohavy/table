@@ -36,3 +36,7 @@ html[data-theme='dark'] .tk-table-body-tr:last-child .tk-table-body-td:last-chil
 html[data-theme='dark'] .tk-table-body-tr:last-child .tk-table-body-td:first-child {
   border-radius: 0 0 0 6px;
 }
+
+html[data-theme='dark'] .tk-table-body-td {
+  border: 1px solid black;
+}
