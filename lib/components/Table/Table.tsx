@@ -9,7 +9,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { CLASSES, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './logic/constants';
+import { TableFooter } from '../../main';
+import { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './logic/constants';
 import ColumnHeader from './logic/helpers/ColumnHeader';
 import TableBody from './logic/helpers/TableBody';
 import TableHeader from './logic/helpers/TableHeader';
@@ -26,10 +27,14 @@ type TableProps<T = any> = {
   searchText?: string;
   onCellClick?: (props: { cell: any; row: any }) => any;
   setSearchText?: (value: any) => void;
-  renderTableFooter?: (props: any) => ReactNode;
+  customTableFooter?: (props: any) => ReactNode;
   onBottomReached?: () => void;
   className?: string;
   initialPageSize?: number;
+  /**
+   * @default false
+   */
+  showFooter?: boolean;
 };
 
 function TableToForward<T>(props: TableProps<T>, ref: any) {
@@ -40,12 +45,13 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
     rowSelectionMode = 'none',
     searchText,
     setSearchText,
-    renderTableFooter,
+    customTableFooter,
     onCellClick,
     onBottomReached,
-    initialPageSize,
+    initialPageSize = DEFAULT_PAGE_SIZE,
     sorting,
     setSorting,
+    showFooter,
     className,
   } = props;
 
@@ -53,6 +59,10 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
 
   const [rowSelection, setRowSelection] = useState({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: initialPageSize,
+  });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
   const columns: any = useMemo(() => {
@@ -105,12 +115,13 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
     columns,
     columnResizeMode: 'onChange',
     autoResetPageIndex: false, // <--- When requesting/fetching a new page with loadMore function, don't reset to page 0 upon successful load!
-    state: { sorting, rowSelection, columnFilters, globalFilter: searchText },
+    state: { sorting, rowSelection, columnFilters, globalFilter: searchText, pagination },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onRowSelectionChange: setRowSelection,
+    onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onGlobalFilterChange: setSearchText,
     onColumnFiltersChange: setColumnFilters,
@@ -161,7 +172,11 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
         </table>
       </div>
 
-      {renderTableFooter?.({ ...tableInstance })}
+      {showFooter ? (
+        <TableFooter {...tableInstance} {...pagination} />
+      ) : (
+        customTableFooter?.({ ...tableInstance, ...pagination })
+      )}
     </div>
   );
 }

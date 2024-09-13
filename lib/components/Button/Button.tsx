@@ -6,21 +6,21 @@ type ButtonProps = {
   children: string | JSX.Element;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   onMouseOver?: () => void;
-  isDisabled?: boolean;
+  disabled?: boolean;
   className?: string;
   style?: any;
   testId?: string;
 };
 
 export default function Button(props: ButtonProps) {
-  const { children, onClick, onMouseOver, isDisabled, className, style, testId } = props;
+  const { children, onClick, onMouseOver, disabled, className, style, testId } = props;
 
   return (
     <button
       type='button'
       onClick={onClick}
       onMouseOver={onMouseOver}
-      disabled={isDisabled}
+      disabled={disabled}
       className={clsx(styles.button, className)}
       style={style}
       data-test-id={`${testId}Button`}

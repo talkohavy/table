@@ -12,6 +12,7 @@ const CLASSES = {
   tableBodyTR: 'tk-table-body-tr',
   tableBodyTRSelected: 'tk-table-body-tr-selected',
   tableBodyTD: 'tk-table-body-td',
+  tableFooterSelect: 'tk-table-footer-select',
   resizer: 'resizer',
   isResizing: 'isResizing',
 };
@@ -21,4 +22,6 @@ const ROW_SELECTION_MODES = {
   none: { enableRowSelection: false },
 };
 
-export { CLASSES, GAP_TO_BOTTOM, ROW_SELECTION_MODES };
+const DEFAULT_PAGE_SIZE = 10;
+
+export { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES };

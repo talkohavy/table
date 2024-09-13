@@ -1,20 +1,17 @@
 import Button from '../../../../Button';
+import styles from './TableButton.module.scss';
 
 type TableButtonProps = {
   label: any;
   onClick: () => void;
-  isDisabled: boolean;
+  disabled: boolean;
 };
 
 export default function TableButton(props: TableButtonProps) {
-  const { label, onClick, isDisabled } = props;
+  const { label, onClick, disabled } = props;
 
   return (
-    <Button
-      onClick={onClick}
-      isDisabled={isDisabled}
-      className='rounded border px-3 py-2 hover:bg-slate-200 active:bg-slate-300'
-    >
+    <Button onClick={onClick} disabled={disabled} className={styles.tableButton}>
       {label}
     </Button>
   );
