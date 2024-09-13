@@ -11,7 +11,13 @@ enum THEME {
 }
 
 export default function App() {
-  const [isDarkThemeOn, setIsDarkThemeOn] = useState<boolean>();
+  const [isDarkThemeOn, setIsDarkThemeOn] = useState<boolean>(() => {
+    const [htmlElement] = document.getElementsByTagName('html');
+
+    const isDarkModeOnOnload = htmlElement.getAttribute('data-theme') === THEME.Dark;
+
+    return isDarkModeOnOnload;
+  });
 
   const handleDarkThemeToggleClick = () => {
     const [htmlElement] = document.getElementsByTagName('html');
@@ -49,7 +55,7 @@ export default function App() {
         ]}
         showFooter
         customTableFooter={TableFooter}
-        initialPageSize={10}
+        initialPageSize={45}
         rowSelectionMode='multi'
         onCellClick={(props: any) => console.log('props is:', props)}
         className={clsx('private-table', styles.myTable)}
