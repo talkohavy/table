@@ -44,8 +44,8 @@
 }
 
 .table {
+  // height: 100%; /* <--- do not give 100% height, since if you do, rows' height would be stretched to fill the table's container */
   width: 100%;
-  height: 100%;
   border-collapse: collapse;
   border-spacing: 0;
   background-color: inherit;
