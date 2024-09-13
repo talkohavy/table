@@ -1,5 +1,12 @@
 # @talkohavy/table
 
+## 0.0.3
+
+### Patch Changes
+
+- Table supports pagination now
+- exposing a new component of TableFooter
+
 ## 0.0.2
 
 ### Patch Changes
