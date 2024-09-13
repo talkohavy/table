@@ -10,8 +10,9 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { TableFooter } from '../../main';
-import { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './logic/constants';
+import { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES, RowSelectionOptions } from './logic/constants';
 import ColumnHeader from './logic/helpers/ColumnHeader';
+import IndeterminateCheckbox from './logic/helpers/IndeterminateCheckbox';
 import TableBody from './logic/helpers/TableBody';
 import TableHeader from './logic/helpers/TableHeader';
 import styles from './Table.module.scss';
@@ -82,10 +83,12 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
     }
 
     return columnDefs.map((curItem) => {
-      if (curItem.addCheckbox)
+      if ((curItem.meta as any)?.addCheckbox)
         return {
           ...curItem,
-          header: (props: any) => <ColumnHeader {...props} {...curItem} header={curItem.header} />,
+          header: (props: any) => (
+            <ColumnHeader {...props} {...curItem} header={curItem.header ?? (curItem as any).accessorKey} />
+          ),
         };
 
       return curItem;
@@ -128,7 +131,7 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
     enableSorting: true,
     enableMultiSort: true,
     sortDescFirst: false,
-    ...ROW_SELECTION_MODES[rowSelectionMode],
+    ...ROW_SELECTION_MODES[rowSelectionMode as RowSelectionOptions],
     enableGlobalFilter: true,
     enableColumnFilters: true,
     defaultColumn,

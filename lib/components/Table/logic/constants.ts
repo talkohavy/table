@@ -16,12 +16,19 @@ const CLASSES = {
   resizer: 'resizer',
   isResizing: 'isResizing',
 };
-const ROW_SELECTION_MODES = {
-  single: { enableRowSelection: true, enableMultiRowSelection: false },
-  multi: { enableRowSelection: true, enableMultiRowSelection: true },
-  none: { enableRowSelection: false },
+
+enum RowSelectionOptions {
+  Single = 'single',
+  Multi = 'multi',
+  None = 'none',
+}
+
+const ROW_SELECTION_MODES: Record<RowSelectionOptions, any> = {
+  [RowSelectionOptions.Single]: { enableRowSelection: true, enableMultiRowSelection: false },
+  [RowSelectionOptions.Multi]: { enableRowSelection: true, enableMultiRowSelection: true },
+  [RowSelectionOptions.None]: { enableRowSelection: false },
 };
 
 const DEFAULT_PAGE_SIZE = 10;
 
-export { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES };
+export { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES, RowSelectionOptions };
