@@ -5,7 +5,7 @@ import styles from './IndeterminateCheckbox.module.scss';
 type IndeterminateCheckboxProps = {
   indeterminate: any;
   checked: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   className?: string;
   onChange?: () => any;
 };

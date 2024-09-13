@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import clsx from 'clsx';
+import { createColumnHelper } from '@tanstack/react-table';
 import Button from '../lib/components/Button/Button.js';
 import { Table, TableFooter } from '../lib/main.js';
 import styles from './App.module.scss';
@@ -9,6 +10,25 @@ enum THEME {
   Dark = 'dark',
   Light = 'light',
 }
+
+const columnHelper = createColumnHelper<any>();
+
+const columnDefs = [
+  columnHelper.accessor('id', { header: 'ID', meta: { addCheckbox: true } }),
+  columnHelper.accessor('first_name', { header: 'First Name' }),
+  columnHelper.accessor('last_name', { header: 'Last Name' }),
+  columnHelper.accessor('email', { header: 'Email' }),
+  columnHelper.accessor('gender', { header: 'Gender' }),
+  columnHelper.accessor('ip_address', { header: 'IP Address' }),
+];
+// columnDefs={[
+//   { accessorKey: 'id', addCheckbox: true },
+//   { accessorKey: 'first_name', size: 100 },
+//   { accessorKey: 'last_name', size: 100 },
+//   { accessorKey: 'email', size: 100 },
+//   { accessorKey: 'gender', size: 100 },
+//   { accessorKey: 'ip_address', size: 100 },
+// ]}
 
 export default function App() {
   const [isDarkThemeOn, setIsDarkThemeOn] = useState<boolean>(() => {
@@ -45,19 +65,13 @@ export default function App() {
 
       <Table
         data={mockData}
-        columnDefs={[
-          { accessorKey: 'id', addCheckbox: true },
-          { accessorKey: 'first_name', size: 100 },
-          { accessorKey: 'last_name', size: 100 },
-          { accessorKey: 'email', size: 100 },
-          { accessorKey: 'gender', size: 100 },
-          { accessorKey: 'ip_address', size: 100 },
-        ]}
+        // @ts-ignore
+        columnDefs={columnDefs}
         showFooter
         customTableFooter={TableFooter}
         initialPageSize={45}
         rowSelectionMode='multi'
-        onCellClick={(props: any) => console.log('props is:', props)}
+        // onCellClick={(props: any) => console.log('props is:', props)}
         className={clsx('private-table', styles.myTable)}
       />
     </div>
