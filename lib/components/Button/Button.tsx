@@ -1,9 +1,9 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import clsx from 'clsx';
 import styles from './Button.module.scss';
 
 type ButtonProps = {
-  children: string | JSX.Element;
+  children: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   onMouseOver?: () => void;
   disabled?: boolean;

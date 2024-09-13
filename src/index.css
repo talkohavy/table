@@ -74,7 +74,3 @@ body {
   width: 100%;
   height: 100%;
 }
-
-.private-table .tk-table-body-tr:hover {
-  background: rgb(168, 168, 168);
-}
