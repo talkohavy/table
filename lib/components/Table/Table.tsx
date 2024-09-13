@@ -11,7 +11,6 @@ import {
 } from '@tanstack/react-table';
 import { CLASSES, GAP_TO_BOTTOM, ROW_SELECTION_MODES } from './logic/constants';
 import ColumnHeader from './logic/helpers/ColumnHeader';
-import SpinnerOverlay from './logic/helpers/SpinnerOverlay';
 import TableBody from './logic/helpers/TableBody';
 import TableHeader from './logic/helpers/TableHeader';
 import styles from './Table.module.scss';
@@ -29,11 +28,7 @@ type TableProps<T = any> = {
   setSearchText?: (value: any) => void;
   renderTableFooter?: (props: any) => ReactNode;
   onBottomReached?: () => void;
-  isFetching?: boolean;
-  isLoading?: boolean;
   className?: string;
-  totalItemsLoadedCount?: number;
-  totalItemsOverallCount?: number;
   initialPageSize?: number;
 };
 
@@ -48,13 +43,9 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
     renderTableFooter,
     onCellClick,
     onBottomReached,
-    isFetching,
-    isLoading,
     initialPageSize,
     sorting,
     setSorting,
-    totalItemsLoadedCount,
-    totalItemsOverallCount,
     className,
   } = props;
 
@@ -91,32 +82,29 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
     });
   }, [columnDefs]);
 
-  const fetchMoreOnBottomReached = useCallback(
+  const handleBottomReached = useCallback(
     (containerRefElement: any) => {
       if (containerRefElement && onBottomReached) {
         const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
-        if (
-          scrollHeight - scrollTop - clientHeight < GAP_TO_BOTTOM &&
-          !isFetching &&
-          totalItemsLoadedCount! < totalItemsOverallCount!
-        )
-          onBottomReached();
+
+        const isCloseToBottom = scrollHeight - scrollTop - clientHeight < GAP_TO_BOTTOM;
+
+        if (isCloseToBottom) onBottomReached();
       }
     },
-    [onBottomReached, isFetching, totalItemsLoadedCount, totalItemsOverallCount],
+    [onBottomReached],
   );
 
-  // a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
+  // A check on mount and after a fetch to see if the table is already scrolled to the bottom. Common use case is to fetch more data.
   useEffect(() => {
-    fetchMoreOnBottomReached(tableParentRef.current);
-  }, [fetchMoreOnBottomReached]);
+    handleBottomReached(tableParentRef.current);
+  }, [handleBottomReached]);
 
-  // useReactTable:
   const tableInstance = useReactTable({
     data,
     columns,
     columnResizeMode: 'onChange',
-    autoResetPageIndex: false, // When requesting/fetching a new page with loadMore function, don't reset to page 0 upon successful load!
+    autoResetPageIndex: false, // <--- When requesting/fetching a new page with loadMore function, don't reset to page 0 upon successful load!
     state: { sorting, rowSelection, columnFilters, globalFilter: searchText },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -148,18 +136,15 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
   const { rows } = getRowModel();
 
   // Calculate virtual gaps:
-  // NOTE: MUST happen before isLoading returns null! That's why it's not inside TableBody.
   const rowVirtualizer = useVirtual({ parentRef: tableParentRef, size: rows.length, overscan: 10 });
   const { virtualItems: virtualRows, totalSize } = rowVirtualizer;
   const virtualPaddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0;
   const virtualPaddingBottom = virtualRows.length > 0 ? totalSize - (virtualRows?.at(-1)?.end || 0) : 0;
 
-  if (isLoading) return <SpinnerOverlay />;
-
   return (
     <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
       <div
-        onScroll={onBottomReached ? (e) => fetchMoreOnBottomReached(e.target) : undefined}
+        onScroll={onBottomReached ? (e) => handleBottomReached(e.target) : undefined}
         className={clsx(CLASSES.tableParentRef, styles.tableParentRef)}
         ref={tableParentRef}
       >
