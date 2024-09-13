@@ -17,7 +17,7 @@ export default function TableBody(props: TableBodyProps) {
   return (
     <tbody>
       {virtualPaddingTop > 0 && (
-        <tr className={clsx(CLASSES.tableDataRow, styles.tableDataRow, styles.defaultTableDataRowStyle)}>
+        <tr className={clsx(CLASSES.tableBodyTR, styles.tableBodyTR, styles.defaultTableBodyTRStyle)}>
           <td style={{ height: `${virtualPaddingTop}px` }} />
         </tr>
       )}
@@ -40,10 +40,10 @@ export default function TableBody(props: TableBodyProps) {
             onClick={handleRowClickOrKeyDown}
             onKeyDown={handleRowClickOrKeyDown}
             className={clsx(
-              CLASSES.tableDataRow,
-              styles.tableDataRow,
-              styles.defaultTableDataRowStyle,
-              row.getIsSelected() && CLASSES.tableDataRowSelected,
+              CLASSES.tableBodyTR,
+              styles.tableBodyTR,
+              styles.defaultTableBodyTRStyle,
+              row.getIsSelected() && CLASSES.tableBodyTRSelected,
             )}
           >
             {row.getVisibleCells().map((cell: Cell<any, unknown>) => {
@@ -64,7 +64,7 @@ export default function TableBody(props: TableBodyProps) {
                   onClick={handleCellClickOrKeyDown}
                   onKeyDown={handleCellClickOrKeyDown}
                   align={(columnDef.meta as any)?.align} // <--- `align` is made up, custom-made, and you can use it inside your columnDefs to align text inside the cell.
-                  className={clsx(CLASSES.tableDataCell, styles.defaultTableDataCellStyle)}
+                  className={clsx(CLASSES.tableBodyTD, styles.defaultTableBodyTDStyle)}
                   style={{ width: getSize() || '100%' }}
                 >
                   {flexRender(columnDef.cell, getContext())}
@@ -76,7 +76,7 @@ export default function TableBody(props: TableBodyProps) {
       })}
 
       {virtualPaddingBottom > 0 && (
-        <tr className={clsx(CLASSES.tableDataRow, styles.tableDataRow, styles.defaultTableDataRowStyle)}>
+        <tr className={clsx(CLASSES.tableBodyTR, styles.tableBodyTR, styles.defaultTableBodyTRStyle)}>
           <td style={{ height: `${virtualPaddingBottom}px` }} />
         </tr>
       )}

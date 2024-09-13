@@ -21,9 +21,9 @@ export default function TableHeader(props: TableHeaderProps) {
   );
 
   return (
-    <thead className={clsx(CLASSES.tableHeader, styles.tableHeader)}>
+    <thead className={clsx(CLASSES.tableHeaderTHead, styles.tableHeaderTHead)}>
       {getHeaderGroups().map((headerGroup: any) => (
-        <tr key={headerGroup.id} className={clsx(CLASSES.tableHeaderRow, styles.tableHeaderRow)}>
+        <tr key={headerGroup.id} className={clsx(CLASSES.tableHeaderTR, styles.tableHeaderTR)}>
           {headerGroup.headers.map((header: any) => {
             const isSortButtonVisible = header.column.getCanSort() && header.column.columnDef.enableSorting;
             const isResizable = header.column.getCanResize();
@@ -33,33 +33,35 @@ export default function TableHeader(props: TableHeaderProps) {
                 key={header.id}
                 colSpan={header.colSpan}
                 style={{ width: header.getSize() }}
-                className={clsx(CLASSES.tableHeaderCell, styles.tableHeaderCell, styles.defaultTableHeaderCellStyle)}
+                className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH)}
               >
-                {header.isPlaceholder ? null : (
-                  <div>
-                    <div className={styles.tableHeaderContentWrapper}>
-                      {/* ------------------ */}
-                      {/* Display the Header */}
-                      {/* ------------------ */}
-                      <div className={(CLASSES.tableHeaderCellValue, styles.tableHeaderCellValue)}>
-                        {/* <div className='flex w-full select-none items-center justify-between'> */}
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                {!header.isPlaceholder && (
+                  <div className={clsx(CLASSES.tableHeaderDivBgPlay, styles.tableHeaderDivBgPlay)}>
+                    <div className={clsx(CLASSES.tableHeaderDiv, styles.defaultTableHeaderDiv)}>
+                      <div className={styles.tableHeaderContentWrapper}>
+                        {/* ------------------ */}
+                        {/* Display the Header */}
+                        {/* ------------------ */}
+                        <div className={(CLASSES.tableHeaderValue, styles.tableHeaderValue)}>
+                          {/* <div className='flex w-full select-none items-center justify-between'> */}
+                          {flexRender(header.column.columnDef.header, header.getContext())}
+                        </div>
+
+                        {isSortButtonVisible && (
+                          <SortButton
+                            sortType={header.column.getIsSorted()}
+                            onClick={(e: any) => onHeaderClick(e, header)}
+                          />
+                        )}
                       </div>
 
-                      {isSortButtonVisible && (
-                        <SortButton
-                          sortType={header.column.getIsSorted()}
-                          onClick={(e: any) => onHeaderClick(e, header)}
-                        />
+                      {/* ------------------ */}
+                      {/* Display the Filter */}
+                      {/* ------------------ */}
+                      {header.column.getCanFilter() && header.column.columnDef.enableColumnFilter && (
+                        <DefaultFilter table={tableInstance} column={header.column} />
                       )}
                     </div>
-
-                    {/* ------------------ */}
-                    {/* Display the Filter */}
-                    {/* ------------------ */}
-                    {header.column.getCanFilter() && header.column.columnDef.enableColumnFilter && (
-                      <DefaultFilter table={tableInstance} column={header.column} />
-                    )}
                   </div>
                 )}
 

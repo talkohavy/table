@@ -1,7 +1,7 @@
 .tableWrapper {
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  background-color: inherit;
 }
 
 .defaultTableWrapperStyle {
@@ -16,6 +16,31 @@
   width: 100%;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
+  background-color: inherit;
+  border-radius: inherit;
+}
+
+.tableParentRef::-webkit-scrollbar {
+  width: 12px;
+  opacity: 0.5;
+  overflow-x: hidden;
+}
+
+.tableParentRef::-webkit-scrollbar-track {
+  background: #7d8784;
+  border-radius: 7px;
+  opacity: 0.5;
+}
+
+.tableParentRef::-webkit-scrollbar-thumb {
+  background: rgba(133, 133, 248, 0.9);
+  border-radius: 12px;
+  opacity: 0.9;
+}
+
+.tableParentRef::-webkit-scrollbar-thumb:hover {
+  background: rgba(93, 93, 255, 0.9);
+  opacity: 0.5;
 }
 
 .table {
@@ -23,6 +48,8 @@
   height: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  background-color: inherit;
+  border-radius: inherit;
 }
 
 .table tr {

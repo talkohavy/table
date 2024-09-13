@@ -1,35 +1,42 @@
-// thead
-.tableHeader {
+.tableHeaderTHead {
   width: 100%;
+  background-color: inherit;
 }
 
-// tr
-.tableHeaderRow {
+.tableHeaderTR {
   width: 100%;
+  background-color: inherit;
 }
 
-// th
-.tableHeaderCell {
+.tableHeaderTH {
   position: sticky;
   top: 0;
+  background-color: inherit;
 }
 
-.defaultTableHeaderCellStyle {
+// IMPORTANT!!! this is the div that allows to table header to have rounded edges, without the td's background be visible while scrolling.
+.tableHeaderDivBgPlay {
+  position: relative;
+  top: -0.5px;
+  background-color: inherit;
+}
+
+.defaultTableHeaderDiv {
   padding: 10px;
-  border-left: 1px solid white;
   background-color: rgb(53, 80, 255);
+  border-left: 1px solid white;
   color: white;
 }
 
-.defaultTableHeaderCellStyle:first-child {
+.tableHeaderTH:first-child .defaultTableHeaderDiv {
   border-left: none;
 }
 
-.defaultTableHeaderCellStyle:first-child {
+.tableHeaderTH:first-child .defaultTableHeaderDiv {
   border-radius: 6px 0 0 0;
 }
 
-.defaultTableHeaderCellStyle:last-child {
+.tableHeaderTH:last-child .defaultTableHeaderDiv {
   border-radius: 0 6px 0 0;
 }
 
@@ -40,6 +47,6 @@
   align-items: center;
 }
 
-.tableHeaderCellValue::first-letter {
+.tableHeaderValue::first-letter {
   text-transform: uppercase;
 }

@@ -5,8 +5,6 @@
   -moz-outline-radius: unset;
   outline: none;
   color: inherit;
-  scrollbar-color: rgba(93, 93, 255, 0.9) #7d8784 !important;
-  scrollbar-width: thin !important;
   font-family: Verdana, Geneva, Tahoma, 'arial', 'Times New Roman', tahoma;
 }
 
@@ -77,46 +75,6 @@ body {
   height: 100%;
 }
 
-.private-table .tk-table-data-row:hover {
+.private-table .tk-table-body-tr:hover {
   background: rgb(168, 168, 168);
-}
-
-html[data-theme='dark'] .tk-custom-table-wrapper {
-  background-color: transparent;
-  padding: 2px;
-  border-radius: 8px;
-  border: 1px solid rgb(255, 255, 255);
-}
-
-html[data-theme='dark'] .tk-table-header-cell {
-  padding: 10px;
-  border-left: 1px solid white;
-  background-color: #1e1e1e;
-  color: white;
-  border-bottom: 1px solid white;
-}
-
-html[data-theme='dark'] .tk-table-header-cell:first-child {
-  border-left: none;
-}
-
-html[data-theme='dark'] .tk-table-data-row {
-  color: #dddddd;
-  background-color: #2a2a2a;
-}
-
-html[data-theme='dark'] .tk-table-data-row:nth-child(even) {
-  background-color: #333333;
-}
-
-html[data-theme='dark'] .tk-table-data-cell {
-  padding: 10px;
-}
-
-html[data-theme='dark'] .tk-table-data-row:last-child .tk-table-data-cell:last-child {
-  border-radius: 0 0 6px 0;
-}
-
-html[data-theme='dark'] .tk-table-data-row:last-child .tk-table-data-cell:first-child {
-  border-radius: 0 0 0 6px;
 }
