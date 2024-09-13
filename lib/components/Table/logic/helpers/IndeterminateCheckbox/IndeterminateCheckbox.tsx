@@ -1,21 +1,23 @@
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
+import styles from './IndeterminateCheckbox.module.scss';
 
 type IndeterminateCheckboxProps = {
   indeterminate: any;
   checked: boolean;
+  disabled: boolean;
   className?: string;
   onChange?: () => any;
 };
 
 export default function IndeterminateCheckbox(props: IndeterminateCheckboxProps) {
-  const { indeterminate, checked, onChange, className = '', ...rest } = props;
+  const { indeterminate, checked, disabled, onChange, className = '', ...rest } = props;
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null!);
 
   useEffect(() => {
     if (typeof indeterminate === 'boolean') {
-      (inputRef.current as any).indeterminate = !checked && indeterminate;
+      inputRef.current.indeterminate = !checked && indeterminate;
     }
   }, [indeterminate, checked]);
 
@@ -24,8 +26,9 @@ export default function IndeterminateCheckbox(props: IndeterminateCheckboxProps)
       ref={inputRef}
       type='checkbox'
       checked={checked}
-      className={clsx('cursor-pointer', className)}
       onChange={onChange}
+      disabled={disabled}
+      className={clsx(styles.indeterminateCheckbox, className)}
       {...rest}
     />
   );

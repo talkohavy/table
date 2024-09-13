@@ -38,7 +38,7 @@ type TableProps<T = any> = {
   showFooter?: boolean;
 };
 
-function TableToForward<T>(props: TableProps<T>, ref: any) {
+function TableToForwardAndMemo<T>(props: TableProps<T>, ref: any) {
   const {
     data: dataRaw,
     columnDefs,
@@ -89,11 +89,21 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
           header: (props: any) => (
             <ColumnHeader {...props} {...curItem} header={curItem.header ?? (curItem as any).accessorKey} />
           ),
+          cell: ({ row }: any) => (
+            <div style={{ padding: 4 }}>
+              <IndeterminateCheckbox
+                checked={row.getIsSelected()}
+                disabled={!row.getCanSelect()}
+                indeterminate={row.getIsSomeSelected()}
+                onChange={row.getToggleSelectedHandler()}
+              />
+            </div>
+          ),
         };
 
       return curItem;
     });
-  }, [columnDefs]);
+  }, [columnDefs, rowSelection]);
 
   const handleBottomReached = useCallback(
     (containerRefElement: any) => {
@@ -184,6 +194,6 @@ function TableToForward<T>(props: TableProps<T>, ref: any) {
   );
 }
 
-const Table = memo(forwardRef(TableToForward));
+const Table = memo(forwardRef(TableToForwardAndMemo));
 
 export default Table;
