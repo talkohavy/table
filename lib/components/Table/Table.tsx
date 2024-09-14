@@ -38,7 +38,7 @@ type TableProps<T = any> = {
   showFooter?: boolean;
 };
 
-function TableToForwardAndMemo<T>(props: TableProps<T>, ref: any) {
+function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const {
     data: dataRaw,
     columnDefs,
@@ -147,8 +147,9 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, ref: any) {
     defaultColumn,
     // pageCount: 10, // <--- you can hard code you last page number here!
   });
-  ref ??= {};
-  ref.current = tableInstance;
+
+  if (outerRef) outerRef.current = tableInstance;
+
   const { getHeaderGroups, getRowModel } = tableInstance;
 
   useEffect(() => {
