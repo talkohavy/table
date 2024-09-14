@@ -24,7 +24,7 @@ export default function TableBody(props: TableBodyProps) {
   return (
     <tbody>
       {virtualPaddingTop > 0 && (
-        <tr className={clsx(CLASSES.tableBodyTR, styles.tableBodyTR, styles.defaultTableBodyTRStyle)}>
+        <tr className={clsx(CLASSES.tableBodyTR, styles.defaultTableBodyTRStyle)}>
           <td style={{ height: `${virtualPaddingTop}px` }} />
         </tr>
       )}
@@ -48,7 +48,6 @@ export default function TableBody(props: TableBodyProps) {
             onKeyDown={handleRowClickOrKeyDown}
             className={clsx(
               CLASSES.tableBodyTR,
-              styles.tableBodyTR,
               styles.defaultTableBodyTRStyle,
               row.getIsSelected() && CLASSES.tableBodyTRSelected,
             )}
@@ -83,7 +82,7 @@ export default function TableBody(props: TableBodyProps) {
       })}
 
       {virtualPaddingBottom > 0 && (
-        <tr className={clsx(CLASSES.tableBodyTR, styles.tableBodyTR, styles.defaultTableBodyTRStyle)}>
+        <tr className={clsx(CLASSES.tableBodyTR, styles.defaultTableBodyTRStyle)}>
           <td style={{ height: `${virtualPaddingBottom}px` }} />
         </tr>
       )}

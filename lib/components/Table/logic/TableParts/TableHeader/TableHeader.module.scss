@@ -1,43 +1,15 @@
 .tableHeaderTHead {
-  width: 100%;
-  background-color: inherit;
-}
-
-.tableHeaderTR {
-  width: 100%;
-  background-color: inherit;
-}
-
-.tableHeaderTH {
   position: sticky;
   top: 0;
-  background-color: inherit;
 }
 
-// IMPORTANT!!! this is the div that allows to table header to have rounded edges, without the td's background be visible while scrolling.
-.tableHeaderDivBgPlay {
-  position: relative;
-  top: -0.5px;
-  background-color: inherit;
+.defaultTableHeaderTRStyle {
+  background-color: rgb(53, 80, 255);
+  color: white;
 }
 
 .defaultTableHeaderDiv {
   padding: 10px;
-  background-color: rgb(53, 80, 255);
-  border-left: 1px solid white;
-  color: white;
-}
-
-.tableHeaderTH:first-child .defaultTableHeaderDiv {
-  border-left: none;
-}
-
-.tableHeaderTH:first-child .defaultTableHeaderDiv {
-  border-radius: 6px 0 0 0;
-}
-
-.tableHeaderTH:last-child .defaultTableHeaderDiv {
-  border-radius: 0 6px 0 0;
 }
 
 .tableHeaderContentWrapper {

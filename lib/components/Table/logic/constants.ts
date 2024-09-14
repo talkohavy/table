@@ -6,7 +6,6 @@ const CLASSES = {
   tableHeaderTHead: 'tk-table-header-thead',
   tableHeaderTR: 'tk-table-header-tr',
   tableHeaderTH: 'tk-table-header-th',
-  tableHeaderDivBgPlay: 'tk-table-header-div-bg-play',
   tableHeaderDiv: 'tk-table-header-div',
   tableHeaderValue: 'tk-table-header-div-value',
   tableBodyTR: 'tk-table-body-tr',

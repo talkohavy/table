@@ -1,19 +1,14 @@
 html[data-theme='dark'] .tk-custom-table-wrapper {
-  background-color: transparent;
   border-radius: 8px;
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid white;
 }
 
-html[data-theme='dark'] .tk-table-header-div {
-  padding: 10px;
-  border-left: 1px solid white;
+html[data-theme='dark'] .tk-table-header-tr {
   background-color: #1e1e1e;
-  color: white;
-  border-bottom: 1px solid white;
 }
 
-html[data-theme='dark'] .tk-table-header-th:first-child .tk-table-header-div {
-  border-left: none;
+html[data-theme='dark'] .tk-table-header-th {
+  padding: 10px;
 }
 
 html[data-theme='dark'] .tk-table-body-tr {
@@ -27,14 +22,6 @@ html[data-theme='dark'] .tk-table-body-tr:nth-child(even) {
 
 html[data-theme='dark'] .tk-table-body-td {
   padding: 10px;
-}
-
-html[data-theme='dark'] .tk-table-body-tr:last-child .tk-table-body-td:last-child {
-  border-radius: 0 0 6px 0;
-}
-
-html[data-theme='dark'] .tk-table-body-tr:last-child .tk-table-body-td:first-child {
-  border-radius: 0 0 0 6px;
 }
 
 html[data-theme='dark'] .tk-table-body-td {
