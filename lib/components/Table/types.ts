@@ -2,20 +2,19 @@ import type { ReactNode } from 'react';
 import type { ColumnDef } from '@tanstack/react-table';
 
 type DefaultColumn = {
+  sortDescFirst?: boolean;
+  enableSorting?: boolean;
   enableMultiSort?: boolean;
   enableGlobalFilter?: boolean;
   enableColumnFilter?: boolean;
   enablePinning?: boolean;
   enableGrouping?: boolean;
-  sortDescFirst?: boolean;
   enableResizing?: boolean;
 };
 
-type ExtendedColumnDef<T> = ColumnDef<T> & { addCheckbox?: boolean };
-
 type BasicTable<T> = {
   data: Array<T>;
-  columnDefs?: Array<ExtendedColumnDef<T>>;
+  columnDefs?: Array<ColumnDef<T>>;
   defaultColumn?: DefaultColumn;
   rowSelectionMode?: 'none' | 'single' | 'multi';
   sorting?: any;
@@ -33,4 +32,4 @@ type BasicTable<T> = {
   initialPageSize?: number;
 };
 
-export type { BasicTable, DefaultColumn, ExtendedColumnDef };
+export type { BasicTable, DefaultColumn };

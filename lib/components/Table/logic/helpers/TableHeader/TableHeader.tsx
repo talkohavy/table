@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import clsx from 'clsx';
 import { HeaderGroup, flexRender } from '@tanstack/react-table';
 import { CLASSES } from '../../constants';
@@ -15,16 +14,11 @@ type TableHeaderProps = {
 export default function TableHeader(props: TableHeaderProps) {
   const { getHeaderGroups, tableInstance } = props;
 
-  const onHeaderClick = useCallback(
-    (e: any, header: any) => e.target.tagName !== 'INPUT' && header.column.getToggleSortingHandler()(e),
-    [],
-  );
-
   return (
     <thead className={clsx(CLASSES.tableHeaderTHead, styles.tableHeaderTHead)}>
-      {getHeaderGroups().map((headerGroup: any) => (
+      {getHeaderGroups().map((headerGroup) => (
         <tr key={headerGroup.id} className={clsx(CLASSES.tableHeaderTR, styles.tableHeaderTR)}>
-          {headerGroup.headers.map((header: any) => {
+          {headerGroup.headers.map((header) => {
             const isSortButtonVisible = header.column.getCanSort() && header.column.columnDef.enableSorting;
             const isResizable = header.column.getCanResize();
 
@@ -43,14 +37,14 @@ export default function TableHeader(props: TableHeaderProps) {
                         {/* Display the Header */}
                         {/* ------------------ */}
                         <div className={(CLASSES.tableHeaderValue, styles.tableHeaderValue)}>
-                          {/* <div className='flex w-full select-none items-center justify-between'> */}
                           {flexRender(header.column.columnDef.header, header.getContext())}
                         </div>
 
                         {isSortButtonVisible && (
                           <SortButton
                             sortType={header.column.getIsSorted()}
-                            onClick={(e: any) => onHeaderClick(e, header)}
+                            onClick={() => header.column.toggleSorting(undefined, header.column.getCanMultiSort())}
+                            // onClick={header.column.getToggleSortingHandler()} //<--- this basic function only supports single column sort
                           />
                         )}
                       </div>

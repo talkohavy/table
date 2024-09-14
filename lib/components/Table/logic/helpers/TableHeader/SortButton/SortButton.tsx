@@ -1,15 +1,15 @@
-import ArrowIcon from '../../../../../../svgs/ArrowIcon';
+import { SortDirection } from '@tanstack/react-table';
 import styles from './SortButton.module.scss';
 
-const SORTING_ICONS: any = {
-  asc: () => <ArrowIcon size={16} />,
-  desc: () => <ArrowIcon size={16} className='rotate-180' />,
-  none: '',
+const SORTING_ICONS = {
+  asc: '⬆️', // <--- Options: ⬆️🔼
+  desc: '⬇️', // <--- Options: ⬇️🔽
+  none: '⏹️', // <--- Options: ⏺️⏹️⏸️*️⃣
 };
 
 type SortButtonProps = {
   onClick: any;
-  sortType: 'asc' | 'desc' | 'none';
+  sortType: false | SortDirection;
 };
 
 export default function SortButton(props: SortButtonProps) {
@@ -17,7 +17,7 @@ export default function SortButton(props: SortButtonProps) {
 
   return (
     <div className={styles.sortButton} onClick={onClick}>
-      {SORTING_ICONS[sortType]?.() ?? SORTING_ICONS.none}
+      {sortType ? SORTING_ICONS[sortType] : SORTING_ICONS.none}
     </div>
   );
 }

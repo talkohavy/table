@@ -2,7 +2,10 @@ import { ReactNode, forwardRef, memo, useCallback, useEffect, useMemo, useRef, u
 import clsx from 'clsx';
 import { useVirtual } from 'react-virtual';
 import {
+  AccessorKeyColumnDef,
+  ColumnDef,
   ColumnFiltersState,
+  SortingState,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
@@ -16,11 +19,11 @@ import IndeterminateCheckbox from './logic/helpers/IndeterminateCheckbox';
 import TableBody from './logic/helpers/TableBody';
 import TableHeader from './logic/helpers/TableHeader';
 import styles from './Table.module.scss';
-import { DefaultColumn, ExtendedColumnDef } from './types';
+import { DefaultColumn } from './types';
 
 type TableProps<T = any> = {
   data: Array<T>;
-  columnDefs?: Array<ExtendedColumnDef<T>>;
+  columnDefs?: Array<ColumnDef<T> | AccessorKeyColumnDef<any, any>>;
   defaultColumn?: DefaultColumn;
   rowSelectionMode?: 'none' | 'single' | 'multi';
   sorting?: any;
@@ -50,8 +53,6 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     onCellClick,
     onBottomReached,
     initialPageSize,
-    sorting,
-    setSorting,
     showFooter,
     className,
   } = props;
@@ -60,6 +61,7 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
 
   const isPaginationMode = showFooter || customTableFooter || initialPageSize; // <--- if isPagination is false, then it's a case of infinite scroll.
 
+  const [sorting, setSorting] = useState<SortingState>();
   const [rowSelection, setRowSelection] = useState({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [pagination, setPagination] = useState(() => ({
@@ -140,9 +142,11 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     onSortingChange: setSorting,
     onGlobalFilterChange: setSearchText,
     onColumnFiltersChange: setColumnFilters,
-    enableSorting: true,
-    enableMultiSort: true,
-    sortDescFirst: false,
+    sortDescFirst: true, // <-- default to false
+    enableSorting: true, // <--- defaults to true
+    enableMultiSort: false, // <--- defaults to true
+    enableMultiRemove: true,
+    maxMultiSortColCount: 2,
     ...ROW_SELECTION_MODES[rowSelectionMode as RowSelectionOptions],
     enableGlobalFilter: true,
     enableColumnFilters: true,
