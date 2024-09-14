@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.6
+
+### Patch Changes
+
+- changed the handling way of the outerRef
+
 ## 0.0.5
 
 ### Patch Changes
