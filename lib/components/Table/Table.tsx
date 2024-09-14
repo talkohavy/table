@@ -1,17 +1,11 @@
-import { ReactNode, forwardRef, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, forwardRef, memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import clsx from 'clsx';
 import { useVirtual } from 'react-virtual';
-import {
-  AccessorKeyColumnDef,
-  ColumnDef,
-  ColumnFiltersState,
-  getCoreRowModel,
-  getFilteredRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
+import { AccessorKeyColumnDef, ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableFooter } from '../../main';
 import { CLASSES, GAP_TO_BOTTOM } from './logic/constants';
 import ColumnHeader from './logic/helpers/ColumnHeader';
+import { useFilterHook } from './logic/helpers/hooks/useFilterHook';
 import { usePaginationHook } from './logic/helpers/hooks/usePaginationHook';
 import { useRowSelectionHook } from './logic/helpers/hooks/useRowSelectionHook';
 import { useSortingHook } from './logic/helpers/hooks/useSortingHook';
@@ -60,8 +54,7 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const { sortingState, sortingProps } = useSortingHook();
   const { paginationState, paginationProps } = usePaginationHook({ showFooter, initialPageSize, customTableFooter });
   const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
-
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const { filterState, filterProps } = useFilterHook({ setSearchText });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
   const columns: any = useMemo(() => {
@@ -129,21 +122,16 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
       sorting: sortingState,
       pagination: paginationState,
       rowSelection: rowSelectionState,
-      columnFilters,
+      columnFilters: filterState,
       globalFilter: searchText,
     },
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onGlobalFilterChange: setSearchText,
-    onColumnFiltersChange: setColumnFilters,
-    enableGlobalFilter: true,
-    enableColumnFilters: true,
-    defaultColumn,
-    // pageCount: 10, // <--- you can hard code you last page number here!
-    // ------------------------------
     ...sortingProps,
     ...paginationProps,
     ...rowSelectionProps,
+    ...filterProps,
+    defaultColumn,
+    // pageCount: 10, // <--- you can hard code your last page number here! Great for dynamic data-fetching tables.
   });
 
   if (outerRef) outerRef.current = tableInstance;
