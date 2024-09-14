@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { GAP_TO_BOTTOM } from '../../constants';
+import { GAP_TO_BOTTOM } from '../constants';
 
 type UseReachToBottomMechanismProps = {
   onBottomReached?: () => void;

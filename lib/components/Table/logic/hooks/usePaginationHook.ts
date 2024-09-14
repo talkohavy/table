@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { getPaginationRowModel } from '@tanstack/react-table';
-import { DEFAULT_PAGE_SIZE } from '../../constants';
+import { DEFAULT_PAGE_SIZE } from '../constants';
 
 type UsePaginationHookProps = {
   showFooter?: boolean;

@@ -1,7 +1,7 @@
 import { Table } from '@tanstack/react-table';
-import PageXOutOfY from '../Pagination/PageXOutOfY';
-import PaginationButtons from '../Pagination/PaginationButtons';
-import SelectPageSize from '../Pagination/SelectPageSize';
+import PageXOutOfY from '../../TableParts/Pagination/PageXOutOfY';
+import PaginationButtons from '../../TableParts/Pagination/PaginationButtons';
+import SelectPageSize from '../../TableParts/Pagination/SelectPageSize';
 import styles from './TableFooter.module.scss';
 
 type PaginationProps = Table<any> & {

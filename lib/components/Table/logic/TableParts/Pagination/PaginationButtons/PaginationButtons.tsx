@@ -1,4 +1,4 @@
-import TableButton from '../../TableButton';
+import TableButton from '../../../TableParts/TableButton';
 import styles from './PaginationButtons.module.scss';
 
 type PaginationButtonsProps = {

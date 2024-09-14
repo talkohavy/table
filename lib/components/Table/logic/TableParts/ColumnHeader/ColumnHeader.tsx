@@ -1,4 +1,4 @@
-import IndeterminateCheckbox from '../IndeterminateCheckbox';
+import IndeterminateCheckbox from '../../../../IndeterminateCheckbox';
 import styles from './ColumnHeader.module.scss';
 
 type ColumnHeaderProps = {

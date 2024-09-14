@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { RowSelectionState } from '@tanstack/react-table';
-import { ROW_SELECTION_MODES, RowSelectionOptions } from '../../constants';
+import { ROW_SELECTION_MODES, RowSelectionOptions } from '../constants';
 
 type UseRowSelectionHookProps = {
   rowSelectionMode?: 'none' | 'single' | 'multi';
