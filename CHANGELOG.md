@@ -1,5 +1,13 @@
 # @talkohavy/table
 
+## 0.0.9
+
+### Patch Changes
+
+- TableBody component now only gets getRowModel & onCellClick. Now it is the one which is responsible for calculating the virtual rows.
+- encapsulated the reach to bottom mechanism of the table - useReachToBottomMechanism
+- encapsulated another Table functionality: useFilterHook
+
 ## 0.0.8
 
 ### Patch Changes
