@@ -1,5 +1,12 @@
 # @talkohavy/table
 
+## 0.0.11
+
+### Patch Changes
+
+- fixed white-space nowrap issue.
+- fixed support for group headers - now is available !
+
 ## 0.0.10
 
 ### Patch Changes
