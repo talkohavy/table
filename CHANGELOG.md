@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.5
+
+### Patch Changes
+
+- added white-space nowrap to table headers. because of sticky solution to th, header value cannot wrap
+
 ## 0.0.4
 
 ### Patch Changes
