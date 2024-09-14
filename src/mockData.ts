@@ -538,7 +538,7 @@ export const mockData = [
   {
     id: 68,
     first_name: 'Cecilio',
-    last_name: 'Birts',
+    last_name: 'Bartosch',
     email: 'cbirts1v@webeden.co.uk',
     gender: 'Male',
     ip_address: '172.232.223.9',

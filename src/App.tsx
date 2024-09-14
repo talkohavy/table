@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { createColumnHelper } from '@tanstack/react-table';
-import Button from '../lib/components/Button/Button.js';
-import { Table, TableFooter } from '../lib/main.js';
+import Button from '../lib/components/Button';
+import { Table } from '../lib/main';
 import styles from './App.module.scss';
-import { mockData } from './mockData.js';
-
-enum THEME {
-  Dark = 'dark',
-  Light = 'light',
-}
+import Input from './components/Input';
+import { mockData } from './mockData';
+import { THEME } from './utils/constants';
+import { extractThemeFromHtmlElement } from './utils/extractThemeFromHtmlElement';
 
 const columnHelper = createColumnHelper<any>();
 
@@ -31,13 +29,8 @@ const columnDefs = [
 // ]}
 
 export default function App() {
-  const [isDarkThemeOn, setIsDarkThemeOn] = useState<boolean>(() => {
-    const [htmlElement] = document.getElementsByTagName('html');
-
-    const isDarkModeOnOnload = htmlElement.getAttribute('data-theme') === THEME.Dark;
-
-    return isDarkModeOnOnload;
-  });
+  const [searchText, setSearchText] = useState<string>('');
+  const [isDarkThemeOn, setIsDarkThemeOn] = useState<boolean>(extractThemeFromHtmlElement);
 
   const handleDarkThemeToggleClick = () => {
     const [htmlElement] = document.getElementsByTagName('html');
@@ -61,18 +54,25 @@ export default function App() {
         Dark Theme {isDarkThemeOn ? THEME.Dark : THEME.Light}
       </Button>
 
+      <Input value={searchText} setValue={setSearchText} placeholder='Search...' />
+
       <h1>My Table</h1>
 
       <Table
         data={mockData}
-        // @ts-ignore
         columnDefs={columnDefs}
-        // showFooter
-        customTableFooter={TableFooter}
-        initialPageSize={5}
         rowSelectionMode='multi'
-        // onCellClick={(props: any) => console.log('props is:', props)}
+        searchText={searchText}
+        setSearchText={setSearchText}
         className={clsx('private-table', styles.myTable)}
+        // defaultColumn={{
+        //   enableSorting: true,
+        //   // enableMultiSort: true,
+        // }}
+        // showFooter
+        // customTableFooter={TableFooter}
+        // initialPageSize={5}
+        // onCellClick={(props: any) => console.log('props is:', props)}
       />
     </div>
   );
