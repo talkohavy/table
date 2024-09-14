@@ -4,12 +4,11 @@ import { useVirtual } from 'react-virtual';
 import { AccessorKeyColumnDef, ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableFooter } from '../../main';
 import { CLASSES, GAP_TO_BOTTOM } from './logic/constants';
-import ColumnHeader from './logic/helpers/ColumnHeader';
+import { useExtractColumnsFromColumnDefs } from './logic/helpers/hooks/useExtractColumnsFromColumnDefs';
 import { useFilterHook } from './logic/helpers/hooks/useFilterHook';
 import { usePaginationHook } from './logic/helpers/hooks/usePaginationHook';
 import { useRowSelectionHook } from './logic/helpers/hooks/useRowSelectionHook';
 import { useSortingHook } from './logic/helpers/hooks/useSortingHook';
-import IndeterminateCheckbox from './logic/helpers/IndeterminateCheckbox';
 import TableBody from './logic/helpers/TableBody';
 import TableHeader from './logic/helpers/TableHeader';
 import styles from './Table.module.scss';
@@ -36,7 +35,7 @@ type TableProps<T = any> = {
 function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const {
     data: dataRaw,
-    columnDefs,
+    columnDefs: columnDefsInput,
     defaultColumn,
     rowSelectionMode = 'none',
     searchText,
@@ -57,44 +56,11 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const { filterState, filterProps } = useFilterHook({ setSearchText });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
-  const columns: any = useMemo(() => {
-    if (!columnDefs) {
-      if (!data.length) return [];
-
-      const [firstRow] = data;
-      const autoColumnDefs = [];
-      for (const key in firstRow) {
-        autoColumnDefs.push({
-          accessorKey: key,
-          header: (props: any) => <ColumnHeader {...props} header={key} showCheckbox={false} />,
-        });
-      }
-
-      return autoColumnDefs;
-    }
-
-    return columnDefs.map((curItem) => {
-      if ((curItem.meta as any)?.addCheckbox)
-        return {
-          ...curItem,
-          header: (props: any) => (
-            <ColumnHeader {...props} {...curItem} header={curItem.header ?? (curItem as any).accessorKey} />
-          ),
-          cell: ({ row }: any) => (
-            <div style={{ padding: 4 }}>
-              <IndeterminateCheckbox
-                checked={row.getIsSelected()}
-                disabled={!row.getCanSelect()}
-                indeterminate={row.getIsSomeSelected()}
-                onChange={row.getToggleSelectedHandler()}
-              />
-            </div>
-          ),
-        };
-
-      return curItem;
-    });
-  }, [columnDefs, rowSelectionState]);
+  const { columns } = useExtractColumnsFromColumnDefs({
+    columnDefsInput,
+    firstRow: data?.at?.(0),
+    rowSelectionState,
+  });
 
   const handleBottomReached = useCallback(
     (containerRefElement: any) => {
