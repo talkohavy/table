@@ -1,6 +1,5 @@
 import { ReactNode, forwardRef, memo, useMemo, useRef } from 'react';
 import clsx from 'clsx';
-import { useVirtual } from 'react-virtual';
 import { AccessorKeyColumnDef, ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableFooter } from '../../main';
 import { CLASSES } from './logic/constants';
@@ -88,14 +87,6 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
 
   const { getHeaderGroups, getRowModel } = tableInstance;
 
-  const { rows } = getRowModel();
-
-  // Calculate virtual gaps:
-  const rowVirtualizer = useVirtual({ parentRef: tableParentRef, size: rows.length, overscan: 10 });
-  const { virtualItems: virtualRows, totalSize } = rowVirtualizer;
-  const virtualPaddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0;
-  const virtualPaddingBottom = virtualRows.length > 0 ? totalSize - (virtualRows?.at(-1)?.end || 0) : 0;
-
   return (
     <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
       <div
@@ -104,15 +95,9 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
         ref={tableParentRef}
       >
         <table className={clsx(CLASSES.table, styles.table)}>
-          <TableHeader tableInstance={tableInstance} getHeaderGroups={getHeaderGroups} />
+          <TableHeader getHeaderGroups={getHeaderGroups} tableInstance={tableInstance} />
 
-          <TableBody
-            rows={rows}
-            virtualRows={virtualRows}
-            virtualPaddingTop={virtualPaddingTop}
-            virtualPaddingBottom={virtualPaddingBottom}
-            onCellClick={onCellClick}
-          />
+          <TableBody getRowModel={getRowModel} onCellClick={onCellClick} tableParentRef={tableParentRef} />
         </table>
       </div>
 

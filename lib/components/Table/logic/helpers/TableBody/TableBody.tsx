@@ -1,18 +1,25 @@
 import clsx from 'clsx';
-import { Cell, Row, flexRender } from '@tanstack/react-table';
+import { useVirtual } from 'react-virtual';
+import { Cell, RowModel, flexRender } from '@tanstack/react-table';
 import { CLASSES } from '../../constants';
 import styles from './TableBody.module.scss';
 
 type TableBodyProps = {
-  virtualRows: Array<any>;
-  virtualPaddingTop: number;
-  virtualPaddingBottom: number;
-  rows: Array<Row<any>>;
+  getRowModel: () => RowModel<any>;
   onCellClick?: (props: { cell: any; row: any }) => any;
+  tableParentRef: any;
 };
 
 export default function TableBody(props: TableBodyProps) {
-  const { virtualRows, virtualPaddingTop, virtualPaddingBottom, rows, onCellClick } = props;
+  const { getRowModel, onCellClick, tableParentRef } = props;
+
+  const { rows } = getRowModel();
+
+  // Calculate virtual gaps:
+  const rowVirtualizer = useVirtual({ parentRef: tableParentRef, size: rows.length, overscan: 10 });
+  const { virtualItems: virtualRows, totalSize } = rowVirtualizer;
+  const virtualPaddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0;
+  const virtualPaddingBottom = virtualRows.length > 0 ? totalSize - (virtualRows?.at(-1)?.end || 0) : 0;
 
   return (
     <tbody>
