@@ -67,9 +67,9 @@ export default function App() {
         data={mockData}
         // @ts-ignore
         columnDefs={columnDefs}
-        showFooter
+        // showFooter
         customTableFooter={TableFooter}
-        initialPageSize={45}
+        initialPageSize={5}
         rowSelectionMode='multi'
         // onCellClick={(props: any) => console.log('props is:', props)}
         className={clsx('private-table', styles.myTable)}

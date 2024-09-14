@@ -49,7 +49,7 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     customTableFooter,
     onCellClick,
     onBottomReached,
-    initialPageSize = DEFAULT_PAGE_SIZE,
+    initialPageSize,
     sorting,
     setSorting,
     showFooter,
@@ -58,12 +58,14 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
 
   const tableParentRef = useRef(null);
 
+  const isPaginationMode = showFooter || customTableFooter || initialPageSize; // <--- if isPagination is false, then it's a case of infinite scroll.
+
   const [rowSelection, setRowSelection] = useState({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [pagination, setPagination] = useState({
+  const [pagination, setPagination] = useState(() => ({
     pageIndex: 0,
-    pageSize: initialPageSize,
-  });
+    pageSize: isPaginationMode ? (initialPageSize ?? DEFAULT_PAGE_SIZE) : Number.MAX_SAFE_INTEGER,
+  }));
 
   const data = useMemo(() => dataRaw, [dataRaw]);
   const columns: any = useMemo(() => {
@@ -153,10 +155,9 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const { getHeaderGroups, getRowModel } = tableInstance;
 
   useEffect(() => {
-    // When loading the table with a custom perPage, change the table's default perPage (which is 10) to the custom one passed.
-    // If the page was loaded with infinite scroll mode, initialPageSize will be 0, and so you need to set MAX_SAFE_INTEGER.
-    tableInstance.setPageSize(initialPageSize || Number.MAX_SAFE_INTEGER);
-  }, []);
+    const newPageSize = isPaginationMode ? (initialPageSize ?? DEFAULT_PAGE_SIZE) : Number.MAX_SAFE_INTEGER;
+    tableInstance.setPageSize(newPageSize);
+  }, [isPaginationMode]);
 
   const { rows } = getRowModel();
 
