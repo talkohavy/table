@@ -7,7 +7,7 @@ type IndeterminateCheckboxProps = {
   checked: boolean;
   disabled?: boolean;
   className?: string;
-  onChange?: () => any;
+  onChange?: (e: any) => any;
 };
 
 export default function IndeterminateCheckbox(props: IndeterminateCheckboxProps) {

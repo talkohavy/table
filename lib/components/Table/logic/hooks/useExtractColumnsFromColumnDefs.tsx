@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { AccessorKeyColumnDef, ColumnDef, RowSelectionState } from '@tanstack/react-table';
+import { AccessorKeyColumnDef, CellContext, ColumnDef, RowSelectionState } from '@tanstack/react-table';
 import IndeterminateCheckbox from '../../../IndeterminateCheckbox';
 import ColumnHeader from '../TableParts/ColumnHeader';
 
@@ -34,7 +34,7 @@ function useExtractColumnsFromColumnDefs(props: UseExtractColumnsFromColumnDefsP
           header: (props: any) => (
             <ColumnHeader {...props} {...curItem} header={curItem.header ?? (curItem as any).accessorKey} />
           ),
-          cell: ({ row }: any) => (
+          cell: ({ row }: CellContext<any, any>) => (
             <div style={{ padding: 4 }}>
               <IndeterminateCheckbox
                 checked={row.getIsSelected()}
