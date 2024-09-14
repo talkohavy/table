@@ -5,16 +5,16 @@ import {
   AccessorKeyColumnDef,
   ColumnDef,
   ColumnFiltersState,
-  SortingState,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import { TableFooter } from '../../main';
-import { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES, RowSelectionOptions } from './logic/constants';
+import { CLASSES, GAP_TO_BOTTOM } from './logic/constants';
 import ColumnHeader from './logic/helpers/ColumnHeader';
+import { usePaginationHook } from './logic/helpers/hooks/usePaginationHook';
+import { useRowSelectionHook } from './logic/helpers/hooks/useRowSelectionHook';
+import { useSortingHook } from './logic/helpers/hooks/useSortingHook';
 import IndeterminateCheckbox from './logic/helpers/IndeterminateCheckbox';
 import TableBody from './logic/helpers/TableBody';
 import TableHeader from './logic/helpers/TableHeader';
@@ -26,8 +26,6 @@ type TableProps<T = any> = {
   columnDefs?: Array<ColumnDef<T> | AccessorKeyColumnDef<any, any>>;
   defaultColumn?: DefaultColumn;
   rowSelectionMode?: 'none' | 'single' | 'multi';
-  sorting?: any;
-  setSorting?: any;
   searchText?: string;
   onCellClick?: (props: { cell: any; row: any }) => any;
   setSearchText?: (value: any) => void;
@@ -59,15 +57,11 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
 
   const tableParentRef = useRef(null);
 
-  const isPaginationMode = showFooter || customTableFooter || initialPageSize; // <--- if isPagination is false, then it's a case of infinite scroll.
+  const { sortingState, sortingProps } = useSortingHook();
+  const { paginationState, paginationProps } = usePaginationHook({ showFooter, initialPageSize, customTableFooter });
+  const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
 
-  const [sorting, setSorting] = useState<SortingState>();
-  const [rowSelection, setRowSelection] = useState({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [pagination, setPagination] = useState(() => ({
-    pageIndex: 0,
-    pageSize: isPaginationMode ? (initialPageSize ?? DEFAULT_PAGE_SIZE) : Number.MAX_SAFE_INTEGER,
-  }));
 
   const data = useMemo(() => dataRaw, [dataRaw]);
   const columns: any = useMemo(() => {
@@ -107,7 +101,7 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
 
       return curItem;
     });
-  }, [columnDefs, rowSelection]);
+  }, [columnDefs, rowSelectionState]);
 
   const handleBottomReached = useCallback(
     (containerRefElement: any) => {
@@ -131,37 +125,30 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     data,
     columns,
     columnResizeMode: 'onChange',
-    autoResetPageIndex: false, // <--- When requesting/fetching a new page with loadMore function, don't reset to page 0 upon successful load!
-    state: { sorting, rowSelection, columnFilters, globalFilter: searchText, pagination },
+    state: {
+      sorting: sortingState,
+      pagination: paginationState,
+      rowSelection: rowSelectionState,
+      columnFilters,
+      globalFilter: searchText,
+    },
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    onRowSelectionChange: setRowSelection,
-    onPaginationChange: setPagination,
-    onSortingChange: setSorting,
     onGlobalFilterChange: setSearchText,
     onColumnFiltersChange: setColumnFilters,
-    sortDescFirst: true, // <-- default to false
-    enableSorting: true, // <--- defaults to true
-    enableMultiSort: false, // <--- defaults to true
-    enableMultiRemove: true,
-    maxMultiSortColCount: 2,
-    ...ROW_SELECTION_MODES[rowSelectionMode as RowSelectionOptions],
     enableGlobalFilter: true,
     enableColumnFilters: true,
     defaultColumn,
     // pageCount: 10, // <--- you can hard code you last page number here!
+    // ------------------------------
+    ...sortingProps,
+    ...paginationProps,
+    ...rowSelectionProps,
   });
 
   if (outerRef) outerRef.current = tableInstance;
 
   const { getHeaderGroups, getRowModel } = tableInstance;
-
-  useEffect(() => {
-    const newPageSize = isPaginationMode ? (initialPageSize ?? DEFAULT_PAGE_SIZE) : Number.MAX_SAFE_INTEGER;
-    tableInstance.setPageSize(newPageSize);
-  }, [isPaginationMode]);
 
   const { rows } = getRowModel();
 
@@ -192,9 +179,9 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
       </div>
 
       {showFooter ? (
-        <TableFooter {...tableInstance} {...pagination} />
+        <TableFooter {...tableInstance} {...paginationState} />
       ) : (
-        customTableFooter?.({ ...tableInstance, ...pagination })
+        customTableFooter?.({ ...tableInstance, ...paginationState })
       )}
     </div>
   );
