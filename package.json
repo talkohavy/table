@@ -5,6 +5,7 @@
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "type": "module",
+  "keywords": ["table", "@tanstack/table"],
   "scripts": {
     "dev": "vite",
     "clean": "rm -rf node_modules",
@@ -20,6 +21,16 @@
     "registry": "https://registry.npmjs.org/",
     "access": "restricted"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talkohavy/table.git"
+  },
+  "bugs": {
+    "url": "https://github.com/talkohavy/table/issues",
+    "email": "talkohavy@gmail.com"
+  },
+  "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
+  "license": "MIT",
   "sideEffects": ["**/*.css", "**/*.scss"],
   "peerDependencies": {
     "react": "^18.3.1",
