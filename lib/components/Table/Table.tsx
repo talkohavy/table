@@ -1,12 +1,13 @@
-import { ReactNode, forwardRef, memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { ReactNode, forwardRef, memo, useMemo, useRef } from 'react';
 import clsx from 'clsx';
 import { useVirtual } from 'react-virtual';
 import { AccessorKeyColumnDef, ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableFooter } from '../../main';
-import { CLASSES, GAP_TO_BOTTOM } from './logic/constants';
+import { CLASSES } from './logic/constants';
 import { useExtractColumnsFromColumnDefs } from './logic/helpers/hooks/useExtractColumnsFromColumnDefs';
 import { useFilterHook } from './logic/helpers/hooks/useFilterHook';
 import { usePaginationHook } from './logic/helpers/hooks/usePaginationHook';
+import { useReachToBottomMechanism } from './logic/helpers/hooks/useReachToBottomMechanism';
 import { useRowSelectionHook } from './logic/helpers/hooks/useRowSelectionHook';
 import { useSortingHook } from './logic/helpers/hooks/useSortingHook';
 import TableBody from './logic/helpers/TableBody';
@@ -48,12 +49,13 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     className,
   } = props;
 
-  const tableParentRef = useRef(null);
+  const tableParentRef = useRef<HTMLDivElement>(null);
 
   const { sortingState, sortingProps } = useSortingHook();
   const { paginationState, paginationProps } = usePaginationHook({ showFooter, initialPageSize, customTableFooter });
   const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
   const { filterState, filterProps } = useFilterHook({ setSearchText });
+  const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
   const { columns } = useExtractColumnsFromColumnDefs({
@@ -61,24 +63,6 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     firstRow: data?.at?.(0),
     rowSelectionState,
   });
-
-  const handleBottomReached = useCallback(
-    (containerRefElement: any) => {
-      if (containerRefElement && onBottomReached) {
-        const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
-
-        const isCloseToBottom = scrollHeight - scrollTop - clientHeight < GAP_TO_BOTTOM;
-
-        if (isCloseToBottom) onBottomReached();
-      }
-    },
-    [onBottomReached],
-  );
-
-  // A check on mount and after a fetch to see if the table is already scrolled to the bottom. Common use case is to fetch more data.
-  useEffect(() => {
-    handleBottomReached(tableParentRef.current);
-  }, [handleBottomReached]);
 
   const tableInstance = useReactTable({
     data,
@@ -115,7 +99,7 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   return (
     <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
       <div
-        onScroll={onBottomReached ? (e) => handleBottomReached(e.target) : undefined}
+        onScroll={onBottomReached ? (e: any) => handleBottomReached(e.target) : undefined}
         className={clsx(CLASSES.tableParentRef, styles.tableParentRef)}
         ref={tableParentRef}
       >
