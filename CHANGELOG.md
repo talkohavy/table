@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.10
+
+### Patch Changes
+
+- same code - different folder structure
+
 ## 0.0.9
 
 ### Patch Changes
