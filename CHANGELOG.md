@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.8
+
+### Patch Changes
+
+- Table now supports basic sorting and also multi-sorting
+
 ## 0.0.7
 
 ### Patch Changes
