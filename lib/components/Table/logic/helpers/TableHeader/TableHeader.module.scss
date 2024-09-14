@@ -47,6 +47,10 @@
   align-items: center;
 }
 
+.tableHeaderValue {
+  white-space: nowrap;
+}
+
 .tableHeaderValue::first-letter {
   text-transform: uppercase;
 }
