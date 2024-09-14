@@ -1,5 +1,12 @@
 # @talkohavy/table
 
+## 0.0.7
+
+### Patch Changes
+
+- better handling the switch between pagination mode and infinite scroll mode
+- added a README.md file
+
 ## 0.0.6
 
 ### Patch Changes
