@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { AccessorKeyColumnDef, ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableFooter } from '../../main';
 import { CLASSES } from './logic/constants';
+import { useColumnResizeHook } from './logic/hooks/useColumnResizeHook';
 import { useExtractColumnsFromColumnDefs } from './logic/hooks/useExtractColumnsFromColumnDefs';
 import { useFilterHook } from './logic/hooks/useFilterHook';
 import { usePaginationHook } from './logic/hooks/usePaginationHook';
@@ -30,6 +31,10 @@ type TableProps<T = any> = {
    * @default false
    */
   showFooter?: boolean;
+  /**
+   * @default true
+   */
+  isFullSize?: boolean;
 };
 
 function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
@@ -45,6 +50,7 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     onBottomReached,
     initialPageSize,
     showFooter,
+    isFullSize = true,
     className,
   } = props;
 
@@ -54,6 +60,7 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const { paginationState, paginationProps } = usePaginationHook({ showFooter, initialPageSize, customTableFooter });
   const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
   const { filterState, filterProps } = useFilterHook({ setSearchText });
+  const { columnsResizeProps } = useColumnResizeHook();
   const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
@@ -66,7 +73,6 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const tableInstance = useReactTable({
     data,
     columns,
-    columnResizeMode: 'onChange',
     state: {
       sorting: sortingState,
       pagination: paginationState,
@@ -79,13 +85,13 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     ...paginationProps,
     ...rowSelectionProps,
     ...filterProps,
+    ...columnsResizeProps,
     defaultColumn,
-    // pageCount: 10, // <--- you can hard code your last page number here! Great for dynamic data-fetching tables.
   });
 
   if (outerRef) outerRef.current = tableInstance;
 
-  const { getHeaderGroups, getRowModel } = tableInstance;
+  const { getRowModel, getHeaderGroups, getCenterTotalSize } = tableInstance;
 
   return (
     <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
@@ -94,7 +100,10 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
         className={clsx(CLASSES.tableParentRef, styles.tableParentRef)}
         ref={tableParentRef}
       >
-        <table className={clsx(CLASSES.table, styles.table)}>
+        <table
+          className={clsx(CLASSES.table, styles.table)}
+          style={{ width: isFullSize ? '100%' : getCenterTotalSize() }}
+        >
           <TableHeader getHeaderGroups={getHeaderGroups} tableInstance={tableInstance} />
 
           <TableBody getRowModel={getRowModel} onCellClick={onCellClick} tableParentRef={tableParentRef} />
