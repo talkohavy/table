@@ -1,5 +1,13 @@
 # @talkohavy/table
 
+<p align="center">
+  <img src="https://i.ibb.co/n3bF7yS/table-light.png" width="800" alt="table light mode" />
+</p>
+
+<p align="center">
+  <img src="https://i.ibb.co/hXB4MCf/table-light.png" width="800" alt="table dark mode" />
+</p>
+
 ## 1. Supported Features
 
 1. Row Virtualization
