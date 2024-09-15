@@ -45,7 +45,7 @@
 
 .table {
   // height: 100%; /* <--- do not give 100% height, since if you do, rows' height would be stretched to fill the table's container */
-  width: 100%;
+  width: 100%; // <--- gets overridden by style={{ width: getCenterTotalSize() }}
   border-collapse: collapse;
   border-spacing: 0;
 }
