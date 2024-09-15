@@ -27,7 +27,7 @@ export default function TableHeader(props: TableHeaderProps) {
                 key={header.id}
                 colSpan={header.colSpan}
                 style={{ width: header.getSize() }}
-                className={CLASSES.tableHeaderTH}
+                className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH)}
               >
                 {!header.isPlaceholder && (
                   <div className={clsx(CLASSES.tableHeaderDiv, styles.defaultTableHeaderDiv)}>
@@ -61,6 +61,7 @@ export default function TableHeader(props: TableHeaderProps) {
                   <ColumnResizer
                     onMouseDown={header.getResizeHandler()}
                     onTouchStart={header.getResizeHandler()}
+                    onDoubleClick={() => header.column.resetSize()}
                     isResizing={header.column.getIsResizing()}
                   />
                 )}
