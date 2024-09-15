@@ -29,6 +29,7 @@ function usePaginationHook(props: UsePaginationHookProps) {
       getPaginationRowModel: getPaginationRowModel(),
       onPaginationChange: setPagination,
       autoResetPageIndex: false, // <--- When requesting/fetching a new page with loadMore function, don't reset to page 0 upon successful load!
+      // pageCount: 10, // <--- you can hard code your last page number here! Great for dynamic data-fetching tables.
     },
   };
 }
