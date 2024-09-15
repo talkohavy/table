@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.13
+
+### Patch Changes
+
+- table width issue: added a known problem to list in side of README.md
+
 ## 0.0.12
 
 ### Patch Changes
