@@ -25,3 +25,4 @@
 ## 2. List of known problems
 
 1. **Double-render**. For some reason, row selection has to be a dependency for when calculating _columnDefs_ in order for selected rows which were checked using the checkbox to appear as such in the next render. In the example shown in **@tanstack/table** it seemed like that isn't necessary. Need to check.
+2. **Table Width**. Now that Column-Sizing is a built-in feature, need to figure out the best way to handle table width, and how to make it take up the full size of its container. Right now, we've given our users the ability to manually switch between 100% width, and auto width, using a props called `isFullSize`, but that might be changed soon.
