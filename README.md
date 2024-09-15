@@ -3,13 +3,16 @@
 ## 1. Supported Features
 
 1. Row Virtualization
-2. Row selection
+2. Row selection (Multi & Single)
 3. Sticky Headers
-4. Click on row
-5. Pagination
-6. Infinite scroll
-7. Load more data when reaching bottom
-8. Custom css hooks for styling
+4. Sorting (including multi-sort)
+5. Column Resizing
+6. Group Headers
+7. Pagination
+8. Infinite scroll
+9. onRowClick event
+10. Load more data when reaching bottom
+11. ⭐️**Highly customizable**⭐️ with custom css hooks for personal styling
 
 ## 2. List of known problems
 
