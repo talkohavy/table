@@ -13,7 +13,7 @@ const CLASSES = {
   tableBodyTD: 'tk-table-body-td',
   tableFooterSelect: 'tk-table-footer-select',
   resizer: 'resizer',
-  isResizing: 'isResizing',
+  tableColumnIsResizing: 'tk-table-column-is-resizing',
 };
 
 enum RowSelectionOptions {

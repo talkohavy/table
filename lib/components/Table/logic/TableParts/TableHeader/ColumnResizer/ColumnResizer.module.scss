@@ -1,0 +1,21 @@
+.resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 4px;
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+:global(.tk-table-header-th):hover .resizer,
+:global(.tk-table-column-is-resizing).resizer {
+  opacity: 1;
+}
+
+.resizer:global(.tk-table-column-is-resizing) {
+  background-color: rgba(0, 13, 255, 0.5);
+}
