@@ -15,6 +15,7 @@
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
     "test": "node --test",
     "build": "node build.config.js",
+    "build-webapp": "vite build --config vite.config.webapp.ts",
     "preview": "vite preview"
   },
   "publishConfig": {
