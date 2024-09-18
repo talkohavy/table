@@ -64,5 +64,6 @@
   "dependencies": {
     "@tanstack/react-table": "^8.20.5",
     "react-virtual": "^2.10.4"
-  }
+  },
+  "homepage": "https://talkohavy.github.io/table/"
 }
