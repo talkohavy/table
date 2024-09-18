@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.14
+
+### Patch Changes
+
+- added a homepage to packacge.json
+
 ## 0.0.13
 
 ### Patch Changes
