@@ -1,0 +1,17 @@
+.toggle {
+  position: relative;
+  height: 40px;
+  aspect-ratio: 2/1;
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  box-shadow: rgba(66, 66, 66, 0.8) 0px 0px 4px 0px;
+}
+
+html[data-theme='dark'] .toggle:hover {
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 2px 8px 0px;
+}

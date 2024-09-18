@@ -42,6 +42,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "clsx": "^2.1.1",
     "eslint": "^8.57.0",
     "eslint-plugin-ezlint": "^1.6.2",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
@@ -59,7 +60,6 @@
   },
   "dependencies": {
     "@tanstack/react-table": "^8.20.5",
-    "clsx": "^2.1.1",
     "react-virtual": "^2.10.4"
   }
 }
