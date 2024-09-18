@@ -2,7 +2,7 @@ const GAP_TO_BOTTOM = 600;
 const CLASSES = {
   tableWrapper: 'tk-custom-table-wrapper',
   tableParentRef: 'tk-table-ref-container',
-  table: 'tk-custom-table',
+  table: 'tk-table',
   tableHeaderTHead: 'tk-table-header-thead',
   tableHeaderTR: 'tk-table-header-tr',
   tableHeaderTH: 'tk-table-header-th',
