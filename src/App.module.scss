@@ -7,7 +7,7 @@
   border-radius: 8px;
 }
 
-.myTable :global(.tk-table-body-tr:hover) {
+.myTable :global(.tk-table) :global(.tk-table-body-tr:hover) {
   background: rgb(168, 168, 168);
 }
 
