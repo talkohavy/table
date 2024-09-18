@@ -22,8 +22,5 @@ html[data-theme='dark'] .tk-table-body-tr:nth-child(even) {
 
 html[data-theme='dark'] .tk-table-body-td {
   padding: 10px;
-}
-
-html[data-theme='dark'] .tk-table-body-td {
   border: 1px solid black;
 }
