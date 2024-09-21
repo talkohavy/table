@@ -16,7 +16,7 @@
     "test": "node --test",
     "build": "node build.config.js",
     "build-webapp": "vite build --config vite.config.webapp.ts",
-    "preview": "vite preview"
+    "preview": "vite preview --config vite.config.webapp.ts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
