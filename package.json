@@ -10,7 +10,7 @@
     "dev": "vite --config vite.config.package.ts",
     "clean": "rm -rf node_modules",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "typecheck": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.build.json --noEmit --emitDeclarationOnly false",
     "format-check": "prettier . --check --config .prettierrc.mjs --ignore-path .prettierignore",
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
     "test": "node --test",
