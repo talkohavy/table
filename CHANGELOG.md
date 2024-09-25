@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.15
+
+### Patch Changes
+
+- added more sections to the readme file
+
 ## 0.0.14
 
 ### Patch Changes
