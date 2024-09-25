@@ -1,5 +1,7 @@
 # @talkohavy/table
 
+The most simple Table implementation in the world, that fits 90% of your use-cases.
+
 <p align="center">
   <img src="https://i.ibb.co/n3bF7yS/table-light.png" width="800" alt="table light mode" />
 </p>

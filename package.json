@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.15",
   "main": "dist/main.js",
+  "description": "The most simple Table implementation in the world, that fits 90% of your use-cases.",
   "types": "dist/main.d.ts",
   "type": "module",
   "keywords": ["table", "@tanstack/table"],
