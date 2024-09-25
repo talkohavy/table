@@ -37,8 +37,8 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       eslint-plugin-ezlint:
-        specifier: ^1.6.2
-        version: 1.6.2(eslint@8.57.0)(tailwindcss@3.4.12)(typescript@5.3.3)
+        specifier: ^1.6.3
+        version: 1.6.3(eslint@8.57.0)(tailwindcss@3.4.12)(typescript@5.3.3)
       eslint-plugin-react-hooks:
         specifier: ^5.1.0-rc.0
         version: 5.1.0-rc-fb9a90fa48-20240614(eslint@8.57.0)
@@ -1088,8 +1088,8 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
 
-  eslint-plugin-ezlint@1.6.2:
-    resolution: {integrity: sha512-iv9wFQM46IAB4zmA3typZnurP36Ybyy2SNeuJgSB3rudzwTLvljnHYT/lPr9Babjpk364YfWoJlMekZooMbfEA==}
+  eslint-plugin-ezlint@1.6.3:
+    resolution: {integrity: sha512-t9ZUHH/PY3ObsxYuqU+QnoEfuA0ZnoqWbK54qEM4BpRlgLQBcL/Yqu2Y6lxPkanF1JzJUKgv1t53ey1aY0cfnw==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=8'
@@ -3359,7 +3359,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-ezlint@1.6.2(eslint@8.57.0)(tailwindcss@3.4.12)(typescript@5.3.3):
+  eslint-plugin-ezlint@1.6.3(eslint@8.57.0)(tailwindcss@3.4.12)(typescript@5.3.3):
     dependencies:
       '@stylistic/eslint-plugin': 1.8.1(eslint@8.57.0)(typescript@5.3.3)
       '@typescript-eslint/eslint-plugin': 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.3.3))(eslint@8.57.0)(typescript@5.3.3)
