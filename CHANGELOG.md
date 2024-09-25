@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.16
+
+### Patch Changes
+
+- added a description to package.json and to README.md file
+
 ## 0.0.15
 
 ### Patch Changes
