@@ -10,7 +10,7 @@
         "commonjs": true,
         "caseSensitive": true,
         "caseSensitiveStrict": true,
-        "ignore": ["@src", "@common", "@statistics", "^/"]
+        "ignore": ["@src", "^/"]
       } // ignore cannot be an empty array! ignore solved the issue of @src, @common being recognized as an error.
     ]
   }
