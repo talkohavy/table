@@ -42,12 +42,7 @@ export default function SimpleTablePage() {
   );
 
   return (
-    <div
-      className={clsx(
-        'flex flex-col justify-start items-start gap-4 size-full p-10',
-        isDarkMode ? 'bg-[#383838]' : 'bg-white',
-      )}
-    >
+    <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='border rounded-lg flex w-full'>
         <div className='flex flex-col justify-between gap-6 items-start p-6'>
           <div className='flex items-center justify-between gap-4 w-full'>
