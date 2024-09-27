@@ -5,8 +5,8 @@ import { Table } from '../../../lib/main';
 import Input from '../../components/Input';
 import Toggle from '../../components/Toggle';
 import { mockData } from '../../mockData';
+import { useDarkTheme } from '../../providers/DarkThemeProvider/DarkThemeContext.ts';
 import { THEME } from '../../utils/constants';
-import { extractThemeFromHtmlElement } from '../../utils/extractThemeFromHtmlElement';
 import styles from './SimpleTablePage.module.scss';
 
 const columnHelper = createColumnHelper<any>();
@@ -22,7 +22,7 @@ const columnDefsRaw = [
 
 export default function SimpleTablePage() {
   const [searchText, setSearchText] = useState<string>('');
-  const [isDarkThemeOn, setIsDarkThemeOn] = useState<boolean>(extractThemeFromHtmlElement);
+  const { isDarkMode, toggleDarkMode } = useDarkTheme();
   const [showFooter, setShowFooter] = useState<boolean>(false);
   const [isFullSize, setIsFullSize] = useState<boolean>(false);
   const [isSortingEnabled, setIsSortingEnabled] = useState<boolean>(true);
@@ -30,10 +30,10 @@ export default function SimpleTablePage() {
   const handleDarkThemeToggleClick = () => {
     const [htmlElement] = document.getElementsByTagName('html');
 
-    const nextTheme = isDarkThemeOn ? THEME.Light : THEME.Dark;
+    const nextTheme = isDarkMode ? THEME.Light : THEME.Dark;
 
     htmlElement.setAttribute('data-theme', nextTheme);
-    setIsDarkThemeOn((isDarkThemeOn) => !isDarkThemeOn);
+    toggleDarkMode((isDarkThemeOn: boolean) => !isDarkThemeOn);
   };
 
   const columnDefs = useMemo(
@@ -45,7 +45,7 @@ export default function SimpleTablePage() {
     <div
       className={clsx(
         'flex flex-col justify-start items-start gap-4 size-full p-10',
-        isDarkThemeOn ? 'bg-[#383838]' : 'bg-white',
+        isDarkMode ? 'bg-[#383838]' : 'bg-white',
       )}
     >
       <div className='border rounded-lg flex w-full'>
@@ -53,7 +53,7 @@ export default function SimpleTablePage() {
           <div className='flex items-center justify-between gap-4 w-full'>
             <h2 className='font-medium dark:text-white'>Dark Mode:</h2>
 
-            <Toggle isChecked={isDarkThemeOn} setIsChecked={handleDarkThemeToggleClick} />
+            <Toggle isChecked={isDarkMode} setIsChecked={handleDarkThemeToggleClick} />
           </div>
 
           <div className='flex items-center justify-start gap-4 w-full'>
