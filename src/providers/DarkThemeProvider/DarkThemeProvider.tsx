@@ -1,6 +1,7 @@
 import { type PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { LS_KEY_THEME } from '../../utils/constants';
+import { setThemeOnHtmlElement } from '../../utils/setThemeOnHtmlElement.ts';
 import { DarkThemeContext } from './DarkThemeContext';
 
 const THEME_OPTIONS = { dark: 'dark', light: 'light' };
@@ -12,7 +13,6 @@ export default function DarkThemeProvider(props: DarkThemeProviderProps) {
 
   const [localStorageTheme, setLocalStorageTheme] = useLocalStorage(LS_KEY_THEME);
 
-  // all useStates:
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const deviceTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
       ? THEME_OPTIONS.dark
@@ -20,8 +20,8 @@ export default function DarkThemeProvider(props: DarkThemeProviderProps) {
 
     const currentTheme = localStorageTheme || deviceTheme;
 
-    const [htmlElement] = document.getElementsByTagName('html');
-    htmlElement!.setAttribute('data-theme', currentTheme);
+    setThemeOnHtmlElement(currentTheme);
+
     document.body.setAttribute('class', currentTheme);
 
     return currentTheme === THEME_OPTIONS.dark;
@@ -32,9 +32,8 @@ export default function DarkThemeProvider(props: DarkThemeProviderProps) {
     const themeToBe = isDarkMode ? THEME_OPTIONS.light : THEME_OPTIONS.dark;
     setLocalStorageTheme(themeToBe);
 
-    // @ts-ignore
-    const [htmlElement] = document.getElementsByTagName('html');
-    htmlElement!.setAttribute('data-theme', themeToBe);
+    setThemeOnHtmlElement(themeToBe);
+
     document.body.setAttribute('class', themeToBe);
 
     setIsDarkMode(!isDarkMode);
