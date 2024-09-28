@@ -1,11 +1,72 @@
 {
+  "_mockData.!~{008}~.js": {
+    "file": "static/css/mockData.DIlJvvkwLSgI.css",
+    "src": "_mockData.!~{008}~.js"
+  },
+  "_mockData.CzcPj3eY.js": {
+    "file": "static/js/mockData.CzcPj3eY.js",
+    "name": "mockData",
+    "imports": [
+      "index.html"
+    ],
+    "css": [
+      "static/css/mockData.DIlJvvkwLSgI.css"
+    ]
+  },
+  "_types.CIHhg7CB.js": {
+    "file": "static/js/types.CIHhg7CB.js",
+    "name": "types"
+  },
   "index.html": {
-    "file": "main/index-BW8qGeyu.js",
+    "file": "main/index-CmgFUGfv.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
+    "dynamicImports": [
+      "pages/SimpleTablePage/index.ts",
+      "pages/RowSelectionTablePage/index.ts",
+      "pages/TableWithFooterPage/index.ts"
+    ],
     "css": [
-      "static/css/index.DJrWpURLvqw6.css"
+      "static/css/index.D3E50siYdftU.css"
+    ]
+  },
+  "pages/RowSelectionTablePage/index.ts": {
+    "file": "static/js/index.CQzS6ViH.js",
+    "name": "index",
+    "src": "pages/RowSelectionTablePage/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_types.CIHhg7CB.js",
+      "_mockData.CzcPj3eY.js"
+    ],
+    "css": [
+      "static/css/index.DYRQOtTOweeG.css"
+    ]
+  },
+  "pages/SimpleTablePage/index.ts": {
+    "file": "static/js/index.CGu0W8Lz.js",
+    "name": "index",
+    "src": "pages/SimpleTablePage/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_types.CIHhg7CB.js",
+      "_mockData.CzcPj3eY.js"
+    ],
+    "css": [
+      "static/css/index.Co6auuI0Q3kH.css"
+    ]
+  },
+  "pages/TableWithFooterPage/index.ts": {
+    "file": "static/js/index.BPmFXC9H.js",
+    "name": "index",
+    "src": "pages/TableWithFooterPage/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_mockData.CzcPj3eY.js"
     ]
   }
 }
