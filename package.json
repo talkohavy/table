@@ -1,7 +1,7 @@
 {
   "name": "@talkohavy/table",
   "private": true,
-  "version": "0.0.16",
+  "version": "0.0.17",
   "main": "dist/main.js",
   "description": "The most simple Table implementation in the world, that fits 90% of your use-cases.",
   "types": "dist/main.d.ts",

@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.17
+
+### Patch Changes
+
+- protect against page crush when switching from infinite scroll mode to pagination
+
 ## 0.0.16
 
 ### Patch Changes
