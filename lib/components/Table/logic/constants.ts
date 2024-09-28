@@ -8,6 +8,7 @@ const CLASSES = {
   tableHeaderTH: 'tk-table-header-th',
   tableHeaderDiv: 'tk-table-header-div',
   tableHeaderValue: 'tk-table-header-div-value',
+  tableBody: 'tk-table-body',
   tableBodyTR: 'tk-table-body-tr',
   tableBodyTRSelected: 'tk-table-body-tr-selected',
   tableBodyTD: 'tk-table-body-td',

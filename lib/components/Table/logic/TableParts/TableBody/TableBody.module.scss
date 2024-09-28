@@ -1,3 +1,9 @@
+.tableBodyTR {
+  // position: relative;
+  display: flex;
+  width: fit-content;
+}
+
 .defaultTableBodyTRStyle {
   color: black;
   background-color: white;
@@ -5,6 +11,13 @@
 
 .defaultTableBodyTRStyle:nth-child(even) {
   background-color: rgb(216, 226, 250);
+}
+
+.tableBodyTD {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  // width: fit-content;
 }
 
 .defaultTableBodyTDStyle {

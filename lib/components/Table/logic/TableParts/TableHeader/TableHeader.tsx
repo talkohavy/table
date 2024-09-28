@@ -15,19 +15,22 @@ export default function TableHeader(props: TableHeaderProps) {
   const { getHeaderGroups, tableInstance } = props;
 
   return (
-    <thead className={clsx(CLASSES.tableHeaderTHead, styles.tableHeaderTHead)}>
+    <div className={clsx(CLASSES.tableHeaderTHead, styles.tableHeaderTHead)}>
       {getHeaderGroups().map((headerGroup) => (
-        <tr key={headerGroup.id} className={clsx(CLASSES.tableHeaderTR, styles.defaultTableHeaderTRStyle)}>
+        <div
+          key={headerGroup.id}
+          className={clsx(CLASSES.tableHeaderTR, styles.tableHeaderTR, styles.defaultTableHeaderTRStyle)}
+        >
           {headerGroup.headers.map((header) => {
             const isSortButtonVisible = header.column.getCanSort() && header.column.columnDef.enableSorting;
             const isResizable = header.column.getCanResize();
 
             return (
-              <th
+              <div
                 key={header.id}
-                colSpan={header.colSpan}
                 style={{ width: header.getSize() }}
                 className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH)}
+                // colSpan={header.colSpan}
               >
                 {!header.isPlaceholder && (
                   <div className={clsx(CLASSES.tableHeaderDiv, styles.defaultTableHeaderDiv)}>
@@ -65,11 +68,11 @@ export default function TableHeader(props: TableHeaderProps) {
                     isResizing={header.column.getIsResizing()}
                   />
                 )}
-              </th>
+              </div>
             );
           })}
-        </tr>
+        </div>
       ))}
-    </thead>
+    </div>
   );
 }
