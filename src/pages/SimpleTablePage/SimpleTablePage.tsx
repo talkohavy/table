@@ -46,13 +46,13 @@ export default function SimpleTablePage() {
       <div className='border rounded-lg flex w-full'>
         <div className='flex flex-col justify-between gap-6 items-start p-6'>
           <div className='flex items-center justify-between gap-4 w-full'>
-            <h2 className='font-medium dark:text-white'>Dark Mode:</h2>
+            <h2 className='font-medium'>Dark Mode:</h2>
 
             <Toggle isChecked={isDarkMode} setIsChecked={handleDarkThemeToggleClick} />
           </div>
 
           <div className='flex items-center justify-start gap-4 w-full'>
-            <h2 className='font-medium dark:text-white'>Show footer:</h2>
+            <h2 className='font-medium'>Show footer:</h2>
 
             <Toggle isChecked={showFooter} setIsChecked={() => setShowFooter((prev) => !prev)} />
           </div>
@@ -60,13 +60,13 @@ export default function SimpleTablePage() {
 
         <div className='flex flex-col justify-between gap-6 items-start p-6'>
           <div className='flex items-center justify-between gap-4 w-full'>
-            <h2 className='font-medium dark:text-white'>Sorting Enabled:</h2>
+            <h2 className='font-medium'>Sorting Enabled:</h2>
 
             <Toggle isChecked={isSortingEnabled} setIsChecked={() => setIsSortingEnabled((prev) => !prev)} />
           </div>
 
           <div className='flex items-center justify-between gap-4 w-full'>
-            <h2 className='font-medium dark:text-white'>Is Full Size:</h2>
+            <h2 className='font-medium'>Is Full Size:</h2>
 
             <Toggle isChecked={isFullSize} setIsChecked={() => setIsFullSize((prev) => !prev)} />
           </div>
