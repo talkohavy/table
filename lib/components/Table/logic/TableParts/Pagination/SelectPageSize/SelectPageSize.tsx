@@ -15,12 +15,18 @@ export default function SelectPageSize(props: SelectPageSizeProps) {
 
   const pageCountOptions = useMemo(() => pageRanges.map((value) => ({ value, label: value.toString() })), [pageRanges]);
 
+  const selectedOption = pageCountOptions.find((option) => option.value === pageSize);
+
   return (
-    <Select
-      selectedOption={pageCountOptions.find((option) => option.value === pageSize)!}
-      setOption={(option) => setPageSize(Number(option.value))}
-      options={pageCountOptions}
-      className={CLASSES.tableFooterSelect}
-    />
+    selectedOption && (
+      <Select
+        selectedOption={
+          pageCountOptions.find((option) => option.value === pageSize) ?? { value: pageSize, label: 'infinite' }
+        }
+        setOption={(option) => setPageSize(Number(option.value))}
+        options={pageCountOptions}
+        className={CLASSES.tableFooterSelect}
+      />
+    )
   );
 }

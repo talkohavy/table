@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { createColumnHelper } from '@tanstack/react-table';
+import { RowSelectionMode } from '../../../lib/components/Table/types.ts';
 import { Table } from '../../../lib/main';
 import Input from '../../components/Input';
 import Toggle from '../../components/Toggle';
@@ -79,7 +80,7 @@ export default function SimpleTablePage() {
         <Table
           data={mockData}
           columnDefs={columnDefs}
-          rowSelectionMode='multi'
+          rowSelectionMode={RowSelectionMode.Multi}
           showFooter={showFooter}
           isFullSize={isFullSize}
           searchText={searchText}
