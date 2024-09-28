@@ -1,19 +1,27 @@
 .tableHeaderTHead {
   position: sticky;
   top: 0;
+  width: fit-content;
 }
 
 .tableHeaderTH {
   position: relative;
 }
 
+.tableHeaderTR {
+  // position: relative;
+  display: flex;
+  // width: fit-content;
+}
+
 .defaultTableHeaderTRStyle {
   background-color: rgb(53, 80, 255);
   color: white;
+  font-weight: bold;
 }
 
 .defaultTableHeaderDiv {
-  padding: 10px;
+  padding: 6px 0;
 }
 
 .tableHeaderContentWrapper {

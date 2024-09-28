@@ -31,10 +31,6 @@ type TableProps<T = any> = {
    * @default false
    */
   showFooter?: boolean;
-  /**
-   * @default true
-   */
-  isFullSize?: boolean;
 };
 
 function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
@@ -50,7 +46,6 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     onBottomReached,
     initialPageSize,
     showFooter,
-    isFullSize = true,
     className,
   } = props;
 
@@ -100,14 +95,11 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
         className={clsx(CLASSES.tableParentRef, styles.tableParentRef)}
         ref={tableParentRef}
       >
-        <table
-          className={clsx(CLASSES.table, styles.table)}
-          style={{ width: isFullSize ? '100%' : getCenterTotalSize() }}
-        >
+        <div className={CLASSES.table} style={{ width: getCenterTotalSize() }}>
           <TableHeader getHeaderGroups={getHeaderGroups} tableInstance={tableInstance} />
 
           <TableBody getRowModel={getRowModel} onCellClick={onCellClick} tableParentRef={tableParentRef} />
-        </table>
+        </div>
       </div>
 
       {showFooter ? (

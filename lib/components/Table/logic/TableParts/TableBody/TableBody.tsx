@@ -22,11 +22,11 @@ export default function TableBody(props: TableBodyProps) {
   const virtualPaddingBottom = virtualRows.length > 0 ? totalSize - (virtualRows?.at(-1)?.end || 0) : 0;
 
   return (
-    <tbody>
+    <div className={CLASSES.tableBody}>
       {virtualPaddingTop > 0 && (
-        <tr className={clsx(CLASSES.tableBodyTR, styles.defaultTableBodyTRStyle)}>
-          <td style={{ height: `${virtualPaddingTop}px` }} />
-        </tr>
+        <div className={clsx(CLASSES.tableBodyTR, styles.tableBodyTR, styles.defaultTableBodyTRStyle)}>
+          <div className={styles.tableBodyTD} style={{ height: `${virtualPaddingTop}px` }} />
+        </div>
       )}
 
       {virtualRows.map((virtualRow) => {
@@ -42,12 +42,13 @@ export default function TableBody(props: TableBodyProps) {
           : undefined;
 
         return (
-          <tr
+          <div
             key={row.id}
             onClick={handleRowClickOrKeyDown}
             onKeyDown={handleRowClickOrKeyDown}
             className={clsx(
               CLASSES.tableBodyTR,
+              styles.tableBodyTR,
               styles.defaultTableBodyTRStyle,
               row.getIsSelected() && CLASSES.tableBodyTRSelected,
             )}
@@ -65,27 +66,26 @@ export default function TableBody(props: TableBodyProps) {
               };
 
               return (
-                <td
+                <div
                   key={cellId}
                   onClick={handleCellClickOrKeyDown}
                   onKeyDown={handleCellClickOrKeyDown}
-                  align={(columnDef.meta as any)?.align} // <--- `align` is made up, custom-made, and you can use it inside your columnDefs to align text inside the cell.
-                  className={clsx(CLASSES.tableBodyTD, styles.defaultTableBodyTDStyle)}
-                  style={{ width: getSize() || '100%' }}
+                  className={clsx(CLASSES.tableBodyTD, styles.tableBodyTD, styles.defaultTableBodyTDStyle)}
+                  style={{ width: getSize() }}
                 >
                   {flexRender(columnDef.cell, getContext())}
-                </td>
+                </div>
               );
             })}
-          </tr>
+          </div>
         );
       })}
 
       {virtualPaddingBottom > 0 && (
-        <tr className={clsx(CLASSES.tableBodyTR, styles.defaultTableBodyTRStyle)}>
-          <td style={{ height: `${virtualPaddingBottom}px` }} />
-        </tr>
+        <div className={clsx(CLASSES.tableBodyTR, styles.tableBodyTR, styles.defaultTableBodyTRStyle)}>
+          <div className={styles.tableBodyTD} style={{ height: `${virtualPaddingBottom}px` }} />
+        </div>
       )}
-    </tbody>
+    </div>
   );
 }
