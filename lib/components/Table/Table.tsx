@@ -13,13 +13,13 @@ import { useSortingHook } from './logic/hooks/useSortingHook';
 import TableBody from './logic/TableParts/TableBody';
 import TableHeader from './logic/TableParts/TableHeader';
 import styles from './Table.module.scss';
-import { DefaultColumn } from './types';
+import { DefaultColumn, RowSelectionMode } from './types';
 
 type TableProps<T = any> = {
   data: Array<T>;
   columnDefs?: Array<ColumnDef<T> | AccessorKeyColumnDef<any, any>>;
   defaultColumn?: DefaultColumn;
-  rowSelectionMode?: 'none' | 'single' | 'multi';
+  rowSelectionMode?: RowSelectionMode;
   searchText?: string;
   onCellClick?: (props: { cell: any; row: any }) => any;
   setSearchText?: (value: any) => void;

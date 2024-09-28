@@ -32,4 +32,11 @@ type BasicTable<T> = {
   initialPageSize?: number;
 };
 
+enum RowSelectionMode {
+  Single = 'single',
+  Multi = 'multi',
+  None = 'none',
+}
+
 export type { BasicTable, DefaultColumn };
+export { RowSelectionMode };
