@@ -1,0 +1,16 @@
+.select {
+  height: 40px;
+  padding: 4px;
+  background-color: inherit;
+  border-radius: 6px;
+  border: 1px solid lightgray;
+  cursor: pointer;
+}
+
+.select:hover {
+  border-color: rgb(0, 76, 255);
+}
+
+.select:focus {
+  border-color: rgb(0, 55, 255);
+}

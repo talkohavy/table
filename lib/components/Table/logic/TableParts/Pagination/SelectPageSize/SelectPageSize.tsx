@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import Select from '../../../../../Select';
 import { CLASSES } from '../../../constants';
 
 const PAGE_RANGES = [10, 20, 30, 40, 50];
@@ -9,19 +11,16 @@ type SelectPageSizeProps = {
 };
 
 export default function SelectPageSize(props: SelectPageSizeProps) {
-  const { pageSize, setPageSize, pageRanges } = props;
+  const { pageSize, setPageSize, pageRanges = PAGE_RANGES } = props;
+
+  const pageCountOptions = useMemo(() => pageRanges.map((value) => ({ value, label: value.toString() })), [pageRanges]);
 
   return (
-    <select
+    <Select
+      selectedOption={pageCountOptions.find((option) => option.value === pageSize)!}
+      setOption={(option) => setPageSize(Number(option.value))}
+      options={pageCountOptions}
       className={CLASSES.tableFooterSelect}
-      value={pageSize}
-      onChange={(e) => setPageSize(Number(e.target.value))}
-    >
-      {(pageRanges ?? PAGE_RANGES).map((pageSize) => (
-        <option key={pageSize} value={pageSize}>
-          {pageSize}
-        </option>
-      ))}
-    </select>
+    />
   );
 }
