@@ -25,7 +25,6 @@ export default function SimpleTablePage() {
   const [searchText, setSearchText] = useState<string>('');
   const { isDarkMode, toggleDarkMode } = useDarkTheme();
   const [showFooter, setShowFooter] = useState<boolean>(false);
-  const [isFullSize, setIsFullSize] = useState<boolean>(false);
   const [isSortingEnabled, setIsSortingEnabled] = useState<boolean>(true);
 
   const handleDarkThemeToggleClick = () => {
@@ -65,12 +64,6 @@ export default function SimpleTablePage() {
 
             <Toggle isChecked={isSortingEnabled} setIsChecked={() => setIsSortingEnabled((prev) => !prev)} />
           </div>
-
-          <div className='flex items-center justify-between gap-4 w-full'>
-            <h2 className='font-medium'>Is Full Size:</h2>
-
-            <Toggle isChecked={isFullSize} setIsChecked={() => setIsFullSize((prev) => !prev)} />
-          </div>
         </div>
       </div>
 
@@ -82,7 +75,6 @@ export default function SimpleTablePage() {
           columnDefs={columnDefs}
           rowSelectionMode={RowSelectionMode.Multi}
           showFooter={showFooter}
-          isFullSize={isFullSize}
           searchText={searchText}
           setSearchText={setSearchText}
           className={clsx('private-table', styles.myTable)}

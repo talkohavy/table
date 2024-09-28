@@ -27,7 +27,7 @@ The most simple Table implementation in the world, that fits 90% of your use-cas
 ## 2. List of known problems
 
 1. **Double-render**. For some reason, row selection has to be a dependency for when calculating _columnDefs_ in order for selected rows which were checked using the checkbox to appear as such in the next render. In the example shown in **@tanstack/table** it seemed like that isn't necessary. Need to check.
-2. **Table Width**. Now that Column-Sizing is a built-in feature, need to figure out the best way to handle table width, and how to make it take up the full size of its container. Right now, we've given our users the ability to manually switch between 100% width, and auto width, using a props called `isFullSize`, but that might be changed soon.
+2. **Table Width**. Now that Column-Sizing is a built-in feature, need to figure out the best way to handle table width, and how to make it take up the full size of its container.
 
 ## 3. Getting Started
 
@@ -143,36 +143,31 @@ Here's a list of all supported options:
 
    \* Will be explained in the future \*
 
-5. `isFullSize`
-   type: `boolean`
-
-   \* Will be explained in the future \*
-
-6. `searchText`
+5. `searchText`
    type: `string`
 
    Goes together with `setSearchText`.  
    The data passed to **Table** will be filtered by rows that include `searchText`.  
    \* Will be explained in the future \*
 
-7. `setSearchText`
+6. `setSearchText`
    type: `(value: any) => void`
 
    Goes together with `searchText`.
 
    \* Will be explained in the future \*
 
-8. `defaultColumn`
+7. `defaultColumn`
    type: `Partial<ColumnDef<TData, unknown>>`
 
    \* Will be explained in the future \*
 
-9. `customTableFooter`
+8. `customTableFooter`
    type: `React Component`
 
    \* Will be explained in the future \*
 
-10. `initialPageSize`
-    type: `number`
+9. `initialPageSize`
+   type: `number`
 
-    \* Will be explained in the future \*
+   \* Will be explained in the future \*

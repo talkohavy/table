@@ -34,7 +34,7 @@
 
 ### Patch Changes
 
-- Table is now using useColumnResizeHook, but it's still imperfect. Currently there's a workaround of doing "isFullSize ? '100%' : getCenterTotalSize()", but it needs to be better
+- Table is now using useColumnResizeHook, but it's still imperfect. It affected the table's ability to go 100% in width.
 - added table images to the README.md file, one in light mode & one dark mode
 
 ## 0.0.11

@@ -40,7 +40,6 @@ export default function RowSelectionTablePage() {
           data={mockData}
           columnDefs={columnDefs}
           rowSelectionMode={rowSelectionType.value}
-          isFullSize
           className={clsx('private-table', styles.myTable)}
           onCellClick={(props: any) => console.log('props is:', props)}
         />
