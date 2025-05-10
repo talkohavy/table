@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.21
+
+### Patch Changes
+
+- Table now stretches to fill its container's width. It can even grow wider than its container.
+
 ## 0.0.20
 
 ### Patch Changes
