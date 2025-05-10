@@ -1,5 +1,12 @@
 # @talkohavy/table
 
+## 0.0.18
+
+### Patch Changes
+
+- Bundle the package as js, not just as ts.
+- Exporting types now. Also, we're only allowing exports from index.js.
+
 ## 0.0.17
 
 ### Patch Changes
