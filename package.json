@@ -6,7 +6,10 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "description": "The most simple Table implementation in the world, that fits 90% of your use-cases.",
-  "keywords": ["table", "@tanstack/table"],
+  "keywords": [
+    "table",
+    "@tanstack/table"
+  ],
   "exports": {
     ".": {
       "import": {
@@ -42,7 +45,10 @@
   },
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
   "license": "MIT",
-  "sideEffects": ["**/*.css", "**/*.scss"],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -55,15 +61,15 @@
   "devDependencies": {
     "@eslint/js": "^9.26.0",
     "@types/node": "^22.5.4",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.26.0",
     "eslint-plugin-perfectionist": "^4.12.3",
     "eslint-plugin-react-compiler": "19.1.0-rc.1",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.9",
+    "eslint-plugin-react-hooks": "5.1.0-rc-fb9a90fa48-20240614",
+    "eslint-plugin-react-refresh": "^0.4.11",
     "glob": "^11.0.0",
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
