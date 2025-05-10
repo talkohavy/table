@@ -1,76 +1,25 @@
-import { forwardRef, memo, useEffect, useMemo, useRef } from 'react';
+import { forwardRef, memo } from 'react';
 import clsx from 'clsx';
-import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableFooter } from '../..';
 import { CLASSES } from './logic/constants';
-import { useColumnResizeHook } from './logic/hooks/useColumnResizeHook';
-import { useExtractColumnsFromColumnDefs } from './logic/hooks/useExtractColumnsFromColumnDefs';
-import { useFilterHook } from './logic/hooks/useFilterHook';
-import { usePaginationHook } from './logic/hooks/usePaginationHook';
-import { useReachToBottomMechanism } from './logic/hooks/useReachToBottomMechanism';
-import { useRowSelectionHook } from './logic/hooks/useRowSelectionHook';
-import { useSortingHook } from './logic/hooks/useSortingHook';
 import TableBody from './logic/TableParts/TableBody';
 import TableHeader from './logic/TableParts/TableHeader';
 import styles from './Table.module.scss';
 import { TableProps } from './types';
+import { useTableLogic } from './logic/useTableLogic.ts';
 
 function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
+  const { customTableFooter, onCellClick, onBottomReached, showFooter, className } = props;
+
   const {
-    data: dataRaw,
-    columnDefs: columnDefsInput,
-    defaultColumn,
-    rowSelectionMode = 'none',
-    searchText,
-    setSearchText,
-    customTableFooter,
-    onCellClick,
-    onBottomReached,
-    initialPageSize,
-    showFooter,
-    className,
-  } = props;
-
-  const tableParentRef = useRef<HTMLDivElement>(null);
-
-  const { sortingState, sortingProps } = useSortingHook();
-  const { paginationState, paginationProps } = usePaginationHook({ showFooter, initialPageSize, customTableFooter });
-  const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
-  const { filterState, filterProps } = useFilterHook({ setSearchText });
-  const { columnsResizeProps } = useColumnResizeHook();
-  const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
-
-  const data = useMemo(() => dataRaw, [dataRaw]);
-  const { columns } = useExtractColumnsFromColumnDefs({
-    columnDefsInput,
-    firstRow: data?.at?.(0),
-    rowSelectionState,
-  });
-
-  const tableInstance = useReactTable({
-    data,
-    columns,
-    state: {
-      sorting: sortingState,
-      pagination: paginationState,
-      rowSelection: rowSelectionState,
-      columnFilters: filterState,
-      globalFilter: searchText,
-    },
-    getCoreRowModel: getCoreRowModel(),
-    ...sortingProps,
-    ...paginationProps,
-    ...rowSelectionProps,
-    ...filterProps,
-    ...columnsResizeProps,
-    defaultColumn,
-  });
-
-  useEffect(() => {
-    if (outerRef) outerRef.current = tableInstance;
-  }, []);
-
-  const { getRowModel, getHeaderGroups, getCenterTotalSize } = tableInstance;
+    tableInstance,
+    tableParentRef,
+    getRowModel,
+    handleBottomReached,
+    getCenterTotalSize,
+    getHeaderGroups,
+    paginationState,
+  } = useTableLogic<T>(props, outerRef);
 
   return (
     <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
