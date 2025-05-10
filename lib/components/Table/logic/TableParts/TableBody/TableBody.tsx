@@ -1,8 +1,9 @@
 import clsx from 'clsx';
 import { useVirtual } from 'react-virtual';
-import { Cell, RowModel, flexRender } from '@tanstack/react-table';
+import { Cell, RowModel } from '@tanstack/react-table';
 import { CLASSES } from '../../constants';
 import styles from './TableBody.module.scss';
+import TableCell from '../TableCell';
 
 type TableBodyProps = {
   getRowModel: () => RowModel<any>;
@@ -54,28 +55,7 @@ export default function TableBody(props: TableBodyProps) {
             )}
           >
             {row.getVisibleCells().map((cell: Cell<any, unknown>) => {
-              const { id: cellId, column, getContext } = cell;
-              const { columnDef, getSize } = column;
-
-              const handleCellClickOrKeyDown = (e: any) => {
-                if (e.type === 'click' || (['Enter', 'NumpadEnter'].includes(e.code) && !e.shiftKey)) {
-                  e.preventDefault();
-
-                  onCellClick?.({ cell, row });
-                }
-              };
-
-              return (
-                <div
-                  key={cellId}
-                  onClick={handleCellClickOrKeyDown}
-                  onKeyDown={handleCellClickOrKeyDown}
-                  className={clsx(CLASSES.tableBodyTD, styles.tableBodyTD, styles.defaultTableBodyTDStyle)}
-                  style={{ width: getSize() }}
-                >
-                  {flexRender(columnDef.cell, getContext())}
-                </div>
-              );
+              return <TableCell key={cell.id} cell={cell} row={row} onCellClick={onCellClick} />;
             })}
           </div>
         );

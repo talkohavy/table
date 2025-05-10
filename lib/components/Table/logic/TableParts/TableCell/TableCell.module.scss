@@ -1,0 +1,18 @@
+.tableBodyTD {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  // width: fit-content;
+}
+
+.defaultTableBodyTDStyle {
+  padding: 10px;
+}
+
+:global(.tk-table-body-tr):last-child .defaultTableBodyTDStyle:last-child {
+  border-radius: 0 0 6px 0;
+}
+
+:global(.tk-table-body-tr):last-child .defaultTableBodyTDStyle:first-child {
+  border-radius: 0 0 0 6px;
+}
