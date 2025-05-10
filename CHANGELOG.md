@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.19
+
+### Patch Changes
+
+- Paths of both index.js & index.d.ts under exports down at the package.json were wrong. FIXED!
+
 ## 0.0.18
 
 ### Patch Changes
