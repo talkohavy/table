@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { createColumnHelper } from '@tanstack/react-table';
-import { Table, RowSelectionMode } from '../../../dist';
+import { Table, RowSelectionMode } from '../../../lib';
 import Input from '../../components/Input';
 import Toggle from '../../components/Toggle';
 import { mockData } from '../../mockData';
