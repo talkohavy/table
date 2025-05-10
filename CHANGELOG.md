@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.23
+
+### Patch Changes
+
+- Added more control over columns widths.
+
 ## 0.0.22
 
 ### Patch Changes
