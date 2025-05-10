@@ -28,8 +28,8 @@ export default function TableHeader(props: TableHeaderProps) {
             return (
               <div
                 key={header.id}
-                style={{ width: header.getSize() }}
                 className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH)}
+                style={{ minWidth: header.getSize() }}
                 // colSpan={header.colSpan}
               >
                 {!header.isPlaceholder && (

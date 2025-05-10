@@ -22,12 +22,12 @@ The most simple Table implementation in the world, that fits 90% of your use-cas
 8. Infinite scroll
 9. onRowClick event
 10. Load more data when reaching bottom
-11. ⭐️**Highly customizable**⭐️ with custom css hooks for personal styling
+11. Auto-resizing columns to fill container width
+12. ⭐️**Highly customizable**⭐️ with custom css hooks for personal styling
 
 ## 2. List of known problems
 
 1. **Double-render**. For some reason, row selection has to be a dependency for when calculating _columnDefs_ in order for selected rows which were checked using the checkbox to appear as such in the next render. In the example shown in **@tanstack/table** it seemed like that isn't necessary. Need to check.
-2. **Table Width**. Now that Column-Sizing is a built-in feature, need to figure out the best way to handle table width, and how to make it take up the full size of its container.
 
 ## 3. Getting Started
 

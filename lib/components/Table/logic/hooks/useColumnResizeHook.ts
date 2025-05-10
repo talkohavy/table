@@ -1,12 +1,11 @@
 import { ColumnResizeDirection, ColumnResizeMode } from '@tanstack/react-table';
 
-function useColumnResizeHook() {
+export function useColumnResizeHook() {
   return {
     columnsResizeProps: {
       columnResizeMode: 'onChange' as ColumnResizeMode,
       columnResizeDirection: 'ltr' as ColumnResizeDirection,
+      // enableColumnResizing: true,
     },
   };
 }
-
-export { useColumnResizeHook };
