@@ -1,4 +1,4 @@
-import { Table } from '../../../lib';
+import { Table } from '../../../dist';
 import { mockData } from '../../mockData';
 
 export default function TableWithFooterPage() {
