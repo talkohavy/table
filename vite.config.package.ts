@@ -15,6 +15,7 @@ export default defineConfig({
     strictPort: true,
   },
   build: {
+    outDir: resolve(__dirname, 'dist'), // <--- defaults to `dist` under src, which is wrong
     emptyOutDir: false, // <--- defaults to `true`
     copyPublicDir: false,
     lib: {
