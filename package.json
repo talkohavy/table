@@ -10,8 +10,8 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./types/index.d.ts",
-        "default": "./index.esm.mjs"
+        "types": "./index.d.ts",
+        "default": "./index.js"
       }
     }
   },
