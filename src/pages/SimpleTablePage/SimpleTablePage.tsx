@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { createColumnHelper } from '@tanstack/react-table';
 import { RowSelectionMode } from '../../../lib/components/Table/types.ts';
-import { Table } from '../../../lib/main';
+import { Table } from '../../../lib/index';
 import Input from '../../components/Input';
 import Toggle from '../../components/Toggle';
 import { mockData } from '../../mockData';

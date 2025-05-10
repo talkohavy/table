@@ -2,7 +2,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import { createColumnHelper } from '@tanstack/react-table';
 import { RowSelectionMode } from '../../../lib/components/Table/types';
-import { Table } from '../../../lib/main';
+import { Table } from '../../../lib';
 import Select from '../../components/Select';
 import { mockData } from '../../mockData';
 import styles from './RowSelectionTablePage.module.scss';

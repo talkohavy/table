@@ -1,7 +1,25 @@
 import type { ReactNode } from 'react';
-import type { ColumnDef } from '@tanstack/react-table';
+import type { AccessorKeyColumnDef, ColumnDef } from '@tanstack/react-table';
 
-type DefaultColumn = {
+export type TableProps<T = any> = {
+  data: Array<T>;
+  columnDefs?: Array<ColumnDef<T> | AccessorKeyColumnDef<any, any>>;
+  defaultColumn?: DefaultColumn;
+  rowSelectionMode?: RowSelectionMode;
+  searchText?: string;
+  onCellClick?: (props: { cell: any; row: any }) => any;
+  setSearchText?: (value: any) => void;
+  customTableFooter?: (props: any) => ReactNode;
+  onBottomReached?: () => void;
+  className?: string;
+  initialPageSize?: number;
+  /**
+   * @default false
+   */
+  showFooter?: boolean;
+};
+
+export type DefaultColumn = {
   sortDescFirst?: boolean;
   enableSorting?: boolean;
   enableMultiSort?: boolean;
@@ -12,31 +30,8 @@ type DefaultColumn = {
   enableResizing?: boolean;
 };
 
-type BasicTable<T> = {
-  data: Array<T>;
-  columnDefs?: Array<ColumnDef<T>>;
-  defaultColumn?: DefaultColumn;
-  rowSelectionMode?: 'none' | 'single' | 'multi';
-  sorting?: any;
-  setSorting?: any;
-  searchText?: string;
-  onCellClick?: (data: any) => void;
-  setSearchText?: (value: any) => void;
-  renderTableFooter?: (props: any) => ReactNode;
-  onBottomReached?: () => void;
-  isFetching?: boolean;
-  isLoading?: boolean;
-  className?: string;
-  totalItemsLoadedCount?: number;
-  totalItemsOverallCount?: number;
-  initialPageSize?: number;
-};
-
-enum RowSelectionMode {
+export enum RowSelectionMode {
   Single = 'single',
   Multi = 'multi',
   None = 'none',
 }
-
-export type { BasicTable, DefaultColumn };
-export { RowSelectionMode };

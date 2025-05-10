@@ -2,14 +2,19 @@
   "name": "@talkohavy/table",
   "private": true,
   "version": "0.0.17",
-  "main": "dist/main.js",
-  "description": "The most simple Table implementation in the world, that fits 90% of your use-cases.",
-  "types": "dist/main.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
-  "keywords": [
-    "table",
-    "@tanstack/table"
-  ],
+  "description": "The most simple Table implementation in the world, that fits 90% of your use-cases.",
+  "keywords": ["table", "@tanstack/table"],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./types/index.d.ts",
+        "default": "./index.esm.mjs"
+      }
+    }
+  },
   "scripts": {
     "dev": "vite --config vite.config.webapp.ts",
     "clean": "rm -rf node_modules",
@@ -37,10 +42,7 @@
   },
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
   "license": "MIT",
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
+  "sideEffects": ["**/*.css", "**/*.scss"],
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

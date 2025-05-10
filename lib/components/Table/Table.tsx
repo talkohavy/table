@@ -1,7 +1,7 @@
-import { ReactNode, forwardRef, memo, useMemo, useRef } from 'react';
+import { forwardRef, memo, useEffect, useMemo, useRef } from 'react';
 import clsx from 'clsx';
-import { AccessorKeyColumnDef, ColumnDef, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { TableFooter } from '../../main';
+import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { TableFooter } from '../..';
 import { CLASSES } from './logic/constants';
 import { useColumnResizeHook } from './logic/hooks/useColumnResizeHook';
 import { useExtractColumnsFromColumnDefs } from './logic/hooks/useExtractColumnsFromColumnDefs';
@@ -13,25 +13,7 @@ import { useSortingHook } from './logic/hooks/useSortingHook';
 import TableBody from './logic/TableParts/TableBody';
 import TableHeader from './logic/TableParts/TableHeader';
 import styles from './Table.module.scss';
-import { DefaultColumn, RowSelectionMode } from './types';
-
-type TableProps<T = any> = {
-  data: Array<T>;
-  columnDefs?: Array<ColumnDef<T> | AccessorKeyColumnDef<any, any>>;
-  defaultColumn?: DefaultColumn;
-  rowSelectionMode?: RowSelectionMode;
-  searchText?: string;
-  onCellClick?: (props: { cell: any; row: any }) => any;
-  setSearchText?: (value: any) => void;
-  customTableFooter?: (props: any) => ReactNode;
-  onBottomReached?: () => void;
-  className?: string;
-  initialPageSize?: number;
-  /**
-   * @default false
-   */
-  showFooter?: boolean;
-};
+import { TableProps } from './types';
 
 function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const {
@@ -84,7 +66,9 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
     defaultColumn,
   });
 
-  if (outerRef) outerRef.current = tableInstance;
+  useEffect(() => {
+    if (outerRef) outerRef.current = tableInstance;
+  }, []);
 
   const { getRowModel, getHeaderGroups, getCenterTotalSize } = tableInstance;
 
