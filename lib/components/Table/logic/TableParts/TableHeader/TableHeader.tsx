@@ -22,14 +22,17 @@ export default function TableHeader(props: TableHeaderProps) {
           className={clsx(CLASSES.tableHeaderTR, styles.tableHeaderTR, styles.defaultTableHeaderTRStyle)}
         >
           {headerGroup.headers.map((header) => {
-            const isSortButtonVisible = header.column.getCanSort() && header.column.columnDef.enableSorting;
-            const isResizable = header.column.getCanResize();
+            const { columnDef, getCanSort, getCanResize } = header.column;
+            const { enableSorting, meta } = columnDef;
+
+            const isSortButtonVisible = getCanSort() && enableSorting;
+            const isResizable = getCanResize();
 
             return (
               <div
                 key={header.id}
-                className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH)}
-                style={{ minWidth: header.getSize() }}
+                className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH, (meta as any)?.className)}
+                style={{ width: header.getSize() }}
                 // colSpan={header.colSpan}
               >
                 {!header.isPlaceholder && (

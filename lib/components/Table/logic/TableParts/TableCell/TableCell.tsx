@@ -27,8 +27,13 @@ export default function TableCell(props: TableCellProps) {
     <div
       onClick={handleCellClickOrKeyDown}
       onKeyDown={handleCellClickOrKeyDown}
-      className={clsx(CLASSES.tableBodyTD, styles.tableBodyTD, styles.defaultTableBodyTDStyle)}
-      style={{ minWidth: getSize() }}
+      className={clsx(
+        CLASSES.tableBodyTD,
+        styles.tableBodyTD,
+        styles.defaultTableBodyTDStyle,
+        (columnDef.meta as any)?.className,
+      )}
+      style={{ width: getSize() }}
     >
       <div className={styles.cellContent}>{flexRender(columnDef.cell, getContext())}</div>
     </div>
