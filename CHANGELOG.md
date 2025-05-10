@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.22
+
+### Patch Changes
+
+- Make checkbox of table headers align with table cells.
+
 ## 0.0.21
 
 ### Patch Changes
