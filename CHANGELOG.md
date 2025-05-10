@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 0.0.20
+
+### Patch Changes
+
+- Dependencies were wrong. Build process was wrong. FIXED!
+
 ## 0.0.19
 
 ### Patch Changes
