@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { HeaderGroup, flexRender } from '@tanstack/react-table';
+import clsx from 'clsx';
 import { CLASSES } from '../../constants';
 import DefaultFilter from '../DefaultFilter';
 import ColumnResizer from './ColumnResizer';

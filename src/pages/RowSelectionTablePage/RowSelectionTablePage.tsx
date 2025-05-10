@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import clsx from 'clsx';
 import { createColumnHelper } from '@tanstack/react-table';
+import clsx from 'clsx';
 import { Table, RowSelectionMode } from '../../../lib';
 import Select from '../../components/Select';
 import { mockData } from '../../mockData';

@@ -1,9 +1,9 @@
-import clsx from 'clsx';
 import { useVirtual } from 'react-virtual';
 import { Cell, RowModel } from '@tanstack/react-table';
+import clsx from 'clsx';
 import { CLASSES } from '../../constants';
-import styles from './TableBody.module.scss';
 import TableCell from '../TableCell';
+import styles from './TableBody.module.scss';
 
 type TableBodyProps = {
   getRowModel: () => RowModel<any>;

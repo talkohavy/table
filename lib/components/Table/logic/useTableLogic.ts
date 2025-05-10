@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { useSortingHook } from './hooks/useSortingHook.ts';
-import { usePaginationHook } from './hooks/usePaginationHook.ts';
-import { useRowSelectionHook } from './hooks/useRowSelectionHook.ts';
-import { useFilterHook } from './hooks/useFilterHook.ts';
-import { useColumnResizeHook } from './hooks/useColumnResizeHook.ts';
-import { useReachToBottomMechanism } from './hooks/useReachToBottomMechanism.ts';
-import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs.tsx';
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableProps } from '../types.ts';
+import { useColumnResizeHook } from './hooks/useColumnResizeHook.ts';
+import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs.tsx';
+import { useFilterHook } from './hooks/useFilterHook.ts';
+import { usePaginationHook } from './hooks/usePaginationHook.ts';
+import { useReachToBottomMechanism } from './hooks/useReachToBottomMechanism.ts';
+import { useRowSelectionHook } from './hooks/useRowSelectionHook.ts';
+import { useSortingHook } from './hooks/useSortingHook.ts';
 
 export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
   const {
@@ -59,6 +59,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
   });
 
   useEffect(() => {
+    // eslint-disable-next-line
     if (outerRef) outerRef.current = tableInstance;
   }, []);
 

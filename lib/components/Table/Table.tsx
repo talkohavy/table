@@ -1,12 +1,12 @@
-import { forwardRef, memo } from 'react';
+import { forwardRef } from 'react';
 import clsx from 'clsx';
 import { TableFooter } from '../..';
 import { CLASSES } from './logic/constants';
 import TableBody from './logic/TableParts/TableBody';
 import TableHeader from './logic/TableParts/TableHeader';
+import { useTableLogic } from './logic/useTableLogic.ts';
 import styles from './Table.module.scss';
 import { TableProps } from './types';
-import { useTableLogic } from './logic/useTableLogic.ts';
 
 function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   const { customTableFooter, onCellClick, onBottomReached, showFooter, className } = props;
@@ -37,6 +37,6 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   );
 }
 
-const Table = memo(forwardRef(TableToForwardAndMemo));
+const Table = forwardRef(TableToForwardAndMemo);
 
 export default Table;

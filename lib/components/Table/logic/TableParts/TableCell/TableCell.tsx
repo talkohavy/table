@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { Cell, flexRender, Row } from '@tanstack/react-table';
+import clsx from 'clsx';
 import { CLASSES } from '../../constants';
 import styles from './TableCell.module.scss';
 
