@@ -23,7 +23,7 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime'],
+      external: ['react', '@tanstack/react-table', 'clsx', 'react/jsx-runtime'],
       input: Object.fromEntries(
         glob
           .sync('lib/**/*.{ts,tsx}', {

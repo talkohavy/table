@@ -35,11 +35,11 @@
     "resolveJsonModule": true,
     "baseUrl": "./", // Specify the base directory to resolve non-relative module names.
     "typeRoots": ["node_modules/@types"], // Specify multiple folders that act like './node_modules/@types'.
+    "allowImportingTsExtensions": true, // Option 'allowImportingTsExtensions' can only be used when either 'noEmit' or 'emitDeclarationOnly' is set.ts
     "paths": {
       "/*": ["src/public/*"],
       "@src/*": ["src/*"]
     },
-    // "allowImportingTsExtensions": true, // Option 'allowImportingTsExtensions' can only be used when either 'noEmit' or 'emitDeclarationOnly' is set.ts
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
@@ -65,7 +65,7 @@
     "noEmit": false, // set to `true` to disable emitting files from a compilation.
     "outDir": "./dist", // Specify an output folder for all emitted files.
     "declaration": true, // Generate .d.ts files from TypeScript and JavaScript files in your project.
-    // "emitDeclarationOnly": true, // Only output d.ts files and not JavaScript files
+    "emitDeclarationOnly": true, // Only output d.ts files and not JavaScript files
     // "sourceMap": true, // defaults to `false`. Create source map files for emitted JavaScript files.
     // "declarationMap": true, // Create sourcemaps for d.ts files.
     // "inlineSourceMap": true, // Include sourcemap files inside the emitted JavaScript. */
