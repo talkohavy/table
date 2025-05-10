@@ -2,7 +2,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  // width: fit-content;
+}
+
+.cellContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .defaultTableBodyTDStyle {

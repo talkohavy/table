@@ -30,7 +30,7 @@ export default function TableCell(props: TableCellProps) {
       className={clsx(CLASSES.tableBodyTD, styles.tableBodyTD, styles.defaultTableBodyTDStyle)}
       style={{ width: getSize() }}
     >
-      {flexRender(columnDef.cell, getContext())}
+      <div className={styles.cellContent}>{flexRender(columnDef.cell, getContext())}</div>
     </div>
   );
 }
