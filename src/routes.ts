@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
 const SimpleTablePage = lazy(() => import('./pages/SimpleTablePage'));
+const TableWithCustomColumns = lazy(() => import('./pages/TableWithCustomColumns'));
 const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage'));
 const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
 
@@ -11,6 +12,12 @@ export const routes = [
     text: 'Simple Table',
     activeNames: ['/simple-table', '/'],
     Component: SimpleTablePage,
+  },
+  {
+    to: '/table-with-custom-columns',
+    text: 'Table With Custom Columns',
+    activeNames: ['/table-with-custom-columns', '/'],
+    Component: TableWithCustomColumns,
   },
   {
     to: '/row-selection-table',
