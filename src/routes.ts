@@ -4,6 +4,7 @@ const SimpleTablePage = lazy(() => import('./pages/SimpleTablePage'));
 const TableWithCustomColumns = lazy(() => import('./pages/TableWithCustomColumns'));
 const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage'));
 const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
+const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 
 export const routes = [
   // Leave this as the first, since it will serve as the homepage
@@ -30,5 +31,11 @@ export const routes = [
     text: 'Table With Footer',
     activeNames: ['/table-with-footer'],
     Component: TableWithFooterPage,
+  },
+  {
+    to: '/complex-table',
+    text: 'Complex Table',
+    activeNames: ['/complex-table'],
+    Component: ComplexTablePage,
   },
 ];
