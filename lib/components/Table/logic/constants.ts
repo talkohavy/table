@@ -1,5 +1,6 @@
-const GAP_TO_BOTTOM = 600;
-const CLASSES = {
+export const GAP_TO_BOTTOM = 600;
+
+export const CLASSES = {
   tableWrapper: 'tk-custom-table-wrapper',
   tableParentRef: 'tk-table-ref-container',
   table: 'tk-table',
@@ -17,18 +18,16 @@ const CLASSES = {
   tableColumnIsResizing: 'tk-table-column-is-resizing',
 };
 
-enum RowSelectionOptions {
+export enum RowSelectionMode {
   Single = 'single',
   Multi = 'multi',
   None = 'none',
 }
 
-const ROW_SELECTION_MODES: Record<RowSelectionOptions, any> = {
-  [RowSelectionOptions.Single]: { enableRowSelection: true, enableMultiRowSelection: false },
-  [RowSelectionOptions.Multi]: { enableRowSelection: true, enableMultiRowSelection: true },
-  [RowSelectionOptions.None]: { enableRowSelection: false },
+export const ROW_SELECTION_MODES: Record<RowSelectionMode, any> = {
+  [RowSelectionMode.Single]: { enableRowSelection: true, enableMultiRowSelection: false },
+  [RowSelectionMode.Multi]: { enableRowSelection: true, enableMultiRowSelection: true },
+  [RowSelectionMode.None]: { enableRowSelection: false },
 };
 
-const DEFAULT_PAGE_SIZE = 10;
-
-export { CLASSES, DEFAULT_PAGE_SIZE, GAP_TO_BOTTOM, ROW_SELECTION_MODES, RowSelectionOptions };
+export const DEFAULT_PAGE_SIZE = 10;

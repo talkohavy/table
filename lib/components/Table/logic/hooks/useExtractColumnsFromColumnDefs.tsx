@@ -2,15 +2,17 @@ import { useMemo } from 'react';
 import { AccessorKeyColumnDef, CellContext, ColumnDef, RowSelectionState } from '@tanstack/react-table';
 import ColumnHeader from '../../../ColumnHeader';
 import IndeterminateCheckbox from '../../../IndeterminateCheckbox';
+import { RowSelectionMode } from '../constants';
 
 type UseExtractColumnsFromColumnDefsProps = {
   columnDefsInput?: Array<AccessorKeyColumnDef<any, any> | ColumnDef<any>>;
   firstRow: any;
   rowSelectionState: RowSelectionState;
+  rowSelectionMode?: RowSelectionMode;
 };
 
-function useExtractColumnsFromColumnDefs(props: UseExtractColumnsFromColumnDefsProps) {
-  const { columnDefsInput, firstRow, rowSelectionState } = props;
+export function useExtractColumnsFromColumnDefs(props: UseExtractColumnsFromColumnDefsProps) {
+  const { columnDefsInput, firstRow, rowSelectionState, rowSelectionMode } = props;
 
   const columns: any = useMemo(() => {
     if (!columnDefsInput) {
@@ -31,9 +33,16 @@ function useExtractColumnsFromColumnDefs(props: UseExtractColumnsFromColumnDefsP
       if ((curItem.meta as any)?.addCheckbox)
         return {
           ...curItem,
-          header: (props: any) => (
-            <ColumnHeader {...props} {...curItem} header={curItem.header ?? (curItem as any).accessorKey} />
-          ),
+          header:
+            rowSelectionMode === RowSelectionMode.Multi
+              ? (props: any) => (
+                  <ColumnHeader
+                    {...props}
+                    {...curItem}
+                    header={curItem.header ?? (curItem as AccessorKeyColumnDef<any, any>).accessorKey}
+                  />
+                )
+              : undefined,
           cell: ({ row }: CellContext<any, any>) => (
             <div style={{ padding: 4 }}>
               <IndeterminateCheckbox
@@ -48,9 +57,7 @@ function useExtractColumnsFromColumnDefs(props: UseExtractColumnsFromColumnDefsP
 
       return curItem;
     });
-  }, [columnDefsInput, rowSelectionState]);
+  }, [columnDefsInput, rowSelectionState, rowSelectionMode]);
 
   return { columns };
 }
-
-export { useExtractColumnsFromColumnDefs };

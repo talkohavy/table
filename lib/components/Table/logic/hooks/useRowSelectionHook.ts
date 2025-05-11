@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { RowSelectionState } from '@tanstack/react-table';
-import { ROW_SELECTION_MODES, RowSelectionOptions } from '../constants';
+import { ROW_SELECTION_MODES, RowSelectionMode } from '../constants';
 
 type UseRowSelectionHookProps = {
-  rowSelectionMode?: 'none' | 'single' | 'multi';
+  rowSelectionMode: RowSelectionMode;
 };
 
-function useRowSelectionHook(props: UseRowSelectionHookProps) {
+export function useRowSelectionHook(props: UseRowSelectionHookProps) {
   const { rowSelectionMode } = props;
 
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
@@ -15,9 +15,7 @@ function useRowSelectionHook(props: UseRowSelectionHookProps) {
     rowSelectionState: rowSelection,
     rowSelectionProps: {
       onRowSelectionChange: setRowSelection,
-      ...ROW_SELECTION_MODES[rowSelectionMode as RowSelectionOptions],
+      ...ROW_SELECTION_MODES[rowSelectionMode],
     },
   };
 }
-
-export { useRowSelectionHook };

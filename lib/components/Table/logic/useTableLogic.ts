@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableProps } from '../types.ts';
+import { RowSelectionMode } from './constants.ts';
 import { useColumnResizeHook } from './hooks/useColumnResizeHook.ts';
 import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs.tsx';
 import { useFilterHook } from './hooks/useFilterHook.ts';
@@ -15,7 +16,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
     columnDefs: columnDefsInput,
     defaultColumn,
     initialPageSize,
-    rowSelectionMode = 'none',
+    rowSelectionMode = RowSelectionMode.None,
     showFooter,
     customTableFooter,
     searchText,
@@ -37,6 +38,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
     columnDefsInput,
     firstRow: data?.at?.(0),
     rowSelectionState,
+    rowSelectionMode,
   });
 
   const tableInstance = useReactTable({

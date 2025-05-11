@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { AccessorKeyColumnDef, ColumnDef } from '@tanstack/react-table';
+import { RowSelectionMode } from './logic/constants';
 
 export type TableProps<T = any> = {
   data: Array<T>;
@@ -29,9 +30,3 @@ export type DefaultColumn = {
   enableGrouping?: boolean;
   enableResizing?: boolean;
 };
-
-export enum RowSelectionMode {
-  Single = 'single',
-  Multi = 'multi',
-  None = 'none',
-}
