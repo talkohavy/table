@@ -16,7 +16,7 @@ export const routes = [
   {
     to: '/table-with-custom-columns',
     text: 'Table With Custom Columns',
-    activeNames: ['/table-with-custom-columns', '/'],
+    activeNames: ['/table-with-custom-columns'],
     Component: TableWithCustomColumns,
   },
   {
