@@ -2,9 +2,9 @@ import { forwardRef } from 'react';
 import clsx from 'clsx';
 import { TableFooter } from '../..';
 import { CLASSES } from './logic/constants';
-import TableBody from './logic/TableParts/TableBody';
-import TableHeader from './logic/TableParts/TableHeader';
 import { useTableLogic } from './logic/useTableLogic.ts';
+import TableBody from './parts/TableBody/TableBody.tsx';
+import TableHeader from './parts/TableHeader/TableHeader.tsx';
 import styles from './Table.module.scss';
 import { TableProps } from './types';
 

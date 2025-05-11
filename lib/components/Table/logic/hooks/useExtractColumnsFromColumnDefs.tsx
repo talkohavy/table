@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { AccessorKeyColumnDef, CellContext, ColumnDef, RowSelectionState } from '@tanstack/react-table';
 import IndeterminateCheckbox from '../../../IndeterminateCheckbox';
-import ColumnHeader from '../TableParts/ColumnHeader';
+import ColumnHeader from '../../parts/ColumnHeader';
 
 type UseExtractColumnsFromColumnDefsProps = {
   columnDefsInput?: Array<AccessorKeyColumnDef<any, any> | ColumnDef<any>>;

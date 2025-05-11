@@ -1,6 +1,6 @@
 import { HeaderGroup, flexRender } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { CLASSES } from '../../constants';
+import { CLASSES } from '../../logic/constants';
 import DefaultFilter from '../DefaultFilter';
 import ColumnResizer from './ColumnResizer';
 import SortButton from './SortButton';

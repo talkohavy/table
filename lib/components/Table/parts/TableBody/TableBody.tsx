@@ -1,7 +1,7 @@
 import { useVirtual } from 'react-virtual';
 import { Cell, RowModel } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { CLASSES } from '../../constants';
+import { CLASSES } from '../../logic/constants';
 import TableCell from '../TableCell';
 import styles from './TableBody.module.scss';
 
