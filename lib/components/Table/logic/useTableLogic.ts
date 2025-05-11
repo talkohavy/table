@@ -3,7 +3,7 @@ import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableProps } from '../types.ts';
 import { RowSelectionMode } from './constants.ts';
 import { useColumnResizeHook } from './hooks/useColumnResizeHook.ts';
-import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs.tsx';
+import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs';
 import { useFilterHook } from './hooks/useFilterHook.ts';
 import { usePaginationHook } from './hooks/usePaginationHook.ts';
 import { useReachToBottomMechanism } from './hooks/useReachToBottomMechanism.ts';
