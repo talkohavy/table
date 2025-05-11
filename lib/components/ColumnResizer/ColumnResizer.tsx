@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { CLASSES } from '../../../logic/constants';
+import { CLASSES } from '../Table/logic/constants';
 import styles from './ColumnResizer.module.scss';
 
 type ColumnResizerProps = {

@@ -1,4 +1,4 @@
-import Button from '../../../Button';
+import Button from '../Button';
 import styles from './TableButton.module.scss';
 
 type TableButtonProps = {

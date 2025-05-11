@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import Select from '../../../../Select';
-import { CLASSES } from '../../../logic/constants';
+import Select from '../../Select';
+import { CLASSES } from '../../Table/logic/constants';
 
 const PAGE_RANGES = [10, 20, 30, 40, 50];
 

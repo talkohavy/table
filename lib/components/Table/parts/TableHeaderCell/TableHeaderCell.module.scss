@@ -1,0 +1,19 @@
+.tableHeaderTH {
+  position: relative;
+}
+
+.defaultTableHeaderDiv {
+  padding: 6px 14px;
+}
+
+.tableHeaderContentWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.tableHeaderValue::first-letter {
+  text-transform: uppercase;
+}
