@@ -1,0 +1,2 @@
+import{j as a,c as s}from"../../main/index-iiwt0vAN.js";import{T as e,m as l}from"./mockData.C0fe2T5O.js";const t="_myTable_ytcpk_1",m={myTable:t};function r(){return a.jsx("div",{className:"flex flex-col justify-start items-start gap-4 size-full p-10",children:a.jsx("div",{className:"w-full",children:a.jsx(e,{data:l,className:s("private-table",m.myTable)})})})}export{r as default};
+//# sourceMappingURL=index.D4zAzF0R.js.map
