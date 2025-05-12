@@ -11,8 +11,8 @@ const columnHelper = createColumnHelper<any>();
 
 const columnDefsRaw = [
   columnHelper.accessor('id', { header: 'ID', meta: { addCheckbox: true } }),
-  columnHelper.accessor('first_name', { header: 'First Name' }),
-  columnHelper.accessor('last_name', { header: 'Last Name' }),
+  columnHelper.accessor('first_name', { header: 'First Name', enableMultiSort: true }),
+  columnHelper.accessor('last_name', { header: 'Last Name', enableMultiSort: true }),
   columnHelper.accessor('email', { header: 'Email' }),
   columnHelper.accessor('gender', { header: 'Gender' }),
   columnHelper.accessor('ip_address', { header: 'IP Address', meta: { className: 'flex-1' } }),
@@ -60,8 +60,8 @@ const columnHelper = createColumnHelper<any>();
 
 const columnDefsRaw = [
   columnHelper.accessor('id', { header: 'ID', meta: { addCheckbox: true } }),
-  columnHelper.accessor('first_name', { header: 'First Name' }),
-  columnHelper.accessor('last_name', { header: 'Last Name' }),
+  columnHelper.accessor('first_name', { header: 'First Name', enableMultiSort: true }),
+  columnHelper.accessor('last_name', { header: 'Last Name', enableMultiSort: true }),
   columnHelper.accessor('email', { header: 'Email' }),
   columnHelper.accessor('gender', { header: 'Gender' }),
   columnHelper.accessor('ip_address', { header: 'IP Address', meta: { className: 'flex-1' } }),
