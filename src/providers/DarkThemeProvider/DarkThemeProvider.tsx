@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import { LS_KEY_THEME } from '../../common/constants.ts';
+import { setThemeOnHtmlElement } from '../../common/utils/setThemeOnHtmlElement.ts';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { LS_KEY_THEME } from '../../utils/constants';
-import { setThemeOnHtmlElement } from '../../utils/setThemeOnHtmlElement.ts';
 import { DarkThemeContext } from './DarkThemeContext';
 
 const THEME_OPTIONS = { dark: 'dark', light: 'light' };

@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import DarkThemeProvider from './providers/DarkThemeProvider';
-import './assets/styles/dark-mode-table.css';
+import './common/bootstrap';
 import './index.css';
 
 function Client() {
