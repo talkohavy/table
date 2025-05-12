@@ -11,4 +11,4 @@ export default function TableWithFooterPage() {
   );
 }
 `})]})}export{i as default};
-//# sourceMappingURL=index.nj5TULEZ.js.map
+//# sourceMappingURL=../../sourcemaps/index.nj5TULEZ.js.map

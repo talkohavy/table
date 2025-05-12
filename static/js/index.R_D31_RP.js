@@ -14,4 +14,4 @@ export default function SimpleTablePage() {
   );
 }
 `})]})}export{p as default};
-//# sourceMappingURL=index.Cs-AAfOa.js.map
+//# sourceMappingURL=../../sourcemaps/index.Cs-AAfOa.js.map

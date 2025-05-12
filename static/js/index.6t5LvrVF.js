@@ -30,4 +30,4 @@ export default function TableWithCustomColumns() {
   );
 }
 `})]})}export{f as default};
-//# sourceMappingURL=index.CFzz_Q2I.js.map
+//# sourceMappingURL=../../sourcemaps/index.CFzz_Q2I.js.map

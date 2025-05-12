@@ -49,4 +49,4 @@ export default function TableWithSorting() {
   );
 }
 `,language:"typescript",className:"w-full border"})]})}export{N as default};
-//# sourceMappingURL=index.BTA61BTw.js.map
+//# sourceMappingURL=../../sourcemaps/index.BTA61BTw.js.map
