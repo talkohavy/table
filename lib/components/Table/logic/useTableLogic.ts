@@ -3,6 +3,7 @@ import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableProps } from '../types.ts';
 import { RowSelectionMode } from './constants.ts';
 import { useColumnResizeHook } from './hooks/useColumnResizeHook.ts';
+import { useColumnVisibility } from './hooks/useColumnVisibility.ts';
 import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs';
 import { useFilterHook } from './hooks/useFilterHook.ts';
 import { usePaginationHook } from './hooks/usePaginationHook.ts';
@@ -31,6 +32,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
   const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
   const { filterState, filterProps } = useFilterHook({ setSearchText });
   const { columnsResizeProps } = useColumnResizeHook();
+  const { columnVisibilityState, columnVisibilityProps } = useColumnVisibility();
   const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
@@ -50,6 +52,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
       rowSelection: rowSelectionState,
       columnFilters: filterState,
       globalFilter: searchText,
+      columnVisibility: columnVisibilityState,
     },
     getCoreRowModel: getCoreRowModel(),
     ...sortingProps,
@@ -57,6 +60,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
     ...rowSelectionProps,
     ...filterProps,
     ...columnsResizeProps,
+    ...columnVisibilityProps,
     defaultColumn,
   });
 
