@@ -1,17 +1,26 @@
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { defineConfig } from 'vite';
+import { postBuildFixSourcemapUrlsPlugin } from './toolbox/plugins/postBuildFixSourcemapUrlsPlugin';
+import { getRootProject } from './toolbox/utils/getRootProject';
 
-const rootDir = path.join(__dirname, '../../');
+const rootDir = getRootProject();
 
 export default defineConfig({
   root: `${process.cwd()}/src`, // <--- defaults to process.cwd(). where the index.html is located.
-  plugins: [react()],
   server: {
     open: true,
     port: 3000,
     strictPort: true,
   },
+  clearScreen: false, // <--- default is true. false prevents Vite from clearing the terminal screen when logging certain messages
+  resolve: {
+    alias: {
+      '@src': path.resolve(__dirname, 'src'),
+    },
+  },
+  plugins: [react(), postBuildFixSourcemapUrlsPlugin()],
+  envDir: path.resolve(rootDir, '.env'),
   build: {
     outDir: '../dist', // <--- default is dist. Specify the output directory (relative to project root).
     sourcemap: true, // <--- default is false. Options are: true, false, inline, hidden. Generate production source maps. If true, a separate sourcemap file will be created. If 'inline', the sourcemap will be appended to the resulting output file as a data URI. 'hidden' works like true except that the corresponding sourcemap comments in the bundled files are suppressed.
@@ -31,15 +40,7 @@ export default defineConfig({
         chunkFileNames: 'static/js/[name].[hash].js', // <--- defaults to assets/[name].[hash].js
         sourcemapFileNames: 'sourcemaps/[name].[hash].js.map', // <--- defaults to [name].[hash].js.map. You can also use one that's called [chunkhash].
         assetFileNames: () => 'static/css/[name].[hash:12].[ext]', // <--- this is for css files! defaults to 'assets/
-        // sourcemapBaseUrl: 'http://localhost:5050', // When using sourcemaps, to the end of each '.js' file, a relative path is added which points to its sourcemap. By default, this relative path points to the root of the 'dist' folder. This is fine! because then in the serving server I can modify the req.url to point to the correct path, which is `sourcemaps/${sourcemapFilename}`, as you can see at `sourcemapFileNames`.
       },
     },
   },
-  resolve: {
-    alias: {
-      '@src': path.resolve(__dirname, 'src'),
-    },
-  },
-  envDir: path.resolve(rootDir, 'envs'),
-  clearScreen: false, // <--- default is true. false prevents Vite from clearing the terminal screen when logging certain messages
 });

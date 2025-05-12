@@ -6,10 +6,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "description": "The most simple Table implementation in the world, that fits 90% of your use-cases.",
-  "keywords": [
-    "table",
-    "@tanstack/table"
-  ],
+  "keywords": ["table", "@tanstack/table"],
   "exports": {
     ".": {
       "import": {
@@ -28,7 +25,7 @@
     "format": "prettier . --write --log-level silent --config .prettierrc.json --ignore-path .prettierignore",
     "test": "node --test",
     "build": "node build.config.js",
-    "build-webapp": "vite build --config vite.config.webapp.ts",
+    "build:webapp": "vite build --config vite.config.webapp.ts",
     "preview": "vite preview --config vite.config.webapp.ts"
   },
   "publishConfig": {
@@ -45,10 +42,7 @@
   },
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
   "license": "MIT",
-  "sideEffects": [
-    "**/*.css",
-    "**/*.scss"
-  ],
+  "sideEffects": ["**/*.css", "**/*.scss"],
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
