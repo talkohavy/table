@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import clsx from 'clsx';
+import { CLASSES } from '../../logic/constants';
 import styles from './ColumnVisibilitySlider.module.scss';
 
 type ColumnVisibilitySliderProps = {
@@ -14,25 +15,37 @@ export default function ColumnVisibilitySlider(props: ColumnVisibilitySliderProp
   const toggleSlider = () => setIsOpen(!isOpen);
 
   return (
-    <div className={clsx(styles.sliderContainer, isOpen && styles.open)}>
-      <button className={styles.toggleButton} onClick={toggleSlider} title='Toggle column visibility'>
+    <div
+      className={clsx(
+        CLASSES.columnVisibilitySlider.container,
+        styles.sliderContainer,
+        isOpen && CLASSES.columnVisibilitySlider.open,
+        isOpen && styles.open,
+      )}
+    >
+      <button
+        className={clsx(CLASSES.columnVisibilitySlider.toggleButton, styles.toggleButton)}
+        onClick={toggleSlider}
+        title='Toggle column visibility'
+      >
         {isOpen ? '›' : '‹'}
       </button>
 
-      <div className={styles.sliderContent}>
-        <h4 className={styles.sliderTitle}>Visible Columns</h4>
+      <div className={clsx(CLASSES.columnVisibilitySlider.content, styles.sliderContent)}>
+        <h4 className={clsx(CLASSES.columnVisibilitySlider.title, styles.sliderTitle)}>Visible Columns</h4>
 
-        <div className={styles.columnList}>
+        <div className={clsx(CLASSES.columnVisibilitySlider.columnList, styles.columnList)}>
           {columns.map((column) => (
-            <div key={column.id} className={styles.columnItem}>
-              <label className={styles.columnLabel}>
+            <div key={column.id} className={clsx(CLASSES.columnVisibilitySlider.columnItem, styles.columnItem)}>
+              <label className={clsx(CLASSES.columnVisibilitySlider.columnLabel, styles.columnLabel)}>
                 <input
                   type='checkbox'
                   checked={column.getIsVisible()}
                   onChange={column.getToggleVisibilityHandler()}
-                  className={styles.columnCheckbox}
+                  className={clsx(CLASSES.columnVisibilitySlider.columnCheckbox, styles.columnCheckbox)}
                 />
-                <span className={styles.columnName}>{column.id}</span>
+
+                <span className={clsx(CLASSES.columnVisibilitySlider.columnName, styles.columnName)}>{column.id}</span>
               </label>
             </div>
           ))}

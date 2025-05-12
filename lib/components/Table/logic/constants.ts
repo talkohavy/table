@@ -16,6 +16,19 @@ export const CLASSES = {
   tableFooterSelect: 'tk-table-footer-select',
   resizer: 'resizer',
   tableColumnIsResizing: 'tk-table-column-is-resizing',
+
+  columnVisibilitySlider: {
+    container: 'tk-column-visibility-slider-container',
+    open: 'tk-column-visibility-slider-open',
+    content: 'tk-column-visibility-slider-content',
+    title: 'tk-column-visibility-slider-title',
+    columnList: 'tk-column-visibility-slider-list',
+    columnItem: 'tk-column-visibility-slider-item',
+    columnLabel: 'tk-column-visibility-slider-label',
+    columnCheckbox: 'tk-column-visibility-slider-checkbox',
+    columnName: 'tk-column-visibility-slider-name',
+    toggleButton: 'tk-column-visibility-slider-toggle',
+  },
 };
 
 export enum RowSelectionMode {
