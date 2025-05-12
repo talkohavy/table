@@ -3,6 +3,8 @@ import path from 'path';
 import { Plugin } from 'vite';
 import { getRootProject } from '../utils/getRootProject';
 
+const PROJECT_NAME = 'table';
+
 export function postBuildFixSourcemapUrlsPlugin(): Plugin {
   const rootDir = getRootProject();
 
@@ -15,6 +17,8 @@ export function postBuildFixSourcemapUrlsPlugin(): Plugin {
         await fixFilesUnderStaticJsDir(rootDir);
 
         await fixMainJsFile(rootDir);
+
+        await fixHtmlFile(rootDir);
       },
     },
   };
@@ -66,8 +70,27 @@ async function fixMainJsFile(rootDir: string) {
     const filePath = path.join(mainDir, file);
     let content = await fs.readFile(filePath, 'utf8');
 
-    content = content.replace(/\/\/# sourceMappingURL=(.+)\.js\.map/, '//# sourceMappingURL=../sourcemaps/$1.js.map');
+    content = content
+      .replace(/\/\/# sourceMappingURL=(.+)\.js\.map/, '//# sourceMappingURL=../sourcemaps/$1.js.map')
+      .replaceAll(/"static\//g, `"${PROJECT_NAME}/static/`);
 
     await fs.writeFile(filePath, content);
   }
+}
+
+async function fixHtmlFile(rootDir: string) {
+  const htmlFilePath = path.resolve(rootDir, 'dist/index.html');
+
+  const isDistHtmlFileExists = await fs
+    .access(htmlFilePath)
+    .then(() => true)
+    .catch(() => false);
+
+  if (!isDistHtmlFileExists) throw new Error(`The file ${htmlFilePath} does not exist.`);
+
+  let content = await fs.readFile(htmlFilePath, 'utf8');
+
+  content = content.replaceAll(/="\//g, `="/${PROJECT_NAME}/`);
+
+  await fs.writeFile(htmlFilePath, content);
 }
