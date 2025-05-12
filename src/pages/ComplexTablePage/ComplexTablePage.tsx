@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { Table, RowSelectionMode } from '../../../lib/index.ts';
+import { THEME } from '../../common/constants.ts';
 import Input from '../../components/Input/index.ts';
 import Toggle from '../../components/Toggle/index.ts';
 import { mockData } from '../../mockData.ts';
 import { useDarkTheme } from '../../providers/DarkThemeProvider/DarkThemeContext.ts';
-import { THEME } from '../../utils/constants.ts';
 import styles from './ComplexTablePage.module.scss';
 
 const columnHelper = createColumnHelper<any>();
