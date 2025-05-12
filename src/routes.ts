@@ -5,6 +5,7 @@ const TableWithCustomColumns = lazy(() => import('./pages/TableWithCustomColumns
 const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage'));
 const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
 const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
+const TableWithColumnsSelector = lazy(() => import('./pages/TableWithColumnsSelector'));
 const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 
 export const routes = [
@@ -38,6 +39,12 @@ export const routes = [
     text: 'Table With Sorting',
     activeNames: ['/table-with-sorting'],
     Component: TableWithSorting,
+  },
+  {
+    to: '/table-with-columns-selector',
+    text: 'Table With Columns Selector',
+    activeNames: ['/table-with-columns-selector'],
+    Component: TableWithColumnsSelector,
   },
   {
     to: '/complex-table',
