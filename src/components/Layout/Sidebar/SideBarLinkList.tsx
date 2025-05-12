@@ -8,9 +8,9 @@ export default function SideBarLinkList() {
 
   const routes = useMemo(
     () =>
-      routesRaw.map(({ to, text, activeNames }) => ({
+      routesRaw.map(({ to, text, activeNames }, index) => ({
         to,
-        text,
+        text: `${index + 1}. ${text}`,
         isActive: activeNames.some((name) => name === pathname),
       })),
     [pathname],
