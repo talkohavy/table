@@ -8,11 +8,13 @@ export default function SideBarLinkList() {
 
   const routes = useMemo(
     () =>
-      routesRaw.map(({ to, text, activeNames }, index) => ({
-        to,
-        text: `${index + 1}. ${text}`,
-        isActive: activeNames.some((name) => name === pathname),
-      })),
+      routesRaw
+        .filter((route) => !route.hideFromSidebar)
+        .map(({ to, text, activeNames }, index) => ({
+          to,
+          text: `${index + 1}. ${text}`,
+          isActive: activeNames.some((name) => name === pathname),
+        })),
     [pathname],
   );
 

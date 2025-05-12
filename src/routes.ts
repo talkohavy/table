@@ -11,7 +11,7 @@ const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
 const TableWithColumnsSelector = lazy(() => import('./pages/TableWithColumnsSelector'));
 const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 
-export const routes = [
+export const routes: Array<Route> = [
   {
     to: '/',
     hideFromSidebar: true,
