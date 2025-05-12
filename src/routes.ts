@@ -1,4 +1,7 @@
 import { lazy } from 'react';
+import { BASE_URL } from './common/constants';
+import { Route } from './common/types';
+import RedirectToHome from './components/RedirectToHome';
 
 const SimpleTablePage = lazy(() => import('./pages/SimpleTablePage'));
 const TableWithCustomColumns = lazy(() => import('./pages/TableWithCustomColumns'));
@@ -9,45 +12,49 @@ const TableWithColumnsSelector = lazy(() => import('./pages/TableWithColumnsSele
 const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 
 export const routes = [
-  // Leave this as the first, since it will serve as the homepage
   {
-    to: '/simple-table',
+    to: '/',
+    hideFromSidebar: true,
+    Component: RedirectToHome,
+  } as Route,
+  {
+    to: `${BASE_URL}/simple-table`,
     text: 'Simple Table',
     activeNames: ['/simple-table', '/'],
     Component: SimpleTablePage,
   },
   {
-    to: '/table-with-custom-columns',
+    to: `${BASE_URL}/table-with-custom-columns`,
     text: 'Table With Custom Columns',
     activeNames: ['/table-with-custom-columns'],
     Component: TableWithCustomColumns,
   },
   {
-    to: '/row-selection-table',
+    to: `${BASE_URL}/row-selection-table`,
     text: 'Row Selection Table',
     activeNames: ['/row-selection-table'],
     Component: RowSelectionTablePage,
   },
   {
-    to: '/table-with-footer',
+    to: `${BASE_URL}/table-with-footer`,
     text: 'Table With Footer',
     activeNames: ['/table-with-footer'],
     Component: TableWithFooterPage,
   },
   {
-    to: '/table-with-sorting',
+    to: `${BASE_URL}/table-with-sorting`,
     text: 'Table With Sorting',
     activeNames: ['/table-with-sorting'],
     Component: TableWithSorting,
   },
   {
-    to: '/table-with-columns-selector',
+    to: `${BASE_URL}/table-with-columns-selector`,
     text: 'Table With Columns Selector',
     activeNames: ['/table-with-columns-selector'],
     Component: TableWithColumnsSelector,
   },
   {
-    to: '/complex-table',
+    to: `${BASE_URL}/complex-table`,
     text: 'Complex Table',
     activeNames: ['/complex-table'],
     Component: ComplexTablePage,
