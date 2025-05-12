@@ -77,12 +77,6 @@ export default function ComplexTablePage() {
           searchText={searchText}
           setSearchText={setSearchText}
           className={clsx('private-table', styles.myTable)}
-          // defaultColumn={{
-          //   enableSorting: isSortingEnabled,
-          //   // enableMultiSort: true,
-          // }}
-          // customTableFooter={TableFooter}
-          // initialPageSize={5}
           onCellClick={(props: any) => console.log('props is:', props)}
         />
       </div>
