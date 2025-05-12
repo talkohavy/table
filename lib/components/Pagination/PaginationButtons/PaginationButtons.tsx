@@ -1,4 +1,4 @@
-import TableButton from '../../TableButton';
+import Button from '../../Button';
 import styles from './PaginationButtons.module.scss';
 
 type PaginationButtonsProps = {
@@ -15,10 +15,21 @@ export default function PaginationButtons(props: PaginationButtonsProps) {
 
   return (
     <div className={styles.paginationButtons}>
-      <TableButton label='<<' onClick={() => firstPage()} disabled={!getCanPreviousPage()} />
-      <TableButton label='<' onClick={() => previousPage()} disabled={!getCanPreviousPage()} />
-      <TableButton label='>' onClick={() => nextPage()} disabled={!getCanNextPage()} />
-      <TableButton label='>>' onClick={() => lastPage()} disabled={!getCanNextPage()} />
+      <Button
+        className={styles.tableButton}
+        onClick={() => firstPage()}
+        disabled={!getCanPreviousPage()}
+      >{`<<`}</Button>
+
+      <Button
+        className={styles.tableButton}
+        onClick={() => previousPage()}
+        disabled={!getCanPreviousPage()}
+      >{`<`}</Button>
+
+      <Button className={styles.tableButton} onClick={() => nextPage()} disabled={!getCanNextPage()}>{`>`}</Button>
+
+      <Button className={styles.tableButton} onClick={() => lastPage()} disabled={!getCanNextPage()}>{`>>`}</Button>
     </div>
   );
 }
