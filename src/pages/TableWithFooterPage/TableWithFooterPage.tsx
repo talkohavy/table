@@ -1,4 +1,5 @@
 import { Table } from '../../../lib';
+import CodeBlock from '../../components/CodeBlock';
 import { mockData } from '../../mockData';
 
 export default function TableWithFooterPage() {
@@ -7,6 +8,24 @@ export default function TableWithFooterPage() {
       <div className='w-full'>
         <Table data={mockData} showFooter />
       </div>
+
+      <CodeBlock
+        language='typescript'
+        className='w-full border'
+        code={`import { Table } from '../../../lib';
+import { mockData } from '../../mockData';
+
+export default function TableWithFooterPage() {
+  return (
+    <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
+      <div className='w-full'>
+        <Table data={mockData} showFooter />
+      </div>
+    </div>
+  );
+}
+`}
+      />
     </div>
   );
 }
