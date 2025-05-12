@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   background-color: inherit;
+  position: relative; /* Add this to allow absolute positioning of slider */
+  overflow: hidden; /* Prevent showing the Column Visibility Slider */
 }
 
 .defaultTableWrapperStyle {
@@ -44,7 +46,6 @@
 }
 
 .table {
-  position: relative;
   // height: 100%; /* <--- do not give 100% height, since if you do, rows' height would be stretched to fill the table's container */
   width: fit-content;
   min-width: 100%;

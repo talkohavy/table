@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { TableFooter } from '../..';
 import { CLASSES } from './logic/constants';
 import { useTableLogic } from './logic/useTableLogic.ts';
+import ColumnVisibilitySlider from './parts/ColumnVisibilitySlider';
 import TableBody from './parts/TableBody/TableBody.tsx';
 import TableHeader from './parts/TableHeader/TableHeader.tsx';
 import styles from './Table.module.scss';
@@ -25,6 +26,8 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
           <TableHeader getHeaderGroups={getHeaderGroups} tableInstance={tableInstance} />
 
           <TableBody getRowModel={getRowModel} onCellClick={onCellClick} tableParentRef={tableParentRef} />
+
+          <ColumnVisibilitySlider columns={tableInstance.getAllLeafColumns()} />
         </div>
       </div>
 
