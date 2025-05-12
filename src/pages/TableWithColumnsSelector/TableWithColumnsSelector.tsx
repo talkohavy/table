@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { Table } from '../../../lib/index.ts';
@@ -16,12 +17,16 @@ const columnDefsRaw = [
 ];
 
 export default function TableWithColumnsSelector() {
+  const [visibleColumns, setVisibleColumns] = useState<{ [key: string]: boolean }>({ id: false, first_name: false });
+
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
         <Table
           data={mockData}
           columnDefs={columnDefsRaw}
+          visibleColumns={visibleColumns}
+          onVisibleColumnsChange={setVisibleColumns}
           showColumnsSelector
           className={clsx('private-table', styles.myTable)}
         />

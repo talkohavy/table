@@ -14,6 +14,8 @@ export type TableProps<T = any> = {
   onBottomReached?: () => void;
   className?: string;
   initialPageSize?: number;
+  visibleColumns: any;
+  onVisibleColumnsChange: (value: any) => void;
   /**
    * @default false
    */

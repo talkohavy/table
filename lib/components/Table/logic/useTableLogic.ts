@@ -20,6 +20,8 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
     rowSelectionMode = RowSelectionMode.None,
     showFooter,
     customTableFooter,
+    visibleColumns,
+    onVisibleColumnsChange,
     searchText,
     setSearchText,
     onBottomReached,
@@ -32,7 +34,10 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
   const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
   const { filterState, filterProps } = useFilterHook({ setSearchText });
   const { columnsResizeProps } = useColumnResizeHook();
-  const { columnVisibilityState, columnVisibilityProps } = useColumnVisibility();
+  const { columnVisibilityState, columnVisibilityProps } = useColumnVisibility({
+    initialState: visibleColumns,
+    onVisibleColumnsChange,
+  });
   const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
