@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { BASE_URL } from './common/constants';
 import { Route } from './common/types';
-import RedirectToHome from './components/RedirectToHome';
 
+const RedirectToHome = lazy(() => import('./pages/RedirectToHome'));
 const SimpleTablePage = lazy(() => import('./pages/SimpleTablePage'));
 const TableWithCustomColumns = lazy(() => import('./pages/TableWithCustomColumns'));
 const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage'));
