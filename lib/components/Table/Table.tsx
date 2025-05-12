@@ -8,7 +8,7 @@ import TableHeader from './parts/TableHeader/TableHeader.tsx';
 import styles from './Table.module.scss';
 import { TableProps } from './types';
 
-function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
+function TableToForward<T>(props: TableProps<T>, outerRef: any) {
   const { customTableFooter, onCellClick, onBottomReached, showFooter, className } = props;
 
   const { tableInstance, tableParentRef, getRowModel, handleBottomReached, getHeaderGroups, paginationState } =
@@ -37,6 +37,6 @@ function TableToForwardAndMemo<T>(props: TableProps<T>, outerRef: any) {
   );
 }
 
-const Table = forwardRef(TableToForwardAndMemo);
+const Table = forwardRef(TableToForward);
 
 export default Table;
