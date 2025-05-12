@@ -6,7 +6,7 @@ type UseReachToBottomMechanismProps = {
   tableParentRef: React.RefObject<HTMLDivElement>;
 };
 
-function useReachToBottomMechanism(props: UseReachToBottomMechanismProps) {
+export function useReachToBottomMechanism(props: UseReachToBottomMechanismProps) {
   const { onBottomReached, tableParentRef } = props;
 
   const handleBottomReached = useCallback(
@@ -29,5 +29,3 @@ function useReachToBottomMechanism(props: UseReachToBottomMechanismProps) {
 
   return { handleBottomReached };
 }
-
-export { useReachToBottomMechanism };
