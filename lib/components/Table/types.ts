@@ -17,6 +17,10 @@ export type TableProps<T = any> = {
   /**
    * @default false
    */
+  showColumnsSelector?: boolean;
+  /**
+   * @default false
+   */
   showFooter?: boolean;
 };
 

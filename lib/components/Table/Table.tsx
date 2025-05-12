@@ -10,7 +10,7 @@ import styles from './Table.module.scss';
 import { TableProps } from './types';
 
 function TableToForward<T>(props: TableProps<T>, outerRef: any) {
-  const { customTableFooter, onCellClick, onBottomReached, showFooter, className } = props;
+  const { customTableFooter, onCellClick, onBottomReached, showFooter, showColumnsSelector, className } = props;
 
   const { tableInstance, tableParentRef, getRowModel, handleBottomReached, getHeaderGroups, paginationState } =
     useTableLogic<T>(props, outerRef);
@@ -27,7 +27,7 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
 
           <TableBody getRowModel={getRowModel} onCellClick={onCellClick} tableParentRef={tableParentRef} />
 
-          <ColumnVisibilitySlider columns={tableInstance.getAllLeafColumns()} />
+          {showColumnsSelector && <ColumnVisibilitySlider columns={tableInstance.getAllLeafColumns()} />}
         </div>
       </div>
 
