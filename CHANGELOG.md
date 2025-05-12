@@ -1,5 +1,13 @@
 # @talkohavy/table
 
+## 1.0.1
+
+### Patch Changes
+
+- ColumnVisibilitySlider - now supports dark mode.
+- In TableProps, visibleColumns & onVisibleColumnsChange should have been optional.
+- ColumnVisibilitySlider is now fully customizable.
+
 ## 1.0.0
 
 ### Major Changes
