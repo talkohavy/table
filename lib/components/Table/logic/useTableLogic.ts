@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { TableProps } from '../types.ts';
 import { RowSelectionMode } from './constants.ts';
+import { useColumnOrder } from './hooks/useColumnOrder.ts';
 import { useColumnResizeHook } from './hooks/useColumnResizeHook.ts';
 import { useColumnVisibility } from './hooks/useColumnVisibility.ts';
 import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs';
@@ -38,6 +39,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
     initialState: visibleColumns,
     onVisibleColumnsChange,
   });
+  const { columnOrderState, columnOrderProps } = useColumnOrder();
   const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
@@ -58,6 +60,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
       columnFilters: filterState,
       globalFilter: searchText,
       columnVisibility: columnVisibilityState,
+      columnOrder: columnOrderState,
     },
     getCoreRowModel: getCoreRowModel(),
     ...sortingProps,
@@ -66,6 +69,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
     ...filterProps,
     ...columnsResizeProps,
     ...columnVisibilityProps,
+    ...columnOrderProps,
     defaultColumn,
   });
 
