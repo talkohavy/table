@@ -1,66 +1,79 @@
-import { Header, flexRender } from '@tanstack/react-table';
+import { Header, Table } from '@tanstack/react-table';
 import clsx from 'clsx';
 import ColumnResizer from '../../../ColumnResizer';
 import DefaultFilter from '../../../DefaultFilter';
 import SortButton from '../../../SortButton';
 import { CLASSES } from '../../logic/constants';
+import HeaderTitle from '../HeaderTitle';
+import { useTableHeaderCellLogic } from './logic/useTableHeaderCellLogic';
 import styles from './TableHeaderCell.module.scss';
 
 type TableHeaderCellProps = {
   header: Header<any, unknown>;
-  tableInstance: any;
+  tableInstance: Table<unknown>;
 };
 
 export default function TableHeaderCell(props: TableHeaderCellProps) {
-  const { header, tableInstance } = props;
-
-  const { columnDef, getCanSort, getCanResize } = header.column;
-  const { enableSorting, meta } = columnDef;
-
-  const isSortButtonVisible = getCanSort() && enableSorting;
-  const isResizable = getCanResize();
+  const {
+    headerId,
+    getHeaderSize,
+    isPlaceholder,
+    columnDefHeader,
+    getContext,
+    getResizeHandler,
+    resetSize,
+    getIsSorted,
+    getCanMultiSort,
+    toggleSorting,
+    getIsResizing,
+    columnId,
+    getFilterValue,
+    setFilterValue,
+    isResizable,
+    isSortButtonVisible,
+    isFilterInputVisible,
+    meta,
+    tableInstance,
+  } = useTableHeaderCellLogic(props);
 
   return (
     <div
-      key={header.id}
+      key={headerId}
       className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH, (meta as any)?.className)}
-      style={{ width: header.getSize() }}
+      style={{ width: getHeaderSize() }}
       // colSpan={header.colSpan}
     >
-      {!header.isPlaceholder && (
+      {!isPlaceholder && (
         <div className={clsx(CLASSES.tableHeaderDiv, styles.defaultTableHeaderDiv)}>
           <div className={styles.tableHeaderContentWrapper}>
-            {/* ------------------ */}
-            {/* Display the Header */}
-            {/* ------------------ */}
-            <div className={(CLASSES.tableHeaderValue, styles.tableHeaderValue)}>
-              {flexRender(header.column.columnDef.header, header.getContext())}
-            </div>
+            <HeaderTitle columnDefHeader={columnDefHeader} getContext={getContext} />
 
             {isSortButtonVisible && (
               <SortButton
-                sortType={header.column.getIsSorted()}
-                onClick={() => header.column.toggleSorting(undefined, header.column.getCanMultiSort())}
-                // onClick={header.column.getToggleSortingHandler()} //<--- this basic function only supports single column sort
+                sortType={getIsSorted()}
+                onClick={() => toggleSorting(undefined, getCanMultiSort())}
+                // onClick={getToggleSortingHandler()} //<--- this basic function only supports single column sort
               />
             )}
           </div>
 
-          {/* ------------------ */}
-          {/* Display the Filter */}
-          {/* ------------------ */}
-          {header.column.getCanFilter() && header.column.columnDef.enableColumnFilter && (
-            <DefaultFilter table={tableInstance} column={header.column} />
+          {!isFilterInputVisible && (
+            <DefaultFilter
+              table={tableInstance}
+              columnId={columnId}
+              getFilterValue={getFilterValue}
+              setFilterValue={setFilterValue}
+            />
           )}
         </div>
       )}
 
       {isResizable && (
         <ColumnResizer
-          onMouseDown={header.getResizeHandler()}
-          onTouchStart={header.getResizeHandler()}
-          onDoubleClick={() => header.column.resetSize()}
-          isResizing={header.column.getIsResizing()}
+          onMouseDown={getResizeHandler()}
+          onTouchStart={getResizeHandler()}
+          onDoubleClick={() => resetSize()}
+          isResizing={getIsResizing()}
         />
       )}
     </div>

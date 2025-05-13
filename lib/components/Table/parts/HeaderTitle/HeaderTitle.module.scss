@@ -1,0 +1,10 @@
+.tableHeaderValue {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tableHeaderValue::first-letter {
+  text-transform: uppercase;
+  white-space: nowrap;
+}

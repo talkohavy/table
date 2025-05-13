@@ -1,11 +1,11 @@
-import { HeaderGroup } from '@tanstack/react-table';
+import { HeaderGroup, Table } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { CLASSES } from '../../logic/constants';
 import TableHeaderCell from '../TableHeaderCell';
 import styles from './TableHeader.module.scss';
 
 type TableHeaderProps = {
-  tableInstance: any;
+  tableInstance: Table<unknown>;
   getHeaderGroups: () => Array<HeaderGroup<any>>;
 };
 

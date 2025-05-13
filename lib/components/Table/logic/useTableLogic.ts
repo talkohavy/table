@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { getCoreRowModel, Table, useReactTable } from '@tanstack/react-table';
 import { TableProps } from '../types.ts';
 import { RowSelectionMode } from './constants.ts';
 import { useColumnOrder } from './hooks/useColumnOrder.ts';
@@ -12,7 +12,9 @@ import { useReachToBottomMechanism } from './hooks/useReachToBottomMechanism.ts'
 import { useRowSelectionHook } from './hooks/useRowSelectionHook.ts';
 import { useSortingHook } from './hooks/useSortingHook.ts';
 
-export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
+type RefType = { current: Table<unknown> };
+
+export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
   const {
     data: dataRaw,
     columnDefs: columnDefsInput,
@@ -40,15 +42,17 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: any) {
     onVisibleColumnsChange,
   });
   const { columnOrderState, columnOrderProps } = useColumnOrder();
-  const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
 
   const data = useMemo(() => dataRaw, [dataRaw]);
+
   const { columns } = useExtractColumnsFromColumnDefs({
     columnDefsInput,
     firstRow: data?.at?.(0),
     rowSelectionState,
     rowSelectionMode,
   });
+
+  const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
 
   const tableInstance = useReactTable({
     data,
