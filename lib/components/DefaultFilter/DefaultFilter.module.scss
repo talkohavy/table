@@ -1,33 +1,45 @@
 .filterContainer {
   display: flex;
-  gap: 0.5rem; /* gap-2 in Tailwind = 0.5rem */
+  gap: 0.5rem;
   overflow: auto;
+  font-weight: 300;
+  font-family: 'Courier New', Courier, monospace !important;
 }
 
 .numberInput {
   width: 100%;
   max-width: 96px;
-  border-radius: 0.25rem; /* rounded */
-  border-width: 1px; /* border */
+  border-radius: 0.25rem;
+  border-width: 1px;
   box-shadow:
     0 1px 3px 0 rgba(0, 0, 0, 0.1),
-    0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow */
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+  color: #000;
+}
+
+html[data-theme='dark'] .numberInput {
+  background-color: #161c35;
+  color: #fff;
+  border-color: #4a4a4a;
 }
 
 .textInput {
+  font-weight: 300;
   width: 100%;
-  max-width: 96px;
-  border-radius: 0.25rem; /* rounded */
-  border-width: 1px; /* border */
-  padding-left: 0.25rem; /* px-1 */
-  padding-right: 0.25rem; /* px-1 */
-  color: black; /* text-black */
+  max-width: 200px;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  padding: 0.2rem 0.4rem;
+  color: black;
+  background-color: #fff;
   box-shadow:
     0 1px 3px 0 rgba(0, 0, 0, 0.1),
-    0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow */
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-/* For dark mode */
-:global(.dark) .textInput {
-  color: white; /* dark:text-white */
+html[data-theme='dark'] .textInput {
+  color: white;
+  background-color: #0a1130;
+  border-color: #4a4a4a;
 }

@@ -3,6 +3,11 @@
 }
 
 .defaultTableHeaderDiv {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 6px;
   padding: 6px 14px;
 }
 
