@@ -25,10 +25,7 @@ export function useExtractColumnsFromColumnDefs(props: UseExtractColumnsFromColu
       return defaultColumnDefs;
     }
 
-    const enrichedColumnDefs = enrichColumnDefs({
-      columnDefsInput,
-      rowSelectionMode,
-    });
+    const enrichedColumnDefs = enrichColumnDefs({ columnDefsInput, rowSelectionMode });
 
     return enrichedColumnDefs;
   }, [columnDefsInput, rowSelectionState, rowSelectionMode]);
