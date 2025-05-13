@@ -57,7 +57,7 @@ export default function TableHeaderCell(props: TableHeaderCellProps) {
             )}
           </div>
 
-          {!isFilterInputVisible && (
+          {isFilterInputVisible && (
             <DefaultFilter
               table={tableInstance}
               columnId={columnId}
