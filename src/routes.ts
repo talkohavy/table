@@ -18,6 +18,11 @@ export const routes: Array<Route> = [
     Component: RedirectToHome,
   } as Route,
   {
+    to: BASE_URL,
+    hideFromSidebar: true,
+    Component: RedirectToHome,
+  } as Route,
+  {
     to: `${BASE_URL}/simple-table`,
     text: 'Simple Table',
     activeNames: ['/simple-table', '/'],
