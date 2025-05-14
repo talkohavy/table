@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import { Header, Table } from '@tanstack/react-table';
 import clsx from 'clsx';
 import ColumnResizer from '../../../ColumnResizer';
@@ -14,6 +15,7 @@ type TableHeaderCellProps = {
   tableInstance: Table<unknown>;
   allowColumnReorder?: boolean;
   shouldAnimate?: boolean;
+  tableParentRef?: MutableRefObject<HTMLDivElement | null>;
 };
 
 export default function TableHeaderCell(props: TableHeaderCellProps) {

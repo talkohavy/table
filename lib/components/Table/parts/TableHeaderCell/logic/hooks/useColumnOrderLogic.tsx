@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import { Table } from '@tanstack/react-table';
 import { CLASSES } from '../../../../logic/constants';
 import '../../TableHeaderCell.animation.scss';
@@ -9,10 +10,11 @@ type useColumnOrderLogicProps = {
   columnId: string;
   allowColumnReorder?: boolean;
   shouldAnimate?: boolean;
+  tableParentRef?: MutableRefObject<HTMLDivElement | null>;
 };
 
 export function useColumnOrderLogic(props: useColumnOrderLogicProps) {
-  const { tableInstance, columnId, subHeaders, allowColumnReorder, shouldAnimate } = props;
+  const { tableInstance, columnId, subHeaders, allowColumnReorder, shouldAnimate, tableParentRef } = props;
 
   const getColumnOrder = useGetColumnOrder({ tableInstance });
 
@@ -36,8 +38,11 @@ export function useColumnOrderLogic(props: useColumnOrderLogicProps) {
     return animateColumnSwap();
 
     function animateColumnSwap() {
-      const tableHeaderContainer = document.querySelector(`.${CLASSES.tableHeaderTHead}`)!;
-      const tableBodyContainer = document.querySelector(`.${CLASSES.tableBody}`)!;
+      if (tableParentRef?.current == null) return;
+
+      const tableElement = tableParentRef.current.querySelector(`.${CLASSES.table}`)!;
+      const tableHeaderContainer = tableElement.querySelector(`.${CLASSES.tableHeaderTHead}`)!;
+      const tableBodyContainer = tableElement.querySelector(`.${CLASSES.tableBody}`)!;
       const headerPlaceholdersAndRows = tableHeaderContainer.querySelectorAll(`.${CLASSES.tableHeaderTR}`);
       const headersRow = headerPlaceholdersAndRows[headerPlaceholdersAndRows.length - 1]!;
       const headerCells = headersRow.querySelectorAll(`.${CLASSES.tableHeaderTH}`);
@@ -73,12 +78,12 @@ export function useColumnOrderLogic(props: useColumnOrderLogicProps) {
 
       setTimeout(() => {
         updateColumnOrder();
-        resetAllTransformClasses(); // <--- MUST be called after the updateColumnOrder!
+        resetAllTransformClasses(tableElement!);
       }, 300); // <--- MUST match timing with CSS transition duration
     }
 
-    function resetAllTransformClasses() {
-      const animatedCells = document.querySelectorAll('.column-transition');
+    function resetAllTransformClasses(tableElement: Element) {
+      const animatedCells = tableElement.querySelectorAll('.column-transition');
       animatedCells.forEach((cell) => {
         (cell as HTMLElement).style.transform = '';
         cell.classList.remove('column-transition');

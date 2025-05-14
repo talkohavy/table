@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import { Header, Table } from '@tanstack/react-table';
 import { useColumnOrderLogic } from './hooks/useColumnOrderLogic';
 
@@ -6,10 +7,11 @@ type useTableHeaderCellLogicProps = {
   header: Header<any, unknown>;
   allowColumnReorder?: boolean;
   shouldAnimate?: boolean;
+  tableParentRef?: MutableRefObject<HTMLDivElement | null>;
 };
 
 export function useTableHeaderCellLogic(props: useTableHeaderCellLogicProps) {
-  const { tableInstance, header, allowColumnReorder, shouldAnimate } = props;
+  const { tableParentRef, tableInstance, header, allowColumnReorder, shouldAnimate } = props;
 
   const {
     id: headerId,
@@ -43,6 +45,7 @@ export function useTableHeaderCellLogic(props: useTableHeaderCellLogicProps) {
     columnId,
     shouldAnimate,
     allowColumnReorder,
+    tableParentRef,
     subHeaders,
   });
 

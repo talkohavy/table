@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import { ColumnOrderState, HeaderGroup, Table } from '@tanstack/react-table';
 import clsx from 'clsx';
 import ResetColumnOrderButton from '../../../ResetColumnOrderButton';
@@ -12,10 +13,12 @@ type TableHeaderProps = {
   defaultColumnOrder: ColumnOrderState;
   allowColumnReorder?: boolean;
   shouldAnimate?: boolean;
+  tableParentRef?: MutableRefObject<HTMLDivElement | null>;
 };
 
 export default function TableHeader(props: TableHeaderProps) {
-  const { getHeaderGroups, tableInstance, defaultColumnOrder, allowColumnReorder, shouldAnimate } = props;
+  const { getHeaderGroups, tableInstance, defaultColumnOrder, allowColumnReorder, shouldAnimate, tableParentRef } =
+    props;
 
   const { isColumnOrderChanged } = useIsColumnOrderChanged({ tableInstance, defaultColumnOrder });
   const resetColumnOrder = () => {
@@ -42,6 +45,7 @@ export default function TableHeader(props: TableHeaderProps) {
                 tableInstance={tableInstance}
                 allowColumnReorder={allowColumnReorder}
                 shouldAnimate={shouldAnimate}
+                tableParentRef={tableParentRef}
               />
             );
           })}
