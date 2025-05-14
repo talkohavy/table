@@ -39,15 +39,12 @@ export default function TableWithSorting() {
       </div>
 
       <div className='w-full'>
-        <Table
-          data={mockData}
-          columnDefs={columnDefs}
-          className={clsx('private-table', styles.myTable)}
-          onCellClick={(props: any) => console.log('props is:', props)}
-        />
+        <Table data={mockData} columnDefs={columnDefs} className={clsx('private-table', styles.myTable)} />
       </div>
 
       <CodeBlock
+        language='typescript'
+        className='w-full border'
         code={`import { useMemo, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
@@ -91,16 +88,13 @@ export default function TableWithSorting() {
         <Table
           data={mockData}
           columnDefs={columnDefs}
-          className={clsx('private-table', styles.myTable)}
-          onCellClick={(props: any) => console.log('props is:', props)}
+          className={styles.myTable}
         />
       </div>
     </div>
   );
 }
 `}
-        language='typescript'
-        className='w-full border'
       />
     </div>
   );

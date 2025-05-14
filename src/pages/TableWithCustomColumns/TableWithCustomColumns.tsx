@@ -1,6 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { Table } from '../../../lib/index.ts';
+import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
 import { mockData } from '../../mockData.ts';
 import styles from './TableWithCustomColumns.module.scss';
@@ -28,7 +28,7 @@ export default function TableWithCustomColumns() {
         className='w-full border'
         code={`import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { Table } from '../../../lib/index.ts';
+import { Table } from '../../../lib';
 import { mockData } from '../../mockData.ts';
 import styles from './TableWithCustomColumns.module.scss';
 
@@ -50,7 +50,7 @@ export default function TableWithCustomColumns() {
         <Table
           data={mockData}
           columnDefs={columnDefsRaw}
-          className={clsx('private-table', styles.myTable)}
+          className={styles.myTable}
         />
       </div>
     </div>

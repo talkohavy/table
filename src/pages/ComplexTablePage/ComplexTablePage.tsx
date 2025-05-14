@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { Table, RowSelectionMode } from '../../../lib/index.ts';
+import { Table, RowSelectionMode } from '../../../lib';
 import { THEME } from '../../common/constants.ts';
 import Input from '../../components/Input/index.ts';
 import Toggle from '../../components/Toggle/index.ts';
@@ -25,6 +25,8 @@ export default function ComplexTablePage() {
   const { isDarkMode, toggleDarkMode } = useDarkTheme();
   const [showFooter, setShowFooter] = useState<boolean>(false);
   const [isSortingEnabled, setIsSortingEnabled] = useState<boolean>(true);
+  const [isColumnReorderEnabled, setIsColumnReorderEnabled] = useState<boolean>(true);
+  const [showColumnsSelector, setShowColumnsSelector] = useState<boolean>(false);
 
   const handleDarkThemeToggleClick = () => {
     const [htmlElement] = document.getElementsByTagName('html');
@@ -63,6 +65,23 @@ export default function ComplexTablePage() {
 
             <Toggle isChecked={isSortingEnabled} setIsChecked={() => setIsSortingEnabled((prev) => !prev)} />
           </div>
+
+          <div className='flex items-center justify-between gap-4 w-full'>
+            <h2 className='font-medium'>Column Picker Enabled:</h2>
+
+            <Toggle isChecked={showColumnsSelector} setIsChecked={() => setShowColumnsSelector((prev) => !prev)} />
+          </div>
+        </div>
+
+        <div className='flex flex-col justify-between gap-6 items-start p-6'>
+          <div className='flex items-center justify-between gap-4 w-full'>
+            <h2 className='font-medium'>Column Reorder Enabled:</h2>
+
+            <Toggle
+              isChecked={isColumnReorderEnabled}
+              setIsChecked={() => setIsColumnReorderEnabled((prev) => !prev)}
+            />
+          </div>
         </div>
       </div>
 
@@ -76,6 +95,8 @@ export default function ComplexTablePage() {
           showFooter={showFooter}
           searchText={searchText}
           setSearchText={setSearchText}
+          showColumnsSelector={showColumnsSelector}
+          allowColumnReorder={isColumnReorderEnabled}
           className={clsx('private-table', styles.myTable)}
           onCellClick={(props: any) => console.log('props is:', props)}
         />
