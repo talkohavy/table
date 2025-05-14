@@ -1,6 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { Table, RowSelectionMode } from '../../../lib/index.ts';
+import { Table } from '../../../lib/index.ts';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
 import { mockData } from '../../mockData.ts';
 import styles from './TableWithCustomColumns.module.scss';
@@ -20,12 +20,7 @@ export default function TableWithCustomColumns() {
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
-        <Table
-          data={mockData}
-          columnDefs={columnDefsRaw}
-          rowSelectionMode={RowSelectionMode.Multi}
-          className={clsx('private-table', styles.myTable)}
-        />
+        <Table data={mockData} columnDefs={columnDefsRaw} className={clsx('private-table', styles.myTable)} />
       </div>
 
       <CodeBlock
@@ -33,7 +28,7 @@ export default function TableWithCustomColumns() {
         className='w-full border'
         code={`import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { Table, RowSelectionMode } from '../../../lib/index.ts';
+import { Table } from '../../../lib/index.ts';
 import { mockData } from '../../mockData.ts';
 import styles from './TableWithCustomColumns.module.scss';
 
@@ -55,7 +50,6 @@ export default function TableWithCustomColumns() {
         <Table
           data={mockData}
           columnDefs={columnDefsRaw}
-          rowSelectionMode={RowSelectionMode.Multi}
           className={clsx('private-table', styles.myTable)}
         />
       </div>
