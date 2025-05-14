@@ -10,7 +10,7 @@ import styles from './TableWithSorting.module.scss';
 const columnHelper = createColumnHelper<any>();
 
 const columnDefsRaw = [
-  columnHelper.accessor('id', { header: 'ID', meta: { addCheckbox: true } }),
+  columnHelper.accessor('id', { header: 'ID' }),
   columnHelper.accessor('first_name', { header: 'First Name', enableMultiSort: true }),
   columnHelper.accessor('last_name', { header: 'Last Name', enableMultiSort: true }),
   columnHelper.accessor('email', { header: 'Email' }),
