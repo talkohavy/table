@@ -9,6 +9,7 @@ const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage')
 const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
 const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
 const TableWithColumnsSelector = lazy(() => import('./pages/TableWithColumnsSelector'));
+const TableReorderColumns = lazy(() => import('./pages/TableReorderColumns'));
 const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 
 export const routes: Array<Route> = [
@@ -57,6 +58,12 @@ export const routes: Array<Route> = [
     text: 'Table With Columns Selector',
     activeNames: ['/table-with-columns-selector'],
     Component: TableWithColumnsSelector,
+  },
+  {
+    to: `${BASE_URL}/table-reorder-columns`,
+    text: 'Table Reorder Columns',
+    activeNames: ['/table-reorder-columns'],
+    Component: TableReorderColumns,
   },
   {
     to: `${BASE_URL}/complex-table`,
