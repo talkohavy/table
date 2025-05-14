@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated the README.md file.
+
 ## 1.0.2
 
 ### Patch Changes
