@@ -18,36 +18,3 @@
   gap: 10px;
   width: 100%;
 }
-
-.columnOrderButtonsContainer {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.columnOrderButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 14spx;
-  height: 14px;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-  border-radius: 4px;
-
-  &:hover:not(.disabled) {
-    opacity: 1;
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-
-  &:focus-visible {
-    outline: 2px solid #4a90e2;
-    outline-offset: 1px;
-  }
-
-  &.disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-}

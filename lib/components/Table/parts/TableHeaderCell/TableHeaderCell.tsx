@@ -2,16 +2,12 @@ import { Header, Table } from '@tanstack/react-table';
 import clsx from 'clsx';
 import ColumnResizer from '../../../ColumnResizer';
 import DefaultFilter from '../../../DefaultFilter';
+import MoveColumnButtons from '../../../MoveColumnButtons';
 import SortButton from '../../../SortButton';
 import { CLASSES } from '../../logic/constants';
 import HeaderTitle from '../HeaderTitle';
 import { useTableHeaderCellLogic } from './logic/useTableHeaderCellLogic';
 import styles from './TableHeaderCell.module.scss';
-
-const ORDER_ICONS = {
-  left: '◀️',
-  right: '▶️',
-};
 
 type TableHeaderCellProps = {
   header: Header<any, unknown>;
@@ -38,8 +34,8 @@ export default function TableHeaderCell(props: TableHeaderCellProps) {
     isResizable,
     isSortButtonVisible,
     isFilterInputVisible,
-    handleMoveColumn,
     isMoveColumnButtonsVisible,
+    handleMoveColumn,
     isLeftDisabled,
     isRightDisabled,
     meta,
@@ -51,7 +47,6 @@ export default function TableHeaderCell(props: TableHeaderCellProps) {
       key={headerId}
       className={clsx(CLASSES.tableHeaderTH, styles.tableHeaderTH, (meta as any)?.className)}
       style={{ width: getHeaderSize() }}
-      // colSpan={header.colSpan}
     >
       {!isPlaceholder && (
         <div className={clsx(CLASSES.tableHeaderDiv, styles.defaultTableHeaderDiv)}>
@@ -60,40 +55,18 @@ export default function TableHeaderCell(props: TableHeaderCellProps) {
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
               {isMoveColumnButtonsVisible && (
-                <div className={styles.columnOrderButtonsContainer}>
-                  <button
-                    type='button'
-                    className={clsx(styles.columnOrderButton, isLeftDisabled && styles.disabled)}
-                    onClick={() => handleMoveColumn('left')}
-                    onKeyDown={(e) => e.key === 'Enter' && !isLeftDisabled && handleMoveColumn('left')}
-                    disabled={isLeftDisabled}
-                    tabIndex={isLeftDisabled ? -1 : 0}
-                    title='Move column left'
-                    aria-label='Move column left'
-                  >
-                    {ORDER_ICONS.left}
-                  </button>
-
-                  <button
-                    type='button'
-                    className={clsx(styles.columnOrderButton, isRightDisabled && styles.disabled)}
-                    onClick={() => handleMoveColumn('right')}
-                    onKeyDown={(e) => e.key === 'Enter' && !isRightDisabled && handleMoveColumn('right')}
-                    disabled={isRightDisabled}
-                    tabIndex={isRightDisabled ? -1 : 0}
-                    title='Move column right'
-                    aria-label='Move column right'
-                  >
-                    {ORDER_ICONS.right}
-                  </button>
-                </div>
+                <MoveColumnButtons
+                  handleMoveColumn={handleMoveColumn}
+                  isLeftDisabled={isLeftDisabled}
+                  isRightDisabled={isRightDisabled}
+                />
               )}
 
               {isSortButtonVisible && (
                 <SortButton
                   sortType={getIsSorted()}
                   onClick={() => toggleSorting(undefined, getCanMultiSort())}
-                  // onClick={getToggleSortingHandler()} //<--- this basic function only supports single column sort
+                  // onClick={getToggleSortingHandler()} //<--- this function is very basic and only supports single column sort
                 />
               )}
             </div>
