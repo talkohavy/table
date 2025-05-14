@@ -3,6 +3,8 @@ import { CLASSES } from '../../../../logic/constants';
 import '../../TableHeaderCell.animation.scss';
 import { useGetColumnOrder } from '../../../../logic/hooks/useGetColumnOrder';
 
+const shouldAnimate = true;
+
 type useColumnOrderLogicProps = {
   tableInstance: Table<unknown>;
   subHeaders: any;
@@ -28,20 +30,18 @@ export function useColumnOrderLogic(props: useColumnOrderLogicProps) {
 
     const currentIndex = currentColumnOrder.indexOf(columnId);
 
-    if (currentIndex === -1) return; // <--- should never happen but still...
-
     const newIndex = direction === 'left' ? currentIndex - 1 : currentIndex + 1;
 
-    // Apply animation before reordering
-    // Find all cells that need to be animated (both header and body cells)
+    if (!shouldAnimate) return updateColumnOrder();
 
-    try {
-      const tableHeaderContainer = document.querySelector(CLASSES.tableHeaderTHead)!;
-      const tableBodyContainer = document.querySelector(CLASSES.tableBody)!;
-      const headerPlaceholdersAndRows = tableHeaderContainer.querySelectorAll(CLASSES.tableHeaderTR);
+    return animateColumnSwap();
+
+    function animateColumnSwap() {
+      const tableHeaderContainer = document.querySelector(`.${CLASSES.tableHeaderTHead}`)!;
+      const tableBodyContainer = document.querySelector(`.${CLASSES.tableBody}`)!;
+      const headerPlaceholdersAndRows = tableHeaderContainer.querySelectorAll(`.${CLASSES.tableHeaderTR}`);
       const headersRow = headerPlaceholdersAndRows[headerPlaceholdersAndRows.length - 1]!;
-      const headerCells = headersRow.querySelectorAll(CLASSES.tableHeaderTH);
-      // Get the DOM positions of the columns we're swapping
+      const headerCells = headersRow.querySelectorAll(`.${CLASSES.tableHeaderTH}`);
       const currentHeaderCell = headerCells[currentIndex] as HTMLElement;
       const targetHeaderCell = headerCells[newIndex] as HTMLElement;
 
@@ -58,45 +58,35 @@ export function useColumnOrderLogic(props: useColumnOrderLogicProps) {
       targetHeaderCell.style.transform = `translateX(${oppositeDistance}px)`;
 
       // Now animate the body cells in each row
-      const bodyRows = tableBodyContainer.querySelectorAll('.tk-table-body-tr');
+      const bodyRows = tableBodyContainer.querySelectorAll(`.${CLASSES.tableBodyTR}`);
       bodyRows.forEach((row) => {
-        const cells = row.querySelectorAll('.tk-table-body-td');
+        const cells = row.querySelectorAll(`.${CLASSES.tableBodyTD}`);
         if (cells.length > 0 && currentIndex < cells.length && newIndex < cells.length) {
           const currentCell = cells[currentIndex] as HTMLElement;
           const targetCell = cells[newIndex] as HTMLElement;
 
-          if (currentCell && targetCell) {
-            currentCell.classList.add('column-transition');
-            targetCell.classList.add('column-transition');
-            currentCell.style.transform = `translateX(${moveDistance}px)`;
-            targetCell.style.transform = `translateX(${oppositeDistance}px)`;
-          }
+          currentCell.classList.add('column-transition');
+          targetCell.classList.add('column-transition');
+          currentCell.style.transform = `translateX(${moveDistance}px)`;
+          targetCell.style.transform = `translateX(${oppositeDistance}px)`;
         }
       });
 
-      // After animation completes, remove transforms and update the actual order
       setTimeout(() => {
-        // Reset all transforms
-        const animatedCells = document.querySelectorAll('.column-transition');
-        animatedCells.forEach((cell) => {
-          (cell as HTMLElement).style.transform = '';
-          cell.classList.remove('column-transition');
-        });
-
-        // Update the actual column order in the table instance
-        const newColumnOrder = [...currentColumnOrder];
-        const temp = newColumnOrder[currentIndex];
-        newColumnOrder[currentIndex] = newColumnOrder[newIndex]!;
-        newColumnOrder[newIndex] = temp!;
-
-        tableInstance.setColumnOrder(newColumnOrder);
+        updateColumnOrder();
+        resetAllTransformClasses(); // <--- MUST be called after the updateColumnOrder!
       }, 300); // <--- MUST match timing with CSS transition duration
-    } catch (error) {
-      console.error('Error during column animation:', error);
-      applyFallbackReordering();
     }
 
-    function applyFallbackReordering() {
+    function resetAllTransformClasses() {
+      const animatedCells = document.querySelectorAll('.column-transition');
+      animatedCells.forEach((cell) => {
+        (cell as HTMLElement).style.transform = '';
+        cell.classList.remove('column-transition');
+      });
+    }
+
+    function updateColumnOrder() {
       const newColumnOrder = [...currentColumnOrder];
       const temp = newColumnOrder[currentIndex];
       newColumnOrder[currentIndex] = newColumnOrder[newIndex]!;
