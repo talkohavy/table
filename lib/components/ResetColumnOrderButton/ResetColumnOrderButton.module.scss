@@ -1,26 +1,14 @@
-.resetButtonContainer {
+.resetButton {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 2;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.2s ease,
-    visibility 0.2s ease;
-}
-
-/* IMPORTANT NOTE: I'm assuming that the parent div is the entire TableHeader */
-div:hover > .resetButtonContainer {
-  opacity: 0.7;
-  visibility: visible;
-}
-
-.resetButton {
   display: flex;
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 2;
   background-color: rgba(255, 255, 255, 0.9);
   color: rgb(53, 80, 255);
   border: 1px solid rgba(53, 80, 255, 0.4);
@@ -28,9 +16,18 @@ div:hover > .resetButtonContainer {
   font-size: 11px;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 
   &:hover {
     opacity: 1;
+    background: rgb(248, 124, 110);
   }
+}
+
+/* IMPORTANT NOTE: I'm assuming that the parent div is the entire TableHeader */
+div:hover > .resetButton {
+  opacity: 1;
+  visibility: visible;
 }
