@@ -1,5 +1,15 @@
 # @talkohavy/table
 
+## 1.0.2
+
+### Patch Changes
+
+- Made the column swapping Table-specific.
+- Added option allowColumnReorder.
+- Added a `shouldAnimate` prop that the user can now control and pass onto the Table.
+- Column Reorder feature now comes with animation. Currently, it is always set to "on".
+- DefaultFilter styles were converted from tailwind to css modules.
+
 ## 1.0.1
 
 ### Patch Changes
