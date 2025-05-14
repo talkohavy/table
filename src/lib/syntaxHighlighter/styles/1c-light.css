@@ -66,6 +66,10 @@
   color: #000000;
 }
 
+.hljs-string {
+  color: rgb(143, 88, 56);
+}
+
 .hljs-title,
 .hljs-section {
   color: #0000ff;

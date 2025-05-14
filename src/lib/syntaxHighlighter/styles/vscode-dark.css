@@ -199,3 +199,7 @@ body[class*='dark'] .hljs-link,
 html[data-theme='dark'] .hljs-link {
   text-decoration: underline;
 }
+
+html[data-theme='dark'] .hljs-tag {
+  color: rgb(223, 223, 223);
+}
