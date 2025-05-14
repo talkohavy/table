@@ -17,9 +17,20 @@ export type TableProps<T = any> = {
   visibleColumns?: any;
   onVisibleColumnsChange?: (value: any) => void;
   /**
+   * Optional array of column IDs to set as the default column order.
+   * If not provided, the default order will be determined from the order of column definitions.
+   */
+  defaultColumnOrder?: string[];
+  initialColumnOrder?: any;
+  onColumnsOrderChange?: (value: any) => void;
+  /**
    * @default false
    */
   showColumnsSelector?: boolean;
+  /**
+   * @default false
+   */
+  allowColumnReorder?: boolean;
   /**
    * @default false
    */

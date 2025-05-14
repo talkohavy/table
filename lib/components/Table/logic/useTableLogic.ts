@@ -27,7 +27,10 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     onVisibleColumnsChange,
     searchText,
     setSearchText,
+    initialColumnOrder,
+    onColumnsOrderChange,
     onBottomReached,
+    defaultColumnOrder: customDefaultColumnOrder,
   } = props;
 
   const tableParentRef = useRef<HTMLDivElement>(null);
@@ -41,7 +44,6 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     initialState: visibleColumns,
     onVisibleColumnsChange,
   });
-  const { columnOrderState, columnOrderProps } = useColumnOrder();
 
   const data = useMemo(() => dataRaw, [dataRaw]);
 
@@ -50,6 +52,13 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     firstRow: data?.at?.(0),
     rowSelectionState,
     rowSelectionMode,
+  });
+
+  const { columnOrderState, columnOrderProps, defaultColumnOrder } = useColumnOrder({
+    initialColumnOrder,
+    customDefaultColumnOrder,
+    onColumnsOrderChange,
+    columns,
   });
 
   const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
@@ -92,5 +101,6 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     getHeaderGroups,
     handleBottomReached,
     paginationState,
+    defaultColumnOrder,
   };
 }

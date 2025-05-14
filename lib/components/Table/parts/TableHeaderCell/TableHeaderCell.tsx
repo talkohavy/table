@@ -8,9 +8,15 @@ import HeaderTitle from '../HeaderTitle';
 import { useTableHeaderCellLogic } from './logic/useTableHeaderCellLogic';
 import styles from './TableHeaderCell.module.scss';
 
+const ORDER_ICONS = {
+  left: '◀️',
+  right: '▶️',
+};
+
 type TableHeaderCellProps = {
   header: Header<any, unknown>;
   tableInstance: Table<unknown>;
+  allowColumnReorder?: boolean;
 };
 
 export default function TableHeaderCell(props: TableHeaderCellProps) {
@@ -26,12 +32,16 @@ export default function TableHeaderCell(props: TableHeaderCellProps) {
     getCanMultiSort,
     toggleSorting,
     getIsResizing,
-    columnId,
     getFilterValue,
     setFilterValue,
+    columnId,
     isResizable,
     isSortButtonVisible,
     isFilterInputVisible,
+    handleMoveColumn,
+    isMoveColumnButtonsVisible,
+    isLeftDisabled,
+    isRightDisabled,
     meta,
     tableInstance,
   } = useTableHeaderCellLogic(props);
@@ -48,13 +58,45 @@ export default function TableHeaderCell(props: TableHeaderCellProps) {
           <div className={styles.tableHeaderContentWrapper}>
             <HeaderTitle columnDefHeader={columnDefHeader} getContext={getContext} />
 
-            {isSortButtonVisible && (
-              <SortButton
-                sortType={getIsSorted()}
-                onClick={() => toggleSorting(undefined, getCanMultiSort())}
-                // onClick={getToggleSortingHandler()} //<--- this basic function only supports single column sort
-              />
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              {isMoveColumnButtonsVisible && (
+                <div className={styles.columnOrderButtonsContainer}>
+                  <button
+                    type='button'
+                    className={clsx(styles.columnOrderButton, isLeftDisabled && styles.disabled)}
+                    onClick={() => handleMoveColumn('left')}
+                    onKeyDown={(e) => e.key === 'Enter' && !isLeftDisabled && handleMoveColumn('left')}
+                    disabled={isLeftDisabled}
+                    tabIndex={isLeftDisabled ? -1 : 0}
+                    title='Move column left'
+                    aria-label='Move column left'
+                  >
+                    {ORDER_ICONS.left}
+                  </button>
+
+                  <button
+                    type='button'
+                    className={clsx(styles.columnOrderButton, isRightDisabled && styles.disabled)}
+                    onClick={() => handleMoveColumn('right')}
+                    onKeyDown={(e) => e.key === 'Enter' && !isRightDisabled && handleMoveColumn('right')}
+                    disabled={isRightDisabled}
+                    tabIndex={isRightDisabled ? -1 : 0}
+                    title='Move column right'
+                    aria-label='Move column right'
+                  >
+                    {ORDER_ICONS.right}
+                  </button>
+                </div>
+              )}
+
+              {isSortButtonVisible && (
+                <SortButton
+                  sortType={getIsSorted()}
+                  onClick={() => toggleSorting(undefined, getCanMultiSort())}
+                  // onClick={getToggleSortingHandler()} //<--- this basic function only supports single column sort
+                />
+              )}
+            </div>
           </div>
 
           {isFilterInputVisible && (
