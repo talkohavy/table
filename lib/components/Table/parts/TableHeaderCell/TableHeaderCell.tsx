@@ -13,6 +13,7 @@ type TableHeaderCellProps = {
   header: Header<any, unknown>;
   tableInstance: Table<unknown>;
   allowColumnReorder?: boolean;
+  shouldAnimate?: boolean;
 };
 
 export default function TableHeaderCell(props: TableHeaderCellProps) {

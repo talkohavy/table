@@ -11,10 +11,11 @@ type TableHeaderProps = {
   getHeaderGroups: () => Array<HeaderGroup<any>>;
   defaultColumnOrder: ColumnOrderState;
   allowColumnReorder?: boolean;
+  shouldAnimate?: boolean;
 };
 
 export default function TableHeader(props: TableHeaderProps) {
-  const { getHeaderGroups, tableInstance, defaultColumnOrder, allowColumnReorder } = props;
+  const { getHeaderGroups, tableInstance, defaultColumnOrder, allowColumnReorder, shouldAnimate } = props;
 
   const { isColumnOrderChanged } = useIsColumnOrderChanged({ tableInstance, defaultColumnOrder });
   const resetColumnOrder = () => {
@@ -40,6 +41,7 @@ export default function TableHeader(props: TableHeaderProps) {
                 header={header}
                 tableInstance={tableInstance}
                 allowColumnReorder={allowColumnReorder}
+                shouldAnimate={shouldAnimate}
               />
             );
           })}

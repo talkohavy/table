@@ -3,17 +3,16 @@ import { CLASSES } from '../../../../logic/constants';
 import '../../TableHeaderCell.animation.scss';
 import { useGetColumnOrder } from '../../../../logic/hooks/useGetColumnOrder';
 
-const shouldAnimate = true;
-
 type useColumnOrderLogicProps = {
   tableInstance: Table<unknown>;
   subHeaders: any;
   columnId: string;
   allowColumnReorder?: boolean;
+  shouldAnimate?: boolean;
 };
 
 export function useColumnOrderLogic(props: useColumnOrderLogicProps) {
-  const { tableInstance, columnId, subHeaders, allowColumnReorder } = props;
+  const { tableInstance, columnId, subHeaders, allowColumnReorder, shouldAnimate } = props;
 
   const getColumnOrder = useGetColumnOrder({ tableInstance });
 

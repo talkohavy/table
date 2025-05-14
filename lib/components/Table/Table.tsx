@@ -17,6 +17,7 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
     showFooter,
     showColumnsSelector,
     allowColumnReorder,
+    shouldAnimate = true,
     className,
   } = props;
 
@@ -43,6 +44,7 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
             tableInstance={tableInstance}
             defaultColumnOrder={defaultColumnOrder}
             allowColumnReorder={allowColumnReorder}
+            shouldAnimate={shouldAnimate}
           />
 
           <TableBody getRowModel={getRowModel} onCellClick={onCellClick} tableParentRef={tableParentRef} />

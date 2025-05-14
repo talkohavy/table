@@ -32,6 +32,12 @@ export type TableProps<T = any> = {
    */
   allowColumnReorder?: boolean;
   /**
+   * Whether to animate column order changes.
+   *
+   * @default true
+   */
+  shouldAnimate?: boolean;
+  /**
    * @default false
    */
   showFooter?: boolean;

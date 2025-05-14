@@ -5,10 +5,11 @@ type useTableHeaderCellLogicProps = {
   tableInstance: Table<unknown>;
   header: Header<any, unknown>;
   allowColumnReorder?: boolean;
+  shouldAnimate?: boolean;
 };
 
 export function useTableHeaderCellLogic(props: useTableHeaderCellLogicProps) {
-  const { tableInstance, header, allowColumnReorder } = props;
+  const { tableInstance, header, allowColumnReorder, shouldAnimate } = props;
 
   const {
     id: headerId,
@@ -40,6 +41,7 @@ export function useTableHeaderCellLogic(props: useTableHeaderCellLogicProps) {
   const { isLeftDisabled, isRightDisabled, isMoveColumnButtonsVisible, handleMoveColumn } = useColumnOrderLogic({
     tableInstance,
     columnId,
+    shouldAnimate,
     allowColumnReorder,
     subHeaders,
   });
