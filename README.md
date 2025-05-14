@@ -17,19 +17,17 @@ The most simple Table implementation in the world, that fits 90% of your use-cas
 3. Sticky Headers
 4. Sorting (including multi-sort)
 5. Column Resizing
-6. Group Headers
-7. Pagination
-8. Infinite scroll
-9. onRowClick event
-10. Load more data when reaching bottom
-11. Auto-resizing columns to fill container width
-12. ⭐️**Highly customizable**⭐️ with custom css hooks for personal styling
+6. Column Ordering
+7. Column Picker
+8. Column stretching to fill the container's width
+9. Group Headers
+10. Pagination
+11. Infinite scroll
+12. onRowClick event
+13. Load more data when reaching bottom
+14. ⭐️**Highly customizable**⭐️ with custom css hooks for personal styling
 
-## 2. List of known problems
-
-1. **Double-render**. For some reason, row selection has to be a dependency for when calculating _columnDefs_ in order for selected rows which were checked using the checkbox to appear as such in the next render. In the example shown in **@tanstack/table** it seemed like that isn't necessary. Need to check.
-
-## 3. Getting Started
+## 2. Getting Started
 
 install the package:
 
@@ -118,7 +116,7 @@ export default function App() {
 
 Play around and have fun exploring 🧡
 
-## 4. Table Options
+## 3. Table Options
 
 Here's a list of all supported options:
 
@@ -127,47 +125,120 @@ Here's a list of all supported options:
 
    The only mandatory prop which Table requires.
 
-2. `columnDef`
-   type: `ColumnDef`
+2. `columnDefs`
+   type: `Array<ColumnDef<T> | AccessorKeyColumnDef<any, any>>`
 
    Exactly what you know about ColumnDef from `@tanstack/table`.
 
 3. `showFooter`
    type: `boolean`
+   default: `false`
 
-   \* Will be explained in the future \*
+   Whether to show the table footer containing pagination controls.
 
 4. `rowSelectionMode`
-   type: `string`
-   Options: 'none' | 'single' | 'multi'
+   type: `enum: 'none' | 'single' | 'multi'`
+   default: `'none'`
 
-   \* Will be explained in the future \*
+   Controls the row selection behavior:
+
+   - `'none'`: No row selection enabled
+   - `'single'`: Only one row can be selected at a time
+   - `'multi'`: Multiple rows can be selected at once
 
 5. `searchText`
    type: `string`
 
-   Goes together with `setSearchText`.  
-   The data passed to **Table** will be filtered by rows that include `searchText`.  
-   \* Will be explained in the future \*
+   Text to filter the table rows. Works with `setSearchText`.
 
 6. `setSearchText`
    type: `(value: any) => void`
 
-   Goes together with `searchText`.
-
-   \* Will be explained in the future \*
+   Callback to update the search text.
 
 7. `defaultColumn`
    type: `Partial<ColumnDef<TData, unknown>>`
 
-   \* Will be explained in the future \*
+   Default configuration for all columns. This can include settings like:
+
+   ```ts
+   {
+     sortDescFirst: boolean; // Default sorting direction
+     enableSorting: boolean; // Enable sorting on all columns
+     enableMultiSort: boolean; // Enable multi-column sorting
+     enableGlobalFilter: boolean; // Enable global filtering
+     enableColumnFilter: boolean; // Enable per-column filtering
+     enablePinning: boolean; // Enable column pinning
+     enableGrouping: boolean; // Enable grouping
+     enableResizing: boolean; // Enable column resizing
+   }
+   ```
 
 8. `customTableFooter`
-   type: `React Component`
+   type: `(props: any) => ReactNode`
 
-   \* Will be explained in the future \*
+   Custom React component to render as the table footer. Receives table instance and pagination state as props.
 
 9. `initialPageSize`
    type: `number`
+   default: `10`
 
-   \* Will be explained in the future \*
+   Initial number of rows to display per page.
+
+10. `onCellClick`
+    type: `(props: { cell: any; row: any }) => any`
+
+    Callback fired when a cell is clicked. Receives the cell and row objects.
+
+11. `className`
+    type: `string`
+
+    CSS class to apply to the table wrapper.
+
+12. `onBottomReached`
+    type: `() => void`
+
+    Callback fired when the user scrolls to the bottom of the table. Useful for implementing infinite scroll.
+
+13. `visibleColumns`
+    type: `{ [columnId: string]: boolean }`
+
+    Object mapping column IDs to visibility state. Controls which columns are visible.
+
+14. `onVisibleColumnsChange`
+    type: `(value: any) => void`
+
+    Callback fired when column visibility changes.
+
+15. `showColumnsSelector`
+    type: `boolean`
+    default: `false`
+
+    Whether to show the column visibility toggle menu.
+
+16. `allowColumnReorder`
+    type: `boolean`
+    default: `false`
+
+    Whether to allow columns to be reordered by the user.
+
+17. `shouldAnimate`
+    type: `boolean`
+    default: `true`
+
+    Whether to animate column reordering.
+
+18. `defaultColumnOrder`
+    type: `string[]`
+
+    Optional array of column IDs to set as the default column order. If not provided, the default order will be determined from the order of column definitions.
+
+19. `initialColumnOrder`
+    type: `ColumnOrderState`
+
+    Initial state for column ordering. This takes precedence over defaultColumnOrder and represents a user's previously saved column order.
+
+20. `onColumnsOrderChange`
+    type: `(value: any) => void`
+
+    Callback fired when column order changes.
