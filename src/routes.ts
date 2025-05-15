@@ -13,6 +13,7 @@ const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
 const TableWithColumnsSelector = lazy(() => import('./pages/TableWithColumnsSelector'));
 const TableReorderColumns = lazy(() => import('./pages/TableReorderColumns'));
 const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
+const TableWithPersistentColumnWidths = lazy(() => import('./pages/TableWithPersistentColumnWidths'));
 
 export const routes: Array<Route> = [
   {
@@ -78,6 +79,12 @@ export const routes: Array<Route> = [
     text: 'Table Reorder Columns',
     activeNames: [`${BASE_URL}/table-reorder-columns`],
     Component: TableReorderColumns,
+  },
+  {
+    to: `${BASE_URL}/table-with-persistent-column-widths`,
+    text: 'Table With Persistent Column Widths',
+    activeNames: [`${BASE_URL}/table-with-persistent-column-widths`],
+    Component: TableWithPersistentColumnWidths,
   },
   {
     to: `${BASE_URL}/complex-table`,
