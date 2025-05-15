@@ -15,20 +15,14 @@ export function useExtractColumnsFromColumnDefs(props: UseExtractColumnsFromColu
   const { columnDefsInput, firstRow, rowSelectionState, rowSelectionMode } = props;
 
   const columns: any = useMemo(() => {
-    if (!columnDefsInput) {
-      const isEmptyData = !firstRow || typeof firstRow !== 'object';
-
-      if (isEmptyData) return [];
-
-      const defaultColumnDefs = getDefaultColumnDefs(firstRow);
-
-      return defaultColumnDefs;
-    }
+    if (!columnDefsInput) return getDefaultColumnDefs(firstRow);
 
     const enrichedColumnDefs = enrichColumnDefs({ columnDefsInput, rowSelectionMode });
 
     return enrichedColumnDefs;
-  }, [columnDefsInput, rowSelectionState, rowSelectionMode]);
+    // TODO: figure out why does rowSelectionState need to be passed here!
+    // Why doesn't it work without it?
+  }, [columnDefsInput, rowSelectionMode, rowSelectionState]);
 
   return { columns };
 }

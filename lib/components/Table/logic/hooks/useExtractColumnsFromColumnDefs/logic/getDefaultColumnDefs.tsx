@@ -1,13 +1,11 @@
-import ColumnHeader from '../../../../../ColumnHeader';
+import { extractDefaultColumnDefsFromFirstRow } from './extractDefaultColumnDefsFromFirstRow';
 
 export function getDefaultColumnDefs(firstRow: any) {
-  const autoColumnDefs = [];
-  for (const key in firstRow) {
-    autoColumnDefs.push({
-      accessorKey: key,
-      header: (props: any) => <ColumnHeader {...props} header={key} showCheckbox={false} />,
-    });
-  }
+  const isEmptyData = !firstRow || typeof firstRow !== 'object';
 
-  return autoColumnDefs;
+  if (isEmptyData) return [];
+
+  const defaultColumnDefs = extractDefaultColumnDefsFromFirstRow(firstRow);
+
+  return defaultColumnDefs;
 }
