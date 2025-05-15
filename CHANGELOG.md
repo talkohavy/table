@@ -1,5 +1,14 @@
 # @talkohavy/table
 
+## 1.0.4
+
+### Patch Changes
+
+- Added ability to store size of resized columns so that you could potentially persist each column's width upon a page refresh.
+- BugFix: Added initial column order validation. If the user fills an initialState of say `['id']`, we fill in the rest of the column ids.
+- The onColumnOrderChange, which the user passes, is now injected with the new columnOrder instead of with the updater function.
+- The onColumnSizingChange which the user passes now injected with the new columnSizing value instead of with the updater function.
+
 ## 1.0.3
 
 ### Patch Changes
