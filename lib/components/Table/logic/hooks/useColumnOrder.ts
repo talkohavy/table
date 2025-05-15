@@ -22,13 +22,29 @@ type UseColumnOrderProps = {
 export function useColumnOrder(props?: UseColumnOrderProps) {
   const { initialColumnOrder, onColumnsOrderChange, columns, customDefaultColumnOrder } = props ?? {};
 
+  const validatedInitialColumnOrder = useMemo(() => {
+    if (!initialColumnOrder) return undefined;
+
+    const allColumnIds = columns.map((col: any) => col.accessorKey);
+    const validColumnIdsSet = new Set(allColumnIds);
+    const filteredColumnOrder = initialColumnOrder.filter((id: string) => validColumnIdsSet.has(id));
+    const initialOrderSet = new Set(filteredColumnOrder); // <--- for a quick lookup
+    const validatedOrder = [...filteredColumnOrder];
+
+    allColumnIds.forEach((id: string) => {
+      if (!initialOrderSet.has(id)) validatedOrder.push(id);
+    });
+
+    return validatedOrder;
+  }, [initialColumnOrder, columns]);
+
   const defaultColumnOrder = useMemo(() => {
     if (customDefaultColumnOrder) return customDefaultColumnOrder;
 
     return columns.map((col: any) => col.accessorKey);
   }, [columns, customDefaultColumnOrder]);
 
-  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(initialColumnOrder ?? defaultColumnOrder);
+  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(validatedInitialColumnOrder ?? defaultColumnOrder);
 
   const handleColumnOrderChange = (cb: (old: any) => void) => {
     setColumnOrder(cb as SetStateAction<ColumnOrderState>);
