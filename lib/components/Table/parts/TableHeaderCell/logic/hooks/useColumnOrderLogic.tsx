@@ -1,8 +1,8 @@
 import { MutableRefObject } from 'react';
 import { Table } from '@tanstack/react-table';
 import { CLASSES } from '../../../../logic/constants';
-import '../../TableHeaderCell.animation.scss';
 import { useGetColumnOrder } from '../../../../logic/hooks/useGetColumnOrder';
+import '../../TableHeaderCell.animation.scss';
 
 type useColumnOrderLogicProps = {
   tableInstance: Table<unknown>;
