@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export function useLocalStorage(key: string, defaultValue?: any) {
-  const [value, setValue] = useState(() => {
+export function useLocalStorage<T>(key: string, defaultValue?: T): [T, (value: T) => void, () => void] {
+  const [value, setValue] = useState<T>(() => {
     const item = localStorage.getItem(key);
 
     if (item) {
