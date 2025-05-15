@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table, RowSelectionMode } from '../../../lib';
 import { THEME } from '../../common/constants.ts';
 import Input from '../../components/Input/index.ts';
@@ -97,7 +96,7 @@ export default function ComplexTablePage() {
           setSearchText={setSearchText}
           showColumnsSelector={showColumnsSelector}
           allowColumnReorder={isColumnReorderEnabled}
-          className={clsx('private-table', styles.myTable)}
+          className={styles.myTable}
           onCellClick={(props: any) => console.log('props is:', props)}
         />
       </div>

@@ -1,5 +1,4 @@
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
@@ -29,7 +28,7 @@ export default function TableReorderColumns() {
           allowColumnReorder
           initialColumnOrder={columnOrder}
           onColumnsOrderChange={setColumnOrder}
-          className={clsx('private-table', styles.myTable)}
+          className={styles.myTable}
         />
       </div>
 
@@ -37,7 +36,6 @@ export default function TableReorderColumns() {
         language='typescript'
         className='w-full border'
         code={`import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { mockData } from '../../mockData.ts';
@@ -66,7 +64,7 @@ export default function TableReorderColumns() {
           allowColumnReorder
           initialColumnOrder={columnOrder}
           onColumnsOrderChange={setColumnOrder}
-          className={clsx('private-table', styles.myTable)}
+          className={styles.myTable}
         />
       </div>
     </div>

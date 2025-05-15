@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
 import Toggle from '../../components/Toggle/index.ts';
@@ -39,7 +38,7 @@ export default function TableWithSorting() {
       </div>
 
       <div className='w-full'>
-        <Table data={mockData} columnDefs={columnDefs} className={clsx('private-table', styles.myTable)} />
+        <Table data={mockData} columnDefs={columnDefs} className={styles.myTable} />
       </div>
 
       <CodeBlock
@@ -47,7 +46,6 @@ export default function TableWithSorting() {
         className='w-full border'
         code={`import { useMemo, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import Toggle from '../../components/Toggle/index.ts';
 import { mockData } from '../../mockData.ts';

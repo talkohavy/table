@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table, RowSelectionMode } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock';
 import Select from '../../components/Select';
@@ -40,7 +39,7 @@ export default function RowSelectionTablePage() {
           data={mockData}
           columnDefs={columnDefs}
           rowSelectionMode={rowSelectionType.value}
-          className={clsx('private-table', styles.myTable)}
+          className={styles.myTable}
           onCellClick={(props: any) => console.log('props is:', props)}
         />
       </div>
@@ -50,7 +49,7 @@ export default function RowSelectionTablePage() {
         className='w-full border'
         code={`import { useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
+import { Table } from '../../../lib';
 import { Table, RowSelectionMode } from '../../../lib';
 import Select from '../../components/Select';
 import { mockData } from '../../mockData';
@@ -89,7 +88,7 @@ export default function RowSelectionTablePage() {
           data={mockData}
           columnDefs={columnDefs}
           rowSelectionMode={rowSelectionType.value}
-          className={clsx('private-table', styles.myTable)}
+          className={styles.myTable}
           onCellClick={(props: any) => console.log('props is:', props)}
         />
       </div>

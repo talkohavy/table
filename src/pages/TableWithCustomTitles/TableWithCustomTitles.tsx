@@ -1,5 +1,4 @@
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
 import { mockData } from '../../mockData.ts';
@@ -20,14 +19,13 @@ export default function TableWithCustomTitles() {
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
-        <Table data={mockData} columnDefs={columnDefsRaw} className={clsx('private-table', styles.myTable)} />
+        <Table data={mockData} columnDefs={columnDefsRaw} className={styles.myTable} />
       </div>
 
       <CodeBlock
         language='typescript'
         className='w-full border'
         code={`import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import { mockData } from '../../mockData.ts';
 import styles from './TableWithCustomTitles.module.scss';
@@ -47,7 +45,7 @@ export default function TableWithCustomTitles() {
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
-        <Table data={mockData} columnDefs={columnDefsRaw} className={clsx('private-table', styles.myTable)} />
+        <Table data={mockData} columnDefs={columnDefsRaw} className={styles.myTable} />
       </div>
     </div>
   );

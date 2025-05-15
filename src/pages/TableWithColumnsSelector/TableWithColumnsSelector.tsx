@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
 import { mockData } from '../../mockData.ts';
@@ -29,7 +28,7 @@ export default function TableWithColumnsSelector() {
           visibleColumns={visibleColumns}
           onVisibleColumnsChange={setVisibleColumns}
           showColumnsSelector
-          className={clsx('private-table', styles.myTable)}
+          className={styles.myTable}
         />
       </div>
 
@@ -38,7 +37,6 @@ export default function TableWithColumnsSelector() {
         className='w-full border'
         code={`import { useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import { mockData } from '../../mockData.ts';
 import styles from './TableWithColumnsSelector.module.scss';
