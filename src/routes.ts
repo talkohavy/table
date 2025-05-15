@@ -5,6 +5,7 @@ import { Route } from './common/types';
 const RedirectToHome = lazy(() => import('./pages/RedirectToHome'));
 const SimpleTablePage = lazy(() => import('./pages/SimpleTablePage'));
 const TableWithCustomTitles = lazy(() => import('./pages/TableWithCustomTitles'));
+const FullWidthTable = lazy(() => import('./pages/FullWidthTable'));
 const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage'));
 const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
 const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
@@ -26,49 +27,55 @@ export const routes: Array<Route> = [
   {
     to: `${BASE_URL}/simple-table`,
     text: 'Simple Table',
-    activeNames: ['/simple-table', '/'],
+    activeNames: [`${BASE_URL}/simple-table`, `${BASE_URL}/`],
     Component: SimpleTablePage,
   },
   {
     to: `${BASE_URL}/table-with-custom-titles`,
     text: 'Table With Custom Titles',
-    activeNames: ['/table-with-custom-titles'],
+    activeNames: [`${BASE_URL}/table-with-custom-titles`],
     Component: TableWithCustomTitles,
+  },
+  {
+    to: `${BASE_URL}/full-width-table`,
+    text: 'Full Width Table',
+    activeNames: [`${BASE_URL}/full-width-table`],
+    Component: FullWidthTable,
   },
   {
     to: `${BASE_URL}/row-selection-table`,
     text: 'Row Selection Table',
-    activeNames: ['/row-selection-table'],
+    activeNames: [`${BASE_URL}/row-selection-table`],
     Component: RowSelectionTablePage,
   },
   {
     to: `${BASE_URL}/table-with-footer`,
     text: 'Table With Footer',
-    activeNames: ['/table-with-footer'],
+    activeNames: [`${BASE_URL}/table-with-footer`],
     Component: TableWithFooterPage,
   },
   {
     to: `${BASE_URL}/table-with-sorting`,
     text: 'Table With Sorting',
-    activeNames: ['/table-with-sorting'],
+    activeNames: [`${BASE_URL}/table-with-sorting`],
     Component: TableWithSorting,
   },
   {
     to: `${BASE_URL}/table-with-columns-selector`,
     text: 'Table With Columns Selector',
-    activeNames: ['/table-with-columns-selector'],
+    activeNames: [`${BASE_URL}/table-with-columns-selector`],
     Component: TableWithColumnsSelector,
   },
   {
     to: `${BASE_URL}/table-reorder-columns`,
     text: 'Table Reorder Columns',
-    activeNames: ['/table-reorder-columns'],
+    activeNames: [`${BASE_URL}/table-reorder-columns`],
     Component: TableReorderColumns,
   },
   {
     to: `${BASE_URL}/complex-table`,
     text: 'Complex Table',
-    activeNames: ['/complex-table'],
+    activeNames: [`${BASE_URL}/complex-table`],
     Component: ComplexTablePage,
   },
 ];

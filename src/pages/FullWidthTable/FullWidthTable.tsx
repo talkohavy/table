@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
 import { mockData } from '../../mockData.ts';
-import styles from './TableWithCustomTitles.module.scss';
+import styles from './FullWidthTable.module.scss';
 
 const columnHelper = createColumnHelper<any>();
 
@@ -13,10 +13,10 @@ const columnDefsRaw = [
   columnHelper.accessor('last_name', { header: 'Last Name' }),
   columnHelper.accessor('email', { header: 'Email' }),
   columnHelper.accessor('gender', { header: 'Gender' }),
-  columnHelper.accessor('ip_address', { header: 'IP Address' }),
+  columnHelper.accessor('ip_address', { header: 'IP Address', meta: { className: 'flex-1' } }),
 ];
 
-export default function TableWithCustomTitles() {
+export default function FullWidthTable() {
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
@@ -30,7 +30,7 @@ export default function TableWithCustomTitles() {
 import clsx from 'clsx';
 import { Table } from '../../../lib';
 import { mockData } from '../../mockData.ts';
-import styles from './TableWithCustomTitles.module.scss';
+import styles from './TableWithCustomColumns.module.scss';
 
 const columnHelper = createColumnHelper<any>();
 
@@ -40,14 +40,18 @@ const columnDefsRaw = [
   columnHelper.accessor('last_name', { header: 'Last Name' }),
   columnHelper.accessor('email', { header: 'Email' }),
   columnHelper.accessor('gender', { header: 'Gender' }),
-  columnHelper.accessor('ip_address', { header: 'IP Address' }),
+  columnHelper.accessor('ip_address', { header: 'IP Address', meta: { className: 'flex-1' } }),
 ];
 
-export default function TableWithCustomTitles() {
+export default function TableWithCustomColumns() {
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
-        <Table data={mockData} columnDefs={columnDefsRaw} className={clsx('private-table', styles.myTable)} />
+        <Table
+          data={mockData}
+          columnDefs={columnDefsRaw}
+          className={styles.myTable}
+        />
       </div>
     </div>
   );
