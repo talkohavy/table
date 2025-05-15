@@ -26,6 +26,7 @@ export default function TableReorderColumns() {
           data={mockData}
           columnDefs={columnDefsRaw}
           allowColumnReorder
+          allowColumnResizing
           initialColumnOrder={columnOrder}
           onColumnsOrderChange={setColumnOrder}
           className={styles.myTable}
@@ -62,6 +63,7 @@ export default function TableReorderColumns() {
           data={mockData}
           columnDefs={columnDefsRaw}
           allowColumnReorder
+          allowColumnResizing
           initialColumnOrder={columnOrder}
           onColumnsOrderChange={setColumnOrder}
           className={styles.myTable}

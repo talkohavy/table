@@ -28,6 +28,7 @@ export default function TableWithColumnsSelector() {
           visibleColumns={visibleColumns}
           onVisibleColumnsChange={setVisibleColumns}
           showColumnsSelector
+          allowColumnResizing
           className={styles.myTable}
         />
       </div>
@@ -64,6 +65,7 @@ export default function TableWithColumnsSelector() {
           visibleColumns={visibleColumns}
           onVisibleColumnsChange={setVisibleColumns}
           showColumnsSelector
+          allowColumnResizing
           className={styles.myTable}
         />
       </div>
