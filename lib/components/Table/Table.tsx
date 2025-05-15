@@ -19,8 +19,6 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
     allowColumnReorder,
     shouldAnimate = true,
     className,
-    initialColumnSizing,
-    onColumnSizingChange,
   } = props;
 
   const {
