@@ -2,6 +2,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock/CodeBlock.tsx';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { mockData } from '../../mockData.ts';
 import styles from './TableReorderColumns.module.scss';
 
@@ -17,6 +18,8 @@ const columnDefsRaw = [
 ];
 
 export default function TableReorderColumns() {
+  const [columnOrder, setColumnOrder] = useLocalStorage('table-column-order', ['ip_address', 'email']);
+
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
@@ -24,6 +27,8 @@ export default function TableReorderColumns() {
           data={mockData}
           columnDefs={columnDefsRaw}
           allowColumnReorder
+          initialColumnOrder={columnOrder}
+          onColumnsOrderChange={setColumnOrder}
           className={clsx('private-table', styles.myTable)}
         />
       </div>
@@ -34,6 +39,7 @@ export default function TableReorderColumns() {
         code={`import { createColumnHelper } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { Table } from '../../../lib';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { mockData } from '../../mockData.ts';
 import styles from './TableReorderColumns.module.scss';
 
@@ -49,6 +55,8 @@ const columnDefsRaw = [
 ];
 
 export default function TableReorderColumns() {
+  const [columnOrder, setColumnOrder] = useLocalStorage('table-column-order', ['ip_address', 'email']);
+
   return (
     <div className='flex flex-col justify-start items-start gap-4 size-full p-10'>
       <div className='w-full'>
@@ -56,6 +64,8 @@ export default function TableReorderColumns() {
           data={mockData}
           columnDefs={columnDefsRaw}
           allowColumnReorder
+          initialColumnOrder={columnOrder}
+          onColumnsOrderChange={setColumnOrder}
           className={clsx('private-table', styles.myTable)}
         />
       </div>
