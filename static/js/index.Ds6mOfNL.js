@@ -1,6 +1,5 @@
-import{r as t,j as e,c}from"../../main/index-DqISpjRh.js";import{C as m}from"./CodeBlock.CwKnA-sS.js";import{c as n,T as i,m as d}from"./mockData.CNF2MGZl.js";import{T as u}from"./Toggle.lbron7yR.js";const f="_myTable_ytcpk_1",p={myTable:f},s=n(),b=[s.accessor("id",{header:"ID"}),s.accessor("first_name",{header:"First Name",enableMultiSort:!0}),s.accessor("last_name",{header:"Last Name",enableMultiSort:!0}),s.accessor("email",{header:"Email"}),s.accessor("gender",{header:"Gender"}),s.accessor("ip_address",{header:"IP Address",meta:{className:"flex-1"}})];function N(){const[a,r]=t.useState(!0),o=t.useMemo(()=>b.map(l=>({...l,enableSorting:a})),[a]);return e.jsxs("div",{className:"flex flex-col justify-start items-start gap-4 size-full p-10",children:[e.jsx("div",{className:"border rounded-lg flex w-full",children:e.jsx("div",{className:"flex flex-col justify-between gap-6 items-start p-6",children:e.jsxs("div",{className:"flex items-center justify-between gap-4 w-full",children:[e.jsx("h2",{className:"font-medium",children:"Sorting Enabled:"}),e.jsx(u,{isChecked:a,setIsChecked:()=>r(l=>!l)})]})})}),e.jsx("div",{className:"w-full",children:e.jsx(i,{data:d,columnDefs:o,className:c("private-table",p.myTable)})}),e.jsx(m,{language:"typescript",className:"w-full border",code:`import { useMemo, useState } from 'react';
+import{r as t,j as e}from"../../main/index-CzHfqaMa.js";import{C as c}from"./CodeBlock.Dyj-O7sh.js";import{c as m,T as n,m as i}from"./mockData.Cct9k8y-.js";import{T as d}from"./Toggle.B4nWTtRs.js";const u="_myTable_ytcpk_1",f={myTable:u},s=m(),p=[s.accessor("id",{header:"ID"}),s.accessor("first_name",{header:"First Name",enableMultiSort:!0}),s.accessor("last_name",{header:"Last Name",enableMultiSort:!0}),s.accessor("email",{header:"Email"}),s.accessor("gender",{header:"Gender"}),s.accessor("ip_address",{header:"IP Address",meta:{className:"flex-1"}})];function S(){const[a,r]=t.useState(!0),o=t.useMemo(()=>p.map(l=>({...l,enableSorting:a})),[a]);return e.jsxs("div",{className:"flex flex-col justify-start items-start gap-4 size-full p-10",children:[e.jsx("div",{className:"border rounded-lg flex w-full",children:e.jsx("div",{className:"flex flex-col justify-between gap-6 items-start p-6",children:e.jsxs("div",{className:"flex items-center justify-between gap-4 w-full",children:[e.jsx("h2",{className:"font-medium",children:"Sorting Enabled:"}),e.jsx(d,{isChecked:a,setIsChecked:()=>r(l=>!l)})]})})}),e.jsx("div",{className:"w-full",children:e.jsx(n,{data:i,columnDefs:o,className:f.myTable})}),e.jsx(c,{language:"typescript",className:"w-full border",code:`import { useMemo, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
 import { Table } from '../../../lib';
 import Toggle from '../../components/Toggle/index.ts';
 import { mockData } from '../../mockData.ts';
@@ -47,5 +46,5 @@ export default function TableWithSorting() {
     </div>
   );
 }
-`})]})}export{N as default};
-//# sourceMappingURL=../../sourcemaps/index.VeEnrJn7.js.map
+`})]})}export{S as default};
+//# sourceMappingURL=../../sourcemaps/index.CT3z7dvI.js.map

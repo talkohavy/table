@@ -1,5 +1,4 @@
-import{j as a,c as s}from"../../main/index-DqISpjRh.js";import{C as l}from"./CodeBlock.CwKnA-sS.js";import{T as r,c,m}from"./mockData.CNF2MGZl.js";const t="_myTable_ytcpk_1",o={myTable:t},e=c(),n=[e.accessor("id",{header:"ID"}),e.accessor("first_name",{header:"First Name"}),e.accessor("last_name",{header:"Last Name"}),e.accessor("email",{header:"Email"}),e.accessor("gender",{header:"Gender"}),e.accessor("ip_address",{header:"IP Address",meta:{className:"flex-1"}})];function f(){return a.jsxs("div",{className:"flex flex-col justify-start items-start gap-4 size-full p-10",children:[a.jsx("div",{className:"w-full",children:a.jsx(r,{data:m,columnDefs:n,className:s("private-table",o.myTable)})}),a.jsx(l,{language:"typescript",className:"w-full border",code:`import { createColumnHelper } from '@tanstack/react-table';
-import clsx from 'clsx';
+import{j as a}from"../../main/index-CzHfqaMa.js";import{C as s}from"./CodeBlock.Dyj-O7sh.js";import{T as l,c as r,m as c}from"./mockData.Cct9k8y-.js";const m="_myTable_ytcpk_1",t={myTable:m},e=r(),o=[e.accessor("id",{header:"ID"}),e.accessor("first_name",{header:"First Name"}),e.accessor("last_name",{header:"Last Name"}),e.accessor("email",{header:"Email"}),e.accessor("gender",{header:"Gender"}),e.accessor("ip_address",{header:"IP Address",meta:{className:"flex-1"}})];function u(){return a.jsxs("div",{className:"flex flex-col justify-start items-start gap-4 size-full p-10",children:[a.jsx("div",{className:"w-full",children:a.jsx(l,{data:c,columnDefs:o,className:t.myTable})}),a.jsx(s,{language:"typescript",className:"w-full border",code:`import { createColumnHelper } from '@tanstack/react-table';
 import { Table } from '../../../lib';
 import { mockData } from '../../mockData.ts';
 import styles from './TableWithCustomColumns.module.scss';
@@ -28,5 +27,5 @@ export default function TableWithCustomColumns() {
     </div>
   );
 }
-`})]})}export{f as default};
-//# sourceMappingURL=../../sourcemaps/index.BeS0vGZY.js.map
+`})]})}export{u as default};
+//# sourceMappingURL=../../sourcemaps/index.DZseryz5.js.map
