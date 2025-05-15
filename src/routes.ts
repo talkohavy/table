@@ -4,7 +4,7 @@ import { Route } from './common/types';
 
 const RedirectToHome = lazy(() => import('./pages/RedirectToHome'));
 const SimpleTablePage = lazy(() => import('./pages/SimpleTablePage'));
-const TableWithCustomColumns = lazy(() => import('./pages/TableWithCustomColumns'));
+const TableWithCustomTitles = lazy(() => import('./pages/TableWithCustomTitles'));
 const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage'));
 const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
 const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
@@ -30,10 +30,10 @@ export const routes: Array<Route> = [
     Component: SimpleTablePage,
   },
   {
-    to: `${BASE_URL}/table-with-custom-columns`,
-    text: 'Table With Custom Columns',
-    activeNames: ['/table-with-custom-columns'],
-    Component: TableWithCustomColumns,
+    to: `${BASE_URL}/table-with-custom-titles`,
+    text: 'Table With Custom Titles',
+    activeNames: ['/table-with-custom-titles'],
+    Component: TableWithCustomTitles,
   },
   {
     to: `${BASE_URL}/row-selection-table`,
