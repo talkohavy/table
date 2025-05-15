@@ -90,7 +90,7 @@ export default function TableHeaderCell(props: TableHeaderCellProps) {
         <ColumnResizer
           onMouseDown={getResizeHandler()}
           onTouchStart={getResizeHandler()}
-          onDoubleClick={() => resetSize()}
+          onDoubleClick={resetSize}
           isResizing={getIsResizing()}
         />
       )}

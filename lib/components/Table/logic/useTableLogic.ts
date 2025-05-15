@@ -31,6 +31,9 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     onColumnsOrderChange,
     onBottomReached,
     defaultColumnOrder: customDefaultColumnOrder,
+    allowColumnResizing,
+    initialColumnSizing,
+    onColumnSizingChange,
   } = props;
 
   const tableParentRef = useRef<HTMLDivElement>(null);
@@ -39,7 +42,11 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
   const { paginationState, paginationProps } = usePaginationHook({ showFooter, initialPageSize, customTableFooter });
   const { rowSelectionState, rowSelectionProps } = useRowSelectionHook({ rowSelectionMode });
   const { filterState, filterProps } = useFilterHook({ setSearchText });
-  const { columnsResizeProps } = useColumnResizeHook();
+  const { columnSizingState, columnsResizeProps } = useColumnResizeHook({
+    allowColumnResizing,
+    initialColumnSizing,
+    onColumnSizingChange,
+  });
   const { columnVisibilityState, columnVisibilityProps } = useColumnVisibility({
     initialState: visibleColumns,
     onVisibleColumnsChange,
@@ -74,6 +81,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
       globalFilter: searchText,
       columnVisibility: columnVisibilityState,
       columnOrder: columnOrderState,
+      columnSizing: columnSizingState,
     },
     getCoreRowModel: getCoreRowModel(),
     ...sortingProps,
@@ -102,5 +110,6 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     handleBottomReached,
     paginationState,
     defaultColumnOrder,
+    columnSizingState,
   };
 }

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { AccessorKeyColumnDef, ColumnDef } from '@tanstack/react-table';
+import type { AccessorKeyColumnDef, ColumnDef, ColumnSizingState } from '@tanstack/react-table';
 import { RowSelectionMode } from './logic/constants';
 
 export type TableProps<T = any> = {
@@ -23,6 +23,18 @@ export type TableProps<T = any> = {
   defaultColumnOrder?: string[];
   initialColumnOrder?: any;
   onColumnsOrderChange?: (value: any) => void;
+  /**
+   * @default false
+   */
+  allowColumnResizing?: boolean;
+  /**
+   * Initial column sizing state for persisting column widths.
+   */
+  initialColumnSizing?: ColumnSizingState;
+  /**
+   * Callback for when column sizing changes.
+   */
+  onColumnSizingChange?: (columnSizing: ColumnSizingState) => void;
   /**
    * @default false
    */

@@ -17,15 +17,16 @@ The most simple Table implementation in the world, that fits 90% of your use-cas
 3. Sticky Headers
 4. Sorting (including multi-sort)
 5. Column Resizing
-6. Column Ordering
-7. Column Picker
-8. Column stretching to fill the container's width
-9. Group Headers
-10. Pagination
-11. Infinite scroll
-12. onRowClick event
-13. Load more data when reaching bottom
-14. ⭐️**Highly customizable**⭐️ with custom css hooks for personal styling
+6. Column Width Persistence (after page refresh)
+7. Column Ordering
+8. Column Picker
+9. Column stretching to fill the container's width
+10. Group Headers
+11. Pagination
+12. Infinite scroll
+13. onRowClick event
+14. Load more data when reaching bottom
+15. ⭐️**Highly customizable**⭐️ with custom css hooks for personal styling
 
 ## 2. Getting Started
 
@@ -146,17 +147,27 @@ Here's a list of all supported options:
    - `'single'`: Only one row can be selected at a time
    - `'multi'`: Multiple rows can be selected at once
 
-5. `searchText`
+5. `initialColumnSizing`
+   type: `ColumnSizingState`
+
+   Initial column sizes to use when rendering the table.
+
+6. `onColumnSizingChange`
+   type: `(columnSizing: ColumnSizingState) => void`
+
+   Callback function called when column sizes change.
+
+7. `searchText`
    type: `string`
 
    Text to filter the table rows. Works with `setSearchText`.
 
-6. `setSearchText`
+8. `setSearchText`
    type: `(value: any) => void`
 
    Callback to update the search text.
 
-7. `defaultColumn`
+9. `defaultColumn`
    type: `Partial<ColumnDef<TData, unknown>>`
 
    Default configuration for all columns. This can include settings like:
@@ -174,71 +185,71 @@ Here's a list of all supported options:
    }
    ```
 
-8. `customTableFooter`
-   type: `(props: any) => ReactNode`
+10. `customTableFooter`
+    type: `(props: any) => ReactNode`
 
-   Custom React component to render as the table footer. Receives table instance and pagination state as props.
+    Custom React component to render as the table footer. Receives table instance and pagination state as props.
 
-9. `initialPageSize`
-   type: `number`
-   default: `10`
+11. `initialPageSize`
+    type: `number`
+    default: `10`
 
-   Initial number of rows to display per page.
+    Initial number of rows to display per page.
 
-10. `onCellClick`
+12. `onCellClick`
     type: `(props: { cell: any; row: any }) => any`
 
     Callback fired when a cell is clicked. Receives the cell and row objects.
 
-11. `className`
+13. `className`
     type: `string`
 
     CSS class to apply to the table wrapper.
 
-12. `onBottomReached`
+14. `onBottomReached`
     type: `() => void`
 
     Callback fired when the user scrolls to the bottom of the table. Useful for implementing infinite scroll.
 
-13. `visibleColumns`
+15. `visibleColumns`
     type: `{ [columnId: string]: boolean }`
 
     Object mapping column IDs to visibility state. Controls which columns are visible.
 
-14. `onVisibleColumnsChange`
+16. `onVisibleColumnsChange`
     type: `(value: any) => void`
 
     Callback fired when column visibility changes.
 
-15. `showColumnsSelector`
+17. `showColumnsSelector`
     type: `boolean`
     default: `false`
 
     Whether to show the column visibility toggle menu.
 
-16. `allowColumnReorder`
+18. `allowColumnReorder`
     type: `boolean`
     default: `false`
 
     Whether to allow columns to be reordered by the user.
 
-17. `shouldAnimate`
+19. `shouldAnimate`
     type: `boolean`
     default: `true`
 
     Whether to animate column reordering.
 
-18. `defaultColumnOrder`
+20. `defaultColumnOrder`
     type: `string[]`
 
     Optional array of column IDs to set as the default column order. If not provided, the default order will be determined from the order of column definitions.
 
-19. `initialColumnOrder`
+21. `initialColumnOrder`
     type: `ColumnOrderState`
 
     Initial state for column ordering. This takes precedence over defaultColumnOrder and represents a user's previously saved column order.
 
-20. `onColumnsOrderChange`
+22. `onColumnsOrderChange`
     type: `(value: any) => void`
 
     Callback fired when column order changes.
