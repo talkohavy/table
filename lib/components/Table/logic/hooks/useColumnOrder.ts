@@ -1,4 +1,4 @@
-import { SetStateAction, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ColumnOrderState } from '@tanstack/react-table';
 
 type UseColumnOrderProps = {
@@ -46,9 +46,10 @@ export function useColumnOrder(props?: UseColumnOrderProps) {
 
   const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(validatedInitialColumnOrder ?? defaultColumnOrder);
 
-  const handleColumnOrderChange = (cb: (old: any) => void) => {
-    setColumnOrder(cb as SetStateAction<ColumnOrderState>);
-    onColumnsOrderChange?.(cb);
+  const handleColumnOrderChange = (columnOrderUpdater: (prevState: ColumnOrderState) => ColumnOrderState) => {
+    const newColumnOrder = columnOrderUpdater(columnOrder);
+    setColumnOrder(columnOrderUpdater);
+    onColumnsOrderChange?.(newColumnOrder);
   };
 
   return {
