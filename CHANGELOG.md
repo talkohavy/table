@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 1.0.5
+
+### Patch Changes
+
+- BUGFIX: must use the updater function and not the value inside of useCOlumnOrder.
+
 ## 1.0.4
 
 ### Patch Changes
