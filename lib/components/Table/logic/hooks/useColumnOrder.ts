@@ -47,9 +47,8 @@ export function useColumnOrder(props?: UseColumnOrderProps) {
   const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(validatedInitialColumnOrder ?? defaultColumnOrder);
 
   const handleColumnOrderChange = (columnOrderUpdater: (prevState: ColumnOrderState) => ColumnOrderState) => {
-    const newColumnOrder = columnOrderUpdater(columnOrder);
     setColumnOrder(columnOrderUpdater);
-    onColumnsOrderChange?.(newColumnOrder);
+    onColumnsOrderChange?.(columnOrderUpdater);
   };
 
   return {
