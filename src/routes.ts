@@ -6,6 +6,7 @@ const RedirectToHome = lazy(() => import('./pages/RedirectToHome'));
 const SimpleTablePage = lazy(() => import('./pages/SimpleTablePage'));
 const TableWithCustomTitles = lazy(() => import('./pages/TableWithCustomTitles'));
 const FullWidthTable = lazy(() => import('./pages/FullWidthTable'));
+const TableWithColumnResizing = lazy(() => import('./pages/TableWithColumnResizing'));
 const RowSelectionTablePage = lazy(() => import('./pages/RowSelectionTablePage'));
 const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
 const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
@@ -41,6 +42,12 @@ export const routes: Array<Route> = [
     text: 'Full Width Table',
     activeNames: [`${BASE_URL}/full-width-table`],
     Component: FullWidthTable,
+  },
+  {
+    to: `${BASE_URL}/table-with-column-resizing`,
+    text: 'Table With Column Resizing',
+    activeNames: [`${BASE_URL}/table-with-column-resizing`],
+    Component: TableWithColumnResizing,
   },
   {
     to: `${BASE_URL}/row-selection-table`,
