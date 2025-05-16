@@ -1,7 +1,5 @@
 import react from '@vitejs/plugin-react-swc';
-import { glob } from 'glob';
-import { fileURLToPath } from 'node:url';
-import { extname, relative, resolve } from 'path';
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
@@ -15,30 +13,22 @@ export default defineConfig({
     strictPort: true,
   },
   build: {
-    outDir: resolve(__dirname, 'dist'), // <--- defaults to `dist` under src, which is wrong
+    outDir: resolve(__dirname, 'dist'), // <--- defaults to `dist` under src, which is wrong.
     emptyOutDir: false, // <--- defaults to `true`
     copyPublicDir: false,
+    minify: 'esbuild',
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
+      entry: resolve(__dirname, 'lib/index.ts'),
+      name: 'TableUI',
       formats: ['es'],
+
+      fileName: (_format) => 'index.js', // <--- format: 'es' | 'umd' | 'cjs'
     },
     rollupOptions: {
       external: ['react', '@tanstack/react-table', 'clsx', 'react/jsx-runtime'],
-      input: Object.fromEntries(
-        glob
-          .sync('lib/**/*.{ts,tsx}', {
-            ignore: ['lib/**/*.d.ts', 'lib/**/*.stories.tsx'],
-          })
-          .map((file) => [
-            // The name of the entry point lib/nested/foo.ts becomes nested/foo
-            relative('lib', file.slice(0, file.length - extname(file).length)),
-            // The absolute path to the entry file lib/nested/foo.ts becomes /project/lib/nested/foo.ts
-            fileURLToPath(new URL(file, import.meta.url)),
-          ]),
-      ),
       output: {
-        assetFileNames: 'assets/[name][extname]',
-        entryFileNames: '[name].js',
+        assetFileNames: '[name][extname]', // <--- css files
+        inlineDynamicImports: true, // <--- prevent code splitting
       },
     },
   },
