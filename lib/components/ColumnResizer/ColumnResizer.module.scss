@@ -1,14 +1,24 @@
 .resizer {
+  --resizer-height: 30%;
   position: absolute;
   top: 0;
-  right: 0;
+  right: -4px;
   height: 100%;
-  width: 4px;
-  cursor: ew-resize; /* in the past it was: col-resize */
+  width: 8px;
+  opacity: 0;
   user-select: none;
   touch-action: none;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
+  cursor: ew-resize; /* in the past it was: col-resize */
+}
+
+.resizer::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - var(--resizer-height) * 0.5);
+  left: calc(50% - var(--resizer-height));
+  width: 2px;
+  height: var(--resizer-height);
+  background-color: #999;
 }
 
 :global(.tk-table-header-th):hover .resizer,
@@ -16,6 +26,6 @@
   opacity: 1;
 }
 
-.resizer:global(.tk-table-column-is-resizing) {
-  background-color: rgba(0, 13, 255, 0.5);
-}
+// .resizer:global(.tk-table-column-is-resizing) {
+//   background-color: rgba(0, 13, 255, 0.5);
+// }
