@@ -1,6 +1,6 @@
 {
-  "_CodeBlock.EjxIdePH.js": {
-    "file": "static/js/CodeBlock.EjxIdePH.js",
+  "_CodeBlock.D9Wt8C0K.js": {
+    "file": "static/js/CodeBlock.D9Wt8C0K.js",
     "name": "CodeBlock",
     "imports": [
       "index.html"
@@ -13,8 +13,8 @@
     "file": "static/css/CodeBlock.tSmogHRcXXXb.css",
     "src": "_CodeBlock.tSmogHRcXXXb.css"
   },
-  "_Toggle.BhxLiCYG.js": {
-    "file": "static/js/Toggle.BhxLiCYG.js",
+  "_Toggle.Dgz43yuB.js": {
+    "file": "static/js/Toggle.Dgz43yuB.js",
     "name": "Toggle",
     "imports": [
       "index.html"
@@ -27,22 +27,22 @@
     "file": "static/css/Toggle.JH0PcaYSoWdm.css",
     "src": "_Toggle.JH0PcaYSoWdm.css"
   },
-  "_mockData.B6u7f4ocGnSU.css": {
-    "file": "static/css/mockData.B6u7f4ocGnSU.css",
-    "src": "_mockData.B6u7f4ocGnSU.css"
+  "_mockData.C06kxNwMDfMW.css": {
+    "file": "static/css/mockData.C06kxNwMDfMW.css",
+    "src": "_mockData.C06kxNwMDfMW.css"
   },
-  "_mockData.D_xUxETL.js": {
-    "file": "static/js/mockData.D_xUxETL.js",
+  "_mockData.CRg01ne-.js": {
+    "file": "static/js/mockData.CRg01ne-.js",
     "name": "mockData",
     "imports": [
       "index.html"
     ],
     "css": [
-      "static/css/mockData.B6u7f4ocGnSU.css"
+      "static/css/mockData.C06kxNwMDfMW.css"
     ]
   },
   "index.html": {
-    "file": "main/index-Dz1ouvEx.js",
+    "file": "main/index-CaVan1kt.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
@@ -57,43 +57,44 @@
       "pages/TableWithSorting/index.ts",
       "pages/TableWithColumnsSelector/index.ts",
       "pages/TableReorderColumns/index.ts",
-      "pages/ComplexTablePage/index.ts",
-      "pages/TableWithPersistentColumnWidths/index.ts"
+      "pages/TableWithPersistentColumnWidths/index.ts",
+      "pages/TableWithPinnedRows/index.ts",
+      "pages/ComplexTablePage/index.ts"
     ],
     "css": [
-      "static/css/index.CwbBr1eyg-LN.css"
+      "static/css/index.D9Z979RrzUtI.css"
     ]
   },
   "pages/ComplexTablePage/index.ts": {
-    "file": "static/js/index.DeY9q8RO.js",
+    "file": "static/js/index.CQr2IsWf.js",
     "name": "index",
     "src": "pages/ComplexTablePage/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_mockData.D_xUxETL.js",
-      "_Toggle.BhxLiCYG.js"
+      "_mockData.CRg01ne-.js",
+      "_Toggle.Dgz43yuB.js"
     ],
     "css": [
       "static/css/index.DIN_7I56aEfx.css"
     ]
   },
   "pages/FullWidthTable/index.ts": {
-    "file": "static/js/index.BZaftn7S.js",
+    "file": "static/js/index.DrjrlU9W.js",
     "name": "index",
     "src": "pages/FullWidthTable/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_CodeBlock.EjxIdePH.js",
-      "_mockData.D_xUxETL.js"
+      "_CodeBlock.D9Wt8C0K.js",
+      "_mockData.CRg01ne-.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
     ]
   },
   "pages/RedirectToHome/index.ts": {
-    "file": "static/js/index.C7ws6X8l.js",
+    "file": "static/js/index.Ce17Hi4k.js",
     "name": "index",
     "src": "pages/RedirectToHome/index.ts",
     "isDynamicEntry": true,
@@ -102,124 +103,138 @@
     ]
   },
   "pages/RowSelectionTablePage/index.ts": {
-    "file": "static/js/index.CVq-RdrM.js",
+    "file": "static/js/index.DA5dcv-x.js",
     "name": "index",
     "src": "pages/RowSelectionTablePage/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_mockData.D_xUxETL.js",
-      "_CodeBlock.EjxIdePH.js"
+      "_mockData.CRg01ne-.js",
+      "_CodeBlock.D9Wt8C0K.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
     ]
   },
   "pages/SimpleTablePage/index.ts": {
-    "file": "static/js/index.UB-cNkNr.js",
+    "file": "static/js/index.BKR2wiO2.js",
     "name": "index",
     "src": "pages/SimpleTablePage/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_mockData.D_xUxETL.js",
-      "_CodeBlock.EjxIdePH.js"
+      "_mockData.CRg01ne-.js",
+      "_CodeBlock.D9Wt8C0K.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
     ]
   },
   "pages/TableReorderColumns/index.ts": {
-    "file": "static/js/index.g3vTolNH.js",
+    "file": "static/js/index.DnZt_Gpg.js",
     "name": "index",
     "src": "pages/TableReorderColumns/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_CodeBlock.EjxIdePH.js",
-      "_mockData.D_xUxETL.js"
+      "_CodeBlock.D9Wt8C0K.js",
+      "_mockData.CRg01ne-.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
     ]
   },
   "pages/TableWithColumnResizing/index.ts": {
-    "file": "static/js/index.z22yzcIc.js",
+    "file": "static/js/index.2NaGL-YJ.js",
     "name": "index",
     "src": "pages/TableWithColumnResizing/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_CodeBlock.EjxIdePH.js",
-      "_mockData.D_xUxETL.js"
+      "_CodeBlock.D9Wt8C0K.js",
+      "_mockData.CRg01ne-.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
     ]
   },
   "pages/TableWithColumnsSelector/index.ts": {
-    "file": "static/js/index.D3DPL5Gn.js",
+    "file": "static/js/index.Dp03Ua6T.js",
     "name": "index",
     "src": "pages/TableWithColumnsSelector/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_CodeBlock.EjxIdePH.js",
-      "_mockData.D_xUxETL.js"
+      "_CodeBlock.D9Wt8C0K.js",
+      "_mockData.CRg01ne-.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
     ]
   },
   "pages/TableWithCustomTitles/index.ts": {
-    "file": "static/js/index.TV1aXrY8.js",
+    "file": "static/js/index.Bd4u0kAM.js",
     "name": "index",
     "src": "pages/TableWithCustomTitles/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_CodeBlock.EjxIdePH.js",
-      "_mockData.D_xUxETL.js"
+      "_CodeBlock.D9Wt8C0K.js",
+      "_mockData.CRg01ne-.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
     ]
   },
   "pages/TableWithFooterPage/index.ts": {
-    "file": "static/js/index.DOyUzG6f.js",
+    "file": "static/js/index.D2w-JjWH.js",
     "name": "index",
     "src": "pages/TableWithFooterPage/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_mockData.D_xUxETL.js",
-      "_CodeBlock.EjxIdePH.js"
+      "_mockData.CRg01ne-.js",
+      "_CodeBlock.D9Wt8C0K.js"
     ]
   },
   "pages/TableWithPersistentColumnWidths/index.ts": {
-    "file": "static/js/index.DkbaKxuk.js",
+    "file": "static/js/index.CwNwkLic.js",
     "name": "index",
     "src": "pages/TableWithPersistentColumnWidths/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_mockData.D_xUxETL.js",
-      "_CodeBlock.EjxIdePH.js"
+      "_mockData.CRg01ne-.js",
+      "_CodeBlock.D9Wt8C0K.js"
     ],
     "css": [
       "static/css/index.MSjdQnDG3szY.css"
     ]
   },
+  "pages/TableWithPinnedRows/index.ts": {
+    "file": "static/js/index.DQJFNJKL.js",
+    "name": "index",
+    "src": "pages/TableWithPinnedRows/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_CodeBlock.D9Wt8C0K.js",
+      "_mockData.CRg01ne-.js"
+    ],
+    "css": [
+      "static/css/index.BjDxKaN9p-Ow.css"
+    ]
+  },
   "pages/TableWithSorting/index.ts": {
-    "file": "static/js/index.DTYwbR3w.js",
+    "file": "static/js/index.DsG2CbLO.js",
     "name": "index",
     "src": "pages/TableWithSorting/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_CodeBlock.EjxIdePH.js",
-      "_mockData.D_xUxETL.js",
-      "_Toggle.BhxLiCYG.js"
+      "_CodeBlock.D9Wt8C0K.js",
+      "_mockData.CRg01ne-.js",
+      "_Toggle.Dgz43yuB.js"
     ],
     "css": [
       "static/css/index.BjDxKaN9p-Ow.css"
