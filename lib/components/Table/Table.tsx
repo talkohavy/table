@@ -38,11 +38,19 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
 
   useEffect(() => {
     if (tableParentRef.current) {
-      const header = tableParentRef.current.querySelector(`.${CLASSES.tableHeaderTR}`)!;
-      const row = tableParentRef.current.querySelector(`.${CLASSES.tableBodyTR}`)!;
+      const header = tableParentRef.current.querySelector(`.${CLASSES.tableHeaderTR}`);
+      const row = tableParentRef.current.querySelector(`.${CLASSES.tableBodyTR}`);
 
-      const headerHeight = header.clientHeight;
-      const rowHeight = row.clientHeight;
+      if (!header && !row) {
+        console.warn(
+          '@talkohavy/table: could not find elements with classes:',
+          CLASSES.tableHeaderTR,
+          CLASSES.tableBodyTR,
+        );
+      }
+
+      const headerHeight = header?.clientHeight || 0;
+      const rowHeight = row?.clientHeight || 0;
       sizesRef.current.headerHeight = headerHeight;
       sizesRef.current.rowHeight = rowHeight;
     }
