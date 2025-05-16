@@ -1,10 +1,10 @@
 import { forwardRef, useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { TableFooter } from '../..';
 import { CLASSES } from './logic/constants';
 import { useTableLogic } from './logic/useTableLogic.ts';
 import ColumnVisibilitySlider from './parts/ColumnVisibilitySlider';
 import TableBody from './parts/TableBody/TableBody.tsx';
+import TableFooter from './parts/TableFooter';
 import TableHeader from './parts/TableHeader/TableHeader.tsx';
 import styles from './Table.module.scss';
 import { TableProps } from './types';
