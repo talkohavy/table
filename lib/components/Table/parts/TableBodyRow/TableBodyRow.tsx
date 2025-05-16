@@ -37,8 +37,12 @@ export default function TableBodyRow(props: TableBodyRowProps) {
         isRowPinned && `${CLASSES.tableBodyTRPinned} ${styles.pinnedRow}`,
       )}
       style={{
-        top: isPinnedToTop ? `${row.getPinnedIndex() * sizesRef.rowHeight + sizesRef.headerHeight}px` : undefined,
-        bottom: isPinnedToBottom ? `${(bottomRowsCount - 1 - row.getPinnedIndex()) * sizesRef.rowHeight}px` : undefined,
+        top: isPinnedToTop
+          ? `${row.getPinnedIndex() * sizesRef.current.rowHeight + sizesRef.current.headerHeight}px`
+          : undefined,
+        bottom: isPinnedToBottom
+          ? `${(bottomRowsCount - 1 - row.getPinnedIndex()) * sizesRef.current.rowHeight}px`
+          : undefined,
       }}
     >
       {children}
