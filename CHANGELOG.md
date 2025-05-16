@@ -1,5 +1,14 @@
 # @talkohavy/table
 
+## 1.0.11
+
+### Patch Changes
+
+- Added a table.animation.css file.
+- TableFooter importaed from the wrong place.
+- Added protection against not being able to find elements by classes.
+- Removed TableHeaderCell.animation.scss file.
+
 ## 1.0.10
 
 ### Patch Changes
