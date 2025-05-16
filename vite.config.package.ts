@@ -3,7 +3,6 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   root: `${process.cwd()}/src`, // <--- defaults to process.cwd(). where the index.html is located.
   plugins: [react(), libInjectCss()],
@@ -25,6 +24,7 @@ export default defineConfig({
       fileName: (_format) => 'index.js', // <--- format: 'es' | 'umd' | 'cjs'
     },
     rollupOptions: {
+      input: './lib/index.ts',
       external: ['react', '@tanstack/react-table', 'clsx', 'react/jsx-runtime'],
       output: {
         assetFileNames: '[name][extname]', // <--- css files

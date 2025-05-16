@@ -2,6 +2,12 @@ import { execSync } from 'child_process';
 import fs, { cpSync } from 'fs';
 import path from 'path';
 
+const COLORS = {
+  blue: '\x1b[34m',
+  green: '\x1b[32m',
+  stop: '\x1b[0m',
+};
+
 /**
  * @typedef {{
  *   version: string,
@@ -34,17 +40,23 @@ async function buildPackageConfig() {
 }
 
 function cleanDistDirectory() {
-  console.log('- Step 1: clear the dist directory');
+  console.log(`${COLORS.green}- Step 1:${COLORS.stop} clear the dist directory`);
   execSync('rm -rf dist');
 }
 
 function buildWithVite() {
-  console.log('- Step 2: build with vite');
+  console.log(`${COLORS.green}- Step 2:${COLORS.stop} build with vite`);
   execSync('tsc -p ./tsconfig.package.json && vite build --config vite.config.package.ts');
+
+  console.log(`${COLORS.green}- Step 2.1:${COLORS.stop} bundle TypeScript index.d.ts declaration file`);
+  execSync('rollup -c rollup.dts.config.js');
+
+  console.log(`${COLORS.green}- Step 2.2:${COLORS.stop} clean up individual d.ts files`);
+  execSync('rm -rf dist/components');
 }
 
 function copyStaticFiles() {
-  console.log('[32m- Step 3:[39m copy static files');
+  console.log(`${COLORS.green}- Step 3:${COLORS.stop} copy static files`);
 
   const filesToCopyArr = [
     { filename: 'package.json', sourceDirPath: [], destinationDirPath: [] },
@@ -59,7 +71,7 @@ function copyStaticFiles() {
       const destinationFileFullPath = path.resolve(ROOT_PROJECT, outDirName, ...destinationDirPath, filename);
 
       cpSync(sourceFileFullPath, destinationFileFullPath);
-      console.log(`    • ${filename}`);
+      console.log(`    • ${COLORS.blue}${filename}${COLORS.stop}`);
     } catch (error) {
       console.error(error);
       if (isAllowedToFail) return;
@@ -70,7 +82,7 @@ function copyStaticFiles() {
 }
 
 function manipulatePackageJsonFile() {
-  console.log('[32m- Step 5:[39m copy & manipulate the package.json file');
+  console.log(`${COLORS.green}- Step 5:${COLORS.stop} copy & manipulate the package.json file`);
 
   const packageJsonPath = path.resolve(ROOT_PROJECT, outDirName, 'package.json');
 
@@ -80,13 +92,13 @@ function manipulatePackageJsonFile() {
 
   // Step 2: Remove all scripts
   delete packageJson.scripts;
-  console.log('  • [34mdeleted[39m `scripts` key');
+  console.log(`  • ${COLORS.blue}deleted${COLORS.stop} \`scripts\` key`);
 
   // Step 3: Change from private to public
   delete packageJson.private;
   packageJson.publishConfig.access = 'public';
-  console.log('  • [34mchanged[39m from private to public');
-  console.log('  • [34mchanged[39m publishConfig access to public');
+  console.log(`  • ${COLORS.blue}changed${COLORS.stop} from private to public`);
+  console.log(`  • ${COLORS.blue}changed${COLORS.stop} publishConfig access to public`);
 
   // Step 4: remove 'outDirName/' from "main" & "types"
   packageJson.main = packageJson.main.replace(`${outDirName}/`, '');
@@ -94,5 +106,5 @@ function manipulatePackageJsonFile() {
 
   // Step 5: create new package.json file in the output folder
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson));
-  console.log('  • [34mpackage.json[39m file written successfully!');
+  console.log(`  • ${COLORS.blue}package.json${COLORS.stop} file written successfully!`);
 }
