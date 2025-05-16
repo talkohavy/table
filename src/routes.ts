@@ -12,8 +12,9 @@ const TableWithFooterPage = lazy(() => import('./pages/TableWithFooterPage'));
 const TableWithSorting = lazy(() => import('./pages/TableWithSorting'));
 const TableWithColumnsSelector = lazy(() => import('./pages/TableWithColumnsSelector'));
 const TableReorderColumns = lazy(() => import('./pages/TableReorderColumns'));
-const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 const TableWithPersistentColumnWidths = lazy(() => import('./pages/TableWithPersistentColumnWidths'));
+const TableWithPinnedRows = lazy(() => import('./pages/TableWithPinnedRows'));
+const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 
 export const routes: Array<Route> = [
   {
@@ -82,9 +83,15 @@ export const routes: Array<Route> = [
   },
   {
     to: `${BASE_URL}/table-with-persistent-column-widths`,
-    text: 'Table With Persistent Column Widths',
+    text: 'Persistent Column Widths',
     activeNames: [`${BASE_URL}/table-with-persistent-column-widths`],
     Component: TableWithPersistentColumnWidths,
+  },
+  {
+    to: `${BASE_URL}/table-with-pinned-rows`,
+    text: 'Table With Pinned Rows',
+    activeNames: [`${BASE_URL}/table-with-pinned-rows`],
+    Component: TableWithPinnedRows,
   },
   {
     to: `${BASE_URL}/complex-table`,
