@@ -1,4 +1,4 @@
-export { default as Table } from './components/Table';
+export { default as Table } from './components/Table/index.js';
 export { default as TableFooter } from './components/Table/parts/TableFooter/TableFooter.js';
 
 export { createColumnHelper } from '@tanstack/react-table';
