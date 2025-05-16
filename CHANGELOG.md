@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 1.0.8
+
+### Patch Changes
+
+- Supporting pin to bottom now as well.
+
 ## 1.0.7
 
 ### Patch Changes
