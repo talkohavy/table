@@ -1,5 +1,17 @@
 # @talkohavy/table
 
+## 1.0.7
+
+### Patch Changes
+
+- Table supports row pinning.
+- Added table-body-tr-pinned class marker to all pinned rows.
+- Switched cursor of resizing column from col-resize to ew-resize.
+- BUGFIX: remove un-needed relative position.
+- Remove z-index from .column-transition class.
+- ColumnResizer has a different look. Height is 30% by default instead of 100%. Color is not black, it's #999.
+- BUGFIX: In TableBodyRow forgot to add .current to `sizes`.
+
 ## 1.0.6
 
 ### Patch Changes
