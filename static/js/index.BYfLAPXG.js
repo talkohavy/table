@@ -1,4 +1,4 @@
-import{j as a}from"../../main/index-Cn0jI2F8.js";import{T as e,m as l}from"./mockData.CQCvPnyf.js";import{C as s}from"./CodeBlock.DFmqhigy.js";const t="_myTable_ytcpk_1",m={myTable:t};function c(){return a.jsxs("div",{className:"flex flex-col justify-start items-start gap-4 size-full p-10",children:[a.jsx("div",{className:"w-full",children:a.jsx(e,{data:l,className:m.myTable})}),a.jsx(s,{className:"w-full border",language:"typescript",code:`import { Table } from '../../../lib';
+import{j as a}from"../../main/index-Ca_o3E2Y.js";import{T as e,m as l}from"./mockData.BcO7UL4j.js";import{C as s}from"./CodeBlock.C7RpMmGB.js";const t="_myTable_ytcpk_1",m={myTable:t};function c(){return a.jsxs("div",{className:"flex flex-col justify-start items-start gap-4 size-full p-10",children:[a.jsx("div",{className:"w-full",children:a.jsx(e,{data:l,className:m.myTable})}),a.jsx(s,{className:"w-full border",language:"typescript",code:`import { Table } from '../../../lib';
 import CodeBlock from '../../components/CodeBlock';
 import { mockData } from '../../mockData';
 import styles from './SimpleTablePage.module.scss';
