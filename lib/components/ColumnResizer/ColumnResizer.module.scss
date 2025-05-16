@@ -4,7 +4,7 @@
   right: 0;
   height: 100%;
   width: 4px;
-  cursor: col-resize;
+  cursor: ew-resize; /* in the past it was: col-resize */
   user-select: none;
   touch-action: none;
   background-color: rgba(0, 0, 0, 0.5);
