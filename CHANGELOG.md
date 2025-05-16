@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 1.0.10
+
+### Patch Changes
+
+- Build process now outputs a much lighter package.
+
 ## 1.0.9
 
 ### Patch Changes
