@@ -1,24 +1,59 @@
-import styles from './Input.module.scss';
+import { useState } from 'react';
+import type { RuleReturnValue } from './types';
+import InputBase from './InputBase';
 
-type InputProps = {
-  value: string;
-  setValue: (value: any) => void;
-  type?: 'text';
-  placeholder?: React.HTMLInputTypeAttribute;
+export type InputProps = {
+  /**
+   * @default 'text'
+   */
+  type?: 'text' | 'password';
+  onChange: (value: string) => void;
+  initialValue?: string;
+  placeholder?: string;
   disabled?: boolean;
+  autoFocus?: boolean;
+  dontChangeRule?: (e: any, newValue: string) => RuleReturnValue;
+  className?: string;
+  testId?: string;
 };
 
 export default function Input(props: InputProps) {
-  const { value, setValue, type = 'text', placeholder = '', disabled } = props;
+  const {
+    type = 'text',
+    onChange,
+    initialValue = '',
+    disabled,
+    placeholder,
+    autoFocus,
+    dontChangeRule,
+    className,
+    testId = '',
+  } = props;
+
+  const [innerValue, setInnerValue] = useState(initialValue);
+
+  const onTargetValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { shouldChange, newValue } = dontChangeRule?.(e, e.target.value) ?? {
+      shouldChange: true,
+      newValue: e.target.value,
+    };
+
+    if (shouldChange) {
+      onChange?.(newValue);
+      setInnerValue(newValue);
+    }
+  };
 
   return (
-    <input
+    <InputBase
       type={type}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={innerValue}
+      setValue={onTargetValueChange}
       placeholder={placeholder}
+      autoFocus={autoFocus}
       disabled={disabled}
-      className={styles.input}
+      className={className}
+      testId={testId}
     />
   );
 }

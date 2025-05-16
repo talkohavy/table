@@ -110,7 +110,12 @@ export default function ComplexTablePage() {
         </div>
       </div>
 
-      <Input value={searchText} setValue={setSearchText} placeholder='Search...' />
+      <Input
+        initialValue={searchText}
+        onChange={setSearchText}
+        placeholder='Search...'
+        className='dark:border-white dark:bg-[rgb(23,21,45)]'
+      />
 
       <div className='w-full'>
         <Table
