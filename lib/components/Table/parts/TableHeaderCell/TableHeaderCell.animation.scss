@@ -9,8 +9,3 @@
 .tk-table-body-td.column-transition {
   transition: transform 0.3s ease-in-out;
 }
-
-/* Ensure cells maintain their appearance during animation */
-.column-transition {
-  z-index: 1;
-}
