@@ -10,12 +10,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-/* Make sure the table cells have a relative position during animation */
-.tk-table-header-tr,
-.tk-table-body-tr {
-  position: relative;
-}
-
 /* Ensure cells maintain their appearance during animation */
 .column-transition {
   z-index: 1;
