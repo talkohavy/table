@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 1.0.9
+
+### Patch Changes
+
+- Build output is more lean now. Less files, weighs less.
+
 ## 1.0.8
 
 ### Patch Changes
