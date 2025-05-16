@@ -36,7 +36,7 @@ export default function TableBody(props: TableBodyProps) {
       )}
 
       {getTopRows().map((row) => (
-        <TableBodyRow key={row.id} row={row} isPinnedToTop bottomRowsCount={getBottomRows().length} sizesRef={sizesRef}>
+        <TableBodyRow key={row.id} row={row} isPinnedToTop sizesRef={sizesRef}>
           {row.getVisibleCells().map((cell: Cell<any, unknown>) => {
             return <TableCell key={cell.id} cell={cell} row={row} onCellClick={onCellClick} />;
           })}
@@ -53,6 +53,20 @@ export default function TableBody(props: TableBodyProps) {
           </TableBodyRow>
         );
       })}
+
+      {getBottomRows().map((row) => (
+        <TableBodyRow
+          key={row.id}
+          row={row}
+          isPinnedToBottom
+          bottomRowsCount={getBottomRows().length}
+          sizesRef={sizesRef}
+        >
+          {row.getVisibleCells().map((cell: Cell<any, unknown>) => {
+            return <TableCell key={cell.id} cell={cell} row={row} onCellClick={onCellClick} />;
+          })}
+        </TableBodyRow>
+      ))}
 
       {virtualPaddingBottom > 0 && (
         <div className={clsx(CLASSES.tableBodyTR, styles.tableBodyTR, styles.defaultTableBodyTRStyle)}>
