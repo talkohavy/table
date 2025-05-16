@@ -2,6 +2,7 @@ import { useVirtual } from 'react-virtual';
 import { Cell, RowModel } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { CLASSES } from '../../logic/constants';
+import TableBodyRow from '../TableBodyRow';
 import TableCell from '../TableCell';
 import styles from './TableBody.module.scss';
 
@@ -32,32 +33,13 @@ export default function TableBody(props: TableBodyProps) {
 
       {virtualRows.map((virtualRow) => {
         const row = rows[virtualRow.index]!;
-        const handleRowClickOrKeyDown = row.getCanSelect()
-          ? (e: any) => {
-              if (e.type === 'click' || (['Enter', 'NumpadEnter'].includes(e.code) && !e.shiftKey)) {
-                e.preventDefault();
-
-                row.getToggleSelectedHandler();
-              }
-            }
-          : undefined;
 
         return (
-          <div
-            key={row.id}
-            onClick={handleRowClickOrKeyDown}
-            onKeyDown={handleRowClickOrKeyDown}
-            className={clsx(
-              CLASSES.tableBodyTR,
-              styles.tableBodyTR,
-              styles.defaultTableBodyTRStyle,
-              row.getIsSelected() && CLASSES.tableBodyTRSelected,
-            )}
-          >
+          <TableBodyRow key={row.id} row={row}>
             {row.getVisibleCells().map((cell: Cell<any, unknown>) => {
               return <TableCell key={cell.id} cell={cell} row={row} onCellClick={onCellClick} />;
             })}
-          </div>
+          </TableBodyRow>
         );
       })}
 

@@ -1,0 +1,22 @@
+.tableBodyTR {
+  display: flex;
+  width: 100%;
+}
+
+.defaultTableBodyTRStyle {
+  color: black;
+  background-color: white;
+}
+
+.defaultTableBodyTRStyle:nth-child(even) {
+  background-color: rgb(216, 226, 250);
+}
+
+.pinnedRow {
+  z-index: 1;
+  background-color: rgb(255, 186, 250) !important;
+}
+
+html[class*='dark'] .pinnedRow {
+  background-color: rgb(23, 23, 23) !important;
+}
