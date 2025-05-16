@@ -63,6 +63,7 @@ function copyStaticFiles() {
     { filename: '.npmignore', sourceDirPath: [], destinationDirPath: [] },
     { filename: '.npmrc', sourceDirPath: [], destinationDirPath: [], isAllowedToFail: true },
     { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
+    { filename: 'table.animation.css', sourceDirPath: ['lib'], destinationDirPath: [] },
   ];
 
   filesToCopyArr.forEach(({ filename, sourceDirPath, destinationDirPath, isAllowedToFail }) => {
