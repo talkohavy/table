@@ -9,6 +9,7 @@ import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromCo
 import { useFilterHook } from './hooks/useFilterHook.ts';
 import { usePaginationHook } from './hooks/usePaginationHook.ts';
 import { useReachToBottomMechanism } from './hooks/useReachToBottomMechanism.ts';
+import { useRowPinning } from './hooks/useRowPinning.ts';
 import { useRowSelectionHook } from './hooks/useRowSelectionHook.ts';
 import { useSortingHook } from './hooks/useSortingHook.ts';
 
@@ -51,6 +52,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     initialState: visibleColumns,
     onVisibleColumnsChange,
   });
+  const { rowPinningState, rowPinningProps } = useRowPinning();
 
   const data = useMemo(() => dataRaw, [dataRaw]);
 
@@ -82,6 +84,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
       columnVisibility: columnVisibilityState,
       columnOrder: columnOrderState,
       columnSizing: columnSizingState,
+      rowPinning: rowPinningState,
     },
     getCoreRowModel: getCoreRowModel(),
     ...sortingProps,
@@ -91,6 +94,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     ...columnsResizeProps,
     ...columnVisibilityProps,
     ...columnOrderProps,
+    ...rowPinningProps,
     defaultColumn,
   });
 
@@ -99,12 +103,15 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     if (outerRef) outerRef.current = tableInstance;
   }, []);
 
-  const { getRowModel, getHeaderGroups, getCenterTotalSize } = tableInstance;
+  const { getRowModel, getTopRows, getCenterRows, getBottomRows, getHeaderGroups, getCenterTotalSize } = tableInstance;
 
   return {
     tableInstance,
     tableParentRef,
     getRowModel,
+    getTopRows,
+    getBottomRows,
+    getCenterRows,
     getCenterTotalSize,
     getHeaderGroups,
     handleBottomReached,

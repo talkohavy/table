@@ -1,5 +1,5 @@
 import { useVirtual } from 'react-virtual';
-import { Cell, RowModel } from '@tanstack/react-table';
+import { Cell, Row, RowModel } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { CLASSES } from '../../logic/constants';
 import TableBodyRow from '../TableBodyRow';
@@ -8,14 +8,18 @@ import styles from './TableBody.module.scss';
 
 type TableBodyProps = {
   getRowModel: () => RowModel<any>;
+  getTopRows: () => Row<any>[];
+  getCenterRows: () => Row<any>[];
+  getBottomRows: () => Row<any>[];
   onCellClick?: (props: { cell: any; row: any }) => any;
   tableParentRef: any;
+  sizesRef: any;
 };
 
 export default function TableBody(props: TableBodyProps) {
-  const { getRowModel, onCellClick, tableParentRef } = props;
+  const { getTopRows, getCenterRows, getBottomRows, onCellClick, tableParentRef, sizesRef } = props;
 
-  const { rows } = getRowModel();
+  const rows = getCenterRows();
 
   // Calculate virtual gaps:
   const rowVirtualizer = useVirtual({ parentRef: tableParentRef, size: rows.length, overscan: 10 });
@@ -31,11 +35,18 @@ export default function TableBody(props: TableBodyProps) {
         </div>
       )}
 
+      {getTopRows().map((row) => (
+        <TableBodyRow key={row.id} row={row} isPinnedToTop bottomRowsCount={getBottomRows().length} sizesRef={sizesRef}>
+          {row.getVisibleCells().map((cell: Cell<any, unknown>) => {
+            return <TableCell key={cell.id} cell={cell} row={row} onCellClick={onCellClick} />;
+          })}
+        </TableBodyRow>
+      ))}
+
       {virtualRows.map((virtualRow) => {
         const row = rows[virtualRow.index]!;
-
         return (
-          <TableBodyRow key={row.id} row={row}>
+          <TableBodyRow key={row.id} row={row} sizesRef={sizesRef}>
             {row.getVisibleCells().map((cell: Cell<any, unknown>) => {
               return <TableCell key={cell.id} cell={cell} row={row} onCellClick={onCellClick} />;
             })}

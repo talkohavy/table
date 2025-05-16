@@ -6,10 +6,14 @@ import styles from './TableBodyRow.module.scss';
 
 type TableBodyRowProps = PropsWithChildren<{
   row: Row<any>;
+  isPinnedToTop?: boolean;
+  isPinnedToBottom?: boolean;
+  bottomRowsCount?: number;
+  sizesRef: any;
 }>;
 
 export default function TableBodyRow(props: TableBodyRowProps) {
-  const { children, row } = props;
+  const { children, row, isPinnedToTop, isPinnedToBottom, bottomRowsCount = 0, sizesRef } = props;
 
   const onSelectRowClick = (e: any, row: Row<any>) => {
     if (e.type === 'click' || (['Enter', 'NumpadEnter'].includes(e.code) && !e.shiftKey)) {
@@ -28,7 +32,13 @@ export default function TableBodyRow(props: TableBodyRowProps) {
         styles.tableBodyTR,
         row.getIsSelected() && CLASSES.tableBodyTRSelected,
         styles.defaultTableBodyTRStyle,
+        (isPinnedToTop || isPinnedToBottom) && styles.pinnedRow,
       )}
+      style={{
+        position: isPinnedToTop || isPinnedToBottom ? 'sticky' : undefined,
+        top: isPinnedToTop ? `${row.getPinnedIndex() * sizesRef.rowHeight + sizesRef.headerHeight}px` : undefined,
+        bottom: isPinnedToBottom ? `${(bottomRowsCount - 1 - row.getPinnedIndex()) * sizesRef.rowHeight}px` : undefined,
+      }}
     >
       {children}
     </div>

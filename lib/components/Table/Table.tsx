@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { TableFooter } from '../..';
 import { CLASSES } from './logic/constants';
@@ -25,11 +25,30 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
     tableInstance,
     tableParentRef,
     getRowModel,
+    getTopRows,
+    getCenterRows,
+    getBottomRows,
     handleBottomReached,
     getHeaderGroups,
     paginationState,
     defaultColumnOrder,
   } = useTableLogic<T>(props, outerRef);
+
+  const sizesRef = useRef<{ headerHeight: number; rowHeight: number }>({ headerHeight: 0, rowHeight: 0 });
+
+  console.log('sizes is:', sizesRef);
+
+  useEffect(() => {
+    if (tableParentRef.current) {
+      const header = tableParentRef.current.querySelector(`.${CLASSES.tableHeaderTR}`)!;
+      const row = tableParentRef.current.querySelector(`.${CLASSES.tableBodyTR}`)!;
+
+      const headerHeight = header.clientHeight;
+      const rowHeight = row.clientHeight;
+      sizesRef.current.headerHeight = headerHeight;
+      sizesRef.current.rowHeight = rowHeight;
+    }
+  }, [tableParentRef]);
 
   return (
     <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
@@ -48,7 +67,15 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
             tableParentRef={tableParentRef}
           />
 
-          <TableBody getRowModel={getRowModel} onCellClick={onCellClick} tableParentRef={tableParentRef} />
+          <TableBody
+            getRowModel={getRowModel}
+            getTopRows={getTopRows}
+            getCenterRows={getCenterRows}
+            getBottomRows={getBottomRows}
+            onCellClick={onCellClick}
+            tableParentRef={tableParentRef}
+            sizesRef={sizesRef}
+          />
 
           {showColumnsSelector && <ColumnVisibilitySlider columns={tableInstance.getAllLeafColumns()} />}
         </div>
