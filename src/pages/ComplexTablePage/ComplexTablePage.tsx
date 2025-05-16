@@ -8,9 +8,25 @@ import { mockData } from '../../mockData.ts';
 import { useDarkTheme } from '../../providers/DarkThemeProvider/DarkThemeContext.ts';
 import styles from './ComplexTablePage.module.scss';
 
+const includeLeafRows = false;
+const includeParentRows = false;
+
 const columnHelper = createColumnHelper<any>();
 
 const columnDefsRaw = [
+  columnHelper.accessor('pin', {
+    id: 'pin',
+    header: 'Pin',
+    cell: ({ row }) =>
+      row.getIsPinned() ? (
+        <button onClick={() => row.pin(false, includeLeafRows, includeParentRows)}>❌</button>
+      ) : (
+        <div style={{ display: 'flex', gap: '4px' }}>
+          <button onClick={() => row.pin('top', includeLeafRows, includeParentRows)}>⬆️</button>
+          <button onClick={() => row.pin('bottom', includeLeafRows, includeParentRows)}>⬇️</button>
+        </div>
+      ),
+  }),
   columnHelper.accessor('id', { header: 'ID', meta: { addCheckbox: true } }),
   columnHelper.accessor('first_name', { header: 'First Name' }),
   columnHelper.accessor('last_name', { header: 'Last Name' }),
@@ -25,6 +41,7 @@ export default function ComplexTablePage() {
   const [showFooter, setShowFooter] = useState<boolean>(false);
   const [isSortingEnabled, setIsSortingEnabled] = useState<boolean>(true);
   const [isColumnReorderEnabled, setIsColumnReorderEnabled] = useState<boolean>(true);
+  const [isColumnResizingEnabled, setIsColumnResizingEnabled] = useState<boolean>(true);
   const [showColumnsSelector, setShowColumnsSelector] = useState<boolean>(false);
 
   const handleDarkThemeToggleClick = () => {
@@ -81,6 +98,15 @@ export default function ComplexTablePage() {
               setIsChecked={() => setIsColumnReorderEnabled((prev) => !prev)}
             />
           </div>
+
+          <div className='flex items-center justify-between gap-4 w-full'>
+            <h2 className='font-medium'>Column Resizing Enabled:</h2>
+
+            <Toggle
+              isChecked={isColumnResizingEnabled}
+              setIsChecked={() => setIsColumnResizingEnabled((prev) => !prev)}
+            />
+          </div>
         </div>
       </div>
 
@@ -96,6 +122,7 @@ export default function ComplexTablePage() {
           setSearchText={setSearchText}
           showColumnsSelector={showColumnsSelector}
           allowColumnReorder={isColumnReorderEnabled}
+          allowColumnResizing={isColumnResizingEnabled}
           className={styles.myTable}
           onCellClick={(props: any) => console.log('props is:', props)}
         />
