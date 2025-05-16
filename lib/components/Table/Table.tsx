@@ -36,8 +36,6 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
 
   const sizesRef = useRef<{ headerHeight: number; rowHeight: number }>({ headerHeight: 0, rowHeight: 0 });
 
-  console.log('sizes is:', sizesRef);
-
   useEffect(() => {
     if (tableParentRef.current) {
       const header = tableParentRef.current.querySelector(`.${CLASSES.tableHeaderTR}`)!;
