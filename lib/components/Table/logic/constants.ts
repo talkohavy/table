@@ -12,6 +12,7 @@ export const CLASSES = {
   tableBody: 'tk-table-body',
   tableBodyTR: 'tk-table-body-tr',
   tableBodyTRSelected: 'tk-table-body-tr-selected',
+  tableBodyTRPinned: 'tk-table-body-tr-pinned',
   tableBodyTD: 'tk-table-body-td',
   tableFooterSelect: 'tk-table-footer-select',
   resizer: 'resizer',

@@ -24,3 +24,7 @@ html[data-theme='dark'] .tk-table-body-td {
   padding: 10px;
   border: 1px solid black;
 }
+
+html[data-theme='dark'] .tk-table-body-tr.tk-table-body-tr-pinned {
+  background-color: rgb(23, 23, 23);
+}

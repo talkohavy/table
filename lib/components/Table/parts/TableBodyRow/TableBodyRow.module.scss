@@ -13,10 +13,7 @@
 }
 
 .pinnedRow {
+  position: sticky;
   z-index: 1;
-  background-color: rgb(255, 186, 250) !important;
-}
-
-html[class*='dark'] .pinnedRow {
-  background-color: rgb(23, 23, 23) !important;
+  background-color: rgb(255, 186, 250);
 }
