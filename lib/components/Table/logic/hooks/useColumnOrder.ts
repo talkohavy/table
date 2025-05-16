@@ -10,7 +10,7 @@ type UseColumnOrderProps = {
   /**
    * Callback function triggered when column order changes
    */
-  onColumnsOrderChange?: any;
+  onColumnsOrderChange?: (columnOrder: any) => void;
   /**
    * The default column order to use when no initialColumnOrder is provided.
    * This represents the natural/default order of columns before any user interaction.

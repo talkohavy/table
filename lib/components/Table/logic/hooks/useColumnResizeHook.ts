@@ -8,9 +8,9 @@ type UseColumnResizeHookProps = {
 };
 
 export function useColumnResizeHook(props?: UseColumnResizeHookProps) {
-  const { allowColumnResizing = false, initialColumnSizing, onColumnSizingChange } = props ?? {};
+  const { allowColumnResizing = false, initialColumnSizing = {}, onColumnSizingChange } = props ?? {};
 
-  const [columnSizing, setColumnSizing] = useState<ColumnSizingState>(initialColumnSizing ?? {});
+  const [columnSizing, setColumnSizing] = useState<ColumnSizingState>(initialColumnSizing);
 
   const handleColumnSizingChange = (columnSizingUpdater: (prevState: ColumnSizingState) => ColumnSizingState) => {
     const newColumnSizing = columnSizingUpdater(columnSizing);
