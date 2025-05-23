@@ -28,7 +28,7 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
     getTopRows,
     getCenterRows,
     getBottomRows,
-    handleBottomReached,
+    onTableScroll,
     getHeaderGroups,
     paginationState,
     defaultColumnOrder,
@@ -59,7 +59,7 @@ function TableToForward<T>(props: TableProps<T>, outerRef: any) {
   return (
     <div className={clsx(CLASSES.tableWrapper, styles.tableWrapper, className ?? styles.defaultTableWrapperStyle)}>
       <div
-        onScroll={onBottomReached ? (e: any) => handleBottomReached(e.target) : undefined}
+        onScroll={onBottomReached ? onTableScroll : undefined}
         className={clsx(CLASSES.tableParentRef, styles.tableParentRef)}
         ref={tableParentRef}
       >

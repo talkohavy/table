@@ -11,6 +11,11 @@ export type TableProps<T = any> = {
   onCellClick?: (props: { cell: any; row: any }) => any;
   setSearchText?: (value: any) => void;
   customTableFooter?: (props: any) => ReactNode;
+  /**
+   * A function to be invoke when the user scrolls to the bottom of the table.
+   *
+   * It is **highly recommended** to pass a memoized function for maximum performance and predictability.
+   */
   onBottomReached?: () => void;
   className?: string;
   initialPageSize?: number;

@@ -7,8 +7,8 @@ import { useColumnResizeHook } from './hooks/useColumnResizeHook.ts';
 import { useColumnVisibility } from './hooks/useColumnVisibility.ts';
 import { useExtractColumnsFromColumnDefs } from './hooks/useExtractColumnsFromColumnDefs';
 import { useFilterHook } from './hooks/useFilterHook.ts';
+import { useIsCloseToBottom } from './hooks/useIsCloseToBottom';
 import { usePaginationHook } from './hooks/usePaginationHook.ts';
-import { useReachToBottomMechanism } from './hooks/useReachToBottomMechanism.ts';
 import { useRowPinning } from './hooks/useRowPinning.ts';
 import { useRowSelectionHook } from './hooks/useRowSelectionHook.ts';
 import { useSortingHook } from './hooks/useSortingHook.ts';
@@ -70,7 +70,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     columns,
   });
 
-  const { handleBottomReached } = useReachToBottomMechanism({ onBottomReached, tableParentRef });
+  const { onScroll: onTableScroll } = useIsCloseToBottom({ onBottomReached });
 
   const tableInstance = useReactTable({
     data,
@@ -114,7 +114,7 @@ export function useTableLogic<T>(props: TableProps<T>, outerRef?: RefType) {
     getCenterRows,
     getCenterTotalSize,
     getHeaderGroups,
-    handleBottomReached,
+    onTableScroll,
     paginationState,
     defaultColumnOrder,
     columnSizingState,
