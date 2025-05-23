@@ -14,6 +14,7 @@ const TableWithColumnsSelector = lazy(() => import('./pages/TableWithColumnsSele
 const TableReorderColumns = lazy(() => import('./pages/TableReorderColumns'));
 const TableWithPersistentColumnWidths = lazy(() => import('./pages/TableWithPersistentColumnWidths'));
 const TableWithPinnedRows = lazy(() => import('./pages/TableWithPinnedRows'));
+const TableWithInfiniteScroll = lazy(() => import('./pages/TableWithInfiniteScroll'));
 const ComplexTablePage = lazy(() => import('./pages/ComplexTablePage'));
 
 export const routes: Array<Route> = [
@@ -92,6 +93,12 @@ export const routes: Array<Route> = [
     text: 'Table With Pinned Rows',
     activeNames: [`${BASE_URL}/table-with-pinned-rows`],
     Component: TableWithPinnedRows,
+  },
+  {
+    to: `${BASE_URL}/table-with-infinite-scroll`,
+    text: 'Infinite Scroll Table',
+    activeNames: [`${BASE_URL}/table-with-infinite-scroll`],
+    Component: TableWithInfiniteScroll,
   },
   {
     to: `${BASE_URL}/complex-table`,
