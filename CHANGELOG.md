@@ -1,5 +1,11 @@
 # @talkohavy/table
 
+## 1.0.12
+
+### Patch Changes
+
+- Implementation of `onBottomReached` made better. Bugs were fixed, and made more performant.
+
 ## 1.0.11
 
 ### Patch Changes
