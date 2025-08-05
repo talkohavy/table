@@ -2,12 +2,6 @@ import { execSync } from 'child_process';
 import fs, { cpSync } from 'fs';
 import path from 'path';
 
-const COLORS = {
-  blue: '\x1b[34m',
-  green: '\x1b[32m',
-  stop: '\x1b[0m',
-};
-
 /**
  * @typedef {{
  *   version: string,
@@ -22,8 +16,12 @@ const COLORS = {
  */
 
 const ROOT_PROJECT = process.cwd();
-
 const outDirName = 'dist';
+const COLORS = {
+  blue: '\x1b[34m',
+  green: '\x1b[32m',
+  stop: '\x1b[0m',
+};
 
 buildPackageConfig();
 
@@ -40,8 +38,8 @@ async function buildPackageConfig() {
 }
 
 function cleanDistDirectory() {
-  console.log(`${COLORS.green}- Step 1:${COLORS.stop} clear the dist directory`);
-  execSync('rm -rf dist');
+  console.log(`${COLORS.green}- Step 1:${COLORS.stop} clear the ${outDirName} directory`);
+  execSync(`rm -rf ${outDirName}`);
 }
 
 function buildWithVite() {
@@ -52,7 +50,7 @@ function buildWithVite() {
   execSync('rollup -c rollup.dts.config.js');
 
   console.log(`${COLORS.green}- Step 2.2:${COLORS.stop} clean up individual d.ts files`);
-  execSync('rm -rf dist/components');
+  execSync(`rm -rf ${outDirName}/components`);
 }
 
 function copyStaticFiles() {
